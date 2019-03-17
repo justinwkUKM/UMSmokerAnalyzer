@@ -236,10 +236,17 @@ public class FirebaseInstance implements FirebaseHandler {
     @Override
     public User getLoggedUser() {
         User user=new User();
-        if (mAuth.getCurrentUser()!=null)
-            user.setFirebaseUser(mAuth.getCurrentUser());
-        else
-            user.setUsername("");
+        try {
+            if (mAuth.getCurrentUser()!=null)
+                user.setFirebaseUser(mAuth.getCurrentUser());
+            else
+                user.setUsername("");
+
+        }
+        catch (NullPointerException e)
+        {
+            return user;
+        }
         return user;
     }
 

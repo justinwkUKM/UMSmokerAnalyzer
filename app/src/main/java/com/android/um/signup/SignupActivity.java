@@ -71,7 +71,7 @@ public class SignupActivity extends BaseActivity implements SignupContract.View 
         fields.add(et_confirm_password);
         fields.add(et_age);
         fields.add(et_gender);
-        progressDialog= new ProgressDialog(SignupActivity.this);
+        progressDialog= new ProgressDialog(SignupActivity.this,R.style.AppTheme);
     }
 
     @Override
@@ -185,7 +185,10 @@ public class SignupActivity extends BaseActivity implements SignupContract.View 
 
     @Override
     public void hideLoading() {
+        progressDialog.cancel();
         progressDialog.dismiss();
+        progressDialog.setIndeterminate(false);
+
     }
 
     public void signup()
