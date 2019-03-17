@@ -39,13 +39,14 @@ public class DataHandlerInstance implements DataHandler {
     }
 
     @Override
-    public void signupUser(String email, String password, DataCallBack<User, String> callback) {
-        mFirebaseHandler.signUpUser(email,password,callback);
+    public void signupUser(User user, DataCallBack<User, String> callback) {
+        mFirebaseHandler.signUpUser(user,callback);
+        mPrefsHandler.saveUserName(user);
     }
 
     @Override
-    public void signInUser(String email, String password, DataCallBack<User,String> callback) {
-        mFirebaseHandler.signInUser(email,password,callback);
+    public void signInUser(User user, DataCallBack<User,String> callback) {
+        mFirebaseHandler.signInUser(user,callback);
     }
 
     @Override
@@ -82,5 +83,18 @@ public class DataHandlerInstance implements DataHandler {
     @Override
     public void getQuestions(String catgeory, DataCallBack<ArrayList<Question>, String> callBack) {
         mFirebaseHandler.getQuestions(catgeory,callBack);
+    }
+
+    @Override
+    public User getLoggedUser() {
+        if (mFirebaseHandler.getLoggedUser()!=null && mFirebaseHandler.getLoggedUser().getUsername()!=null)
+            return mFirebaseHandler.getLoggedUser();
+        else
+            return mPrefsHandler.getUsername();
+    }
+
+    @Override
+    public void LogOut() {
+        mFirebaseHandler.LogOut();
     }
 }

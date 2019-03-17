@@ -15,11 +15,14 @@ import java.util.ArrayList;
 
 public interface FirebaseHandler {
 
-    void signUpUser(String email, String password, DataCallBack<User,String> callback);
-    void signInUser(String email, String password, DataCallBack<User,String> callback);
+    void signUpUser(User user, DataCallBack<User,String> callback);
+    void signInUser(User user, DataCallBack<User,String> callback);
     void resetPassword(String email,DataCallBack<String,String> callBack);
     void signinWithGoogle(GoogleSignInAccount account, DataCallBack<User,String> callBack);
     void signinWithFacebook(CallbackManager callbackManager,DataCallBack<User, FacebookException> response);
     void getQuestions(String catgeory,DataCallBack<ArrayList<Question>,String> callBack);
     boolean checkLogged();
+    void LogOut();
+    User getLoggedUser();
+
 }

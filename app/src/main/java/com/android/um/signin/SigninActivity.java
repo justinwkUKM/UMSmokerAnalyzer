@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.um.BaseActivity;
+import com.android.um.Model.DataModels.User;
 import com.android.um.PresenterInjector;
 import com.android.um.R;
 import com.android.um.postLogin.PostLoginActivity;
@@ -81,6 +82,8 @@ public class SigninActivity extends BaseActivity implements SigninContract.View 
 
         fields.add(etUsername);
         fields.add(etPassword);
+
+        dialog= new ProgressDialog(SigninActivity.this);
     }
 
     public boolean validate(ArrayList<EditText> validateFields) {
@@ -122,8 +125,11 @@ public class SigninActivity extends BaseActivity implements SigninContract.View 
     public void login() {
         if (validate(fields))
         {
+            User user=new User();
+            user.setEmail(etUsername.getEditableText().toString());
+            user.setPassword(etPassword.getEditableText().toString());
             showLoading();
-            mPresenter.signInUser(etUsername.getEditableText().toString(), etPassword.getEditableText().toString());
+            mPresenter.signInUser(user);
 
         }
     }
@@ -167,7 +173,7 @@ public class SigninActivity extends BaseActivity implements SigninContract.View 
 
     @Override
     public void showLoading() {
-        dialog = ProgressDialog.show(SigninActivity.this, "",
+        dialog.show(SigninActivity.this, "",
                 "Loading. Please wait...", true);
         dialog.setCancelable(false);
 
@@ -205,6 +211,7 @@ public class SigninActivity extends BaseActivity implements SigninContract.View 
                 startGoogleIntent();
                 break;
             case R.id.facebook_login:
+                showLoading();
                 mPresenter.signinWithFaceBook(callbackManager);
                 break;
 

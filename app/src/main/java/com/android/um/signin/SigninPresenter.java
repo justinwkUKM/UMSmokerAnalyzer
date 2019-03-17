@@ -24,8 +24,8 @@ public class SigninPresenter implements SigninContract.Presenter{
     }
 
     @Override
-    public void signInUser(String email, String password) {
-        mDataHandler.signInUser(email, password, new DataCallBack<User,String>() {
+    public void signInUser(User user) {
+        mDataHandler.signInUser(user, new DataCallBack<User,String>() {
             @Override
             public void onReponse(User result) {
                 mView.signInSuccess();

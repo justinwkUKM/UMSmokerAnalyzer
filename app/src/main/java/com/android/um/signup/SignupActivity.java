@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.util.DisplayMetrics;
@@ -22,6 +23,7 @@ import com.android.um.Model.DataModels.User;
 import com.android.um.PresenterInjector;
 import com.android.um.R;
 import com.android.um.postLogin.PostLoginActivity;
+import com.android.um.signin.SigninActivity;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -55,7 +57,7 @@ public class SignupActivity extends BaseActivity implements SignupContract.View 
 
     ArrayList<EditText> fields = new ArrayList<>();
 
-    ProgressDialog dialog;
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         setContentView(R.layout.activity_signup);
@@ -69,15 +71,16 @@ public class SignupActivity extends BaseActivity implements SignupContract.View 
         fields.add(et_confirm_password);
         fields.add(et_age);
         fields.add(et_gender);
-
+        progressDialog= new ProgressDialog(SignupActivity.this);
     }
 
     @Override
     public void handleSignup(User user) {
         hideLoading();
-        Intent intent=new Intent(this, PostLoginActivity.class);
-        startActivity(intent);
-        finish();
+                Intent intent=new Intent(SignupActivity.this, PostLoginActivity.class);
+                startActivity(intent);
+                finish();
+
     }
 
     public boolean validate(ArrayList<EditText> validateFields) {
@@ -175,22 +178,28 @@ public class SignupActivity extends BaseActivity implements SignupContract.View 
 
     @Override
     public void showLoading() {
-        dialog = ProgressDialog.show(SignupActivity.this, "",
+        progressDialog.show(SignupActivity.this, "",
                 "Loading. Please wait...", true);
-        dialog.setCancelable(false);
+        progressDialog.setCancelable(false);
     }
 
     @Override
     public void hideLoading() {
-        dialog.dismiss();
+        progressDialog.dismiss();
     }
 
     public void signup()
     {
         if (validate(fields))
         {
+            User user=new User();
+            user.setUsername(et_username.getEditableText().toString());
+            user.setEmail(et_email.getEditableText().toString());
+            user.setPassword(et_password.getEditableText().toString());
+            user.setAge(Integer.valueOf(et_age.getEditableText().toString()));
+            user.setGender(et_gender.getEditableText().toString());
             showLoading();
-            mPresenter.Signup(et_email.getEditableText().toString(),et_password.getEditableText().toString());
+            mPresenter.Signup(user);
 
         }
     }

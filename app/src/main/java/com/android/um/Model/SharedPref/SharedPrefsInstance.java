@@ -24,6 +24,13 @@ public class SharedPrefsInstance implements SharedPrefsHandler{
     }
 
     @Override
+    public void saveUserName(User user) {
+        SharedPreferences.Editor editor=mPrefs.getSharedPrefs().edit();
+        editor.putString("Name",user.getUsername());
+        editor.commit();
+    }
+
+    @Override
     public void saveUser(User user, DataCallBack<String,String> callBack) {
         SharedPreferences.Editor editor=mPrefs.getSharedPrefs().edit();
         editor.putString("Name",user.getUsername());
@@ -36,5 +43,19 @@ public class SharedPrefsInstance implements SharedPrefsHandler{
         if (value!=null && value.length()>0)
             return true;
         return false;
+    }
+
+    @Override
+    public User getUsername() {
+        User user=new User();
+        String value=mPrefs.getSharedPrefs().getString("Name","");
+        if (value!=null && value.length()>0)
+        {
+            user.setUsername(value);
+            return user;
+        }
+            user.setUsername("");
+        return user;
+
     }
 }

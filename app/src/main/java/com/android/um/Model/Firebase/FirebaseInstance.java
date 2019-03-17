@@ -59,13 +59,14 @@ public class FirebaseInstance implements FirebaseHandler {
     }
 
     @Override
-    public void signUpUser(final String email, final String password, final DataCallBack<User, String> callback) {
-        mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+    public void signUpUser(final User user, final DataCallBack<User, String> callback) {
+        mAuth.createUserWithEmailAndPassword(user.getEmail(),user.getPassword()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful())
                 {
-                    signInUser(email,password,callback);
+                    signInUser(user,callback);
+
                 }
                 else
                     callback.onError(task.getException().getMessage());
@@ -80,16 +81,12 @@ public class FirebaseInstance implements FirebaseHandler {
     }
 
     @Override
-    public void signInUser(String email, String password, final DataCallBack<User,String> callback) {
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+    public void signInUser(final User user, final DataCallBack<User,String> callback) {
+        mAuth.signInWithEmailAndPassword(user.getEmail(), user.getPassword()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful())
-                {
-                    FirebaseUser firebaseUser = mAuth.getCurrentUser();
-                    User user=new User();
-                    user.setFirebaseUser(firebaseUser);
-                    callback.onReponse(user);
+                { callback.onReponse(user);
                 }
                 else
                     callback.onError(task.getException().getMessage());
@@ -233,5 +230,21 @@ public class FirebaseInstance implements FirebaseHandler {
             }
         });
 
+    }
+
+
+    @Override
+    public User getLoggedUser() {
+        User user=new User();
+        if (mAuth.getCurrentUser()!=null)
+            user.setFirebaseUser(mAuth.getCurrentUser());
+        else
+            user.setUsername("");
+        return user;
+    }
+
+    @Override
+    public void LogOut() {
+        mAuth.signOut();
     }
 }

@@ -32,4 +32,5 @@
     <string name="packet_many">How many in a packet ?</string>
     <string name="currency_text">Malaysian Riggent(MYR)</string>
     <string name="next_btn">Next</string>
+    <string name="log_out_text">Log Out</string>
 </resources>

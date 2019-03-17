@@ -24,8 +24,8 @@ public class SignupPresenter implements SignupContract.Presenter {
     }
 
     @Override
-    public void Signup(String email,String password) {
-        mDataHandler.signupUser(email, password, new DataCallBack<User, String>() {
+    public void Signup(User user) {
+        mDataHandler.signupUser(user, new DataCallBack<User, String>() {
             @Override
             public void onReponse(User result) {
                 mView.handleSignup(result);

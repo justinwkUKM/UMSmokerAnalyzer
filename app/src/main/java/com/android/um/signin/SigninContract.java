@@ -21,7 +21,7 @@ public interface SigninContract {
 
     interface Presenter extends BasePresenter {
 
-        void signInUser(String email,String password);
+        void signInUser(User user);
         void signInWithGoogle(GoogleSignInAccount account);
         void signinWithFaceBook( CallbackManager callbackManager);
         void saveUser(User user);

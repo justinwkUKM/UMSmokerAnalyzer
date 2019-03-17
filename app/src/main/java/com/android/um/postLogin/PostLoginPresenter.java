@@ -7,6 +7,7 @@ import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataHandler;
 import com.android.um.Model.DataHandlerInstance;
 import com.android.um.Model.DataModels.Question;
+import com.android.um.Model.DataModels.User;
 import com.android.um.Model.SharedPrefsManager;
 
 import java.util.ArrayList;
@@ -20,6 +21,17 @@ public class PostLoginPresenter implements PostLoginContract.Presenter {
         this.mView = view;
         this.mDataHandler = DataHandlerInstance.getInstance(SharedPrefsManager.getInstance(mView.getContext()));
         view.setPresenter(this);
+    }
+
+    @Override
+    public User getLoggedUser() {
+        return mDataHandler.getLoggedUser();
+    }
+
+    @Override
+    public void LogOut() {
+        mDataHandler.LogOut();
+        mView.handleLogOut();
     }
 
     @Override

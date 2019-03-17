@@ -11,10 +11,11 @@ import java.util.ArrayList;
 public interface PostLoginContract {
 
     interface View extends BaseView<Presenter> {
-
+        void handleLogOut();
     }
 
     interface Presenter extends BasePresenter {
-
+        User getLoggedUser();
+        void LogOut();
     }
 }

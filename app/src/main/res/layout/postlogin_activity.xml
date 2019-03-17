@@ -5,6 +5,26 @@
     android:layout_height="match_parent"
     >
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:text="Hello,"
+        android:textSize="18dp"
+        android:id="@+id/tv_name"
+        android:layout_margin="20dp"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/log_out_text"
+        android:drawableRight="@drawable/logout_btn"
+        android:id="@+id/logout_btn"
+        />
+
+
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

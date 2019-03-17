@@ -17,7 +17,7 @@ public interface SignupContract  {
     }
 
     interface Presenter extends BasePresenter {
-        void Signup(String email,String password);
+        void Signup(User user);
     }
 
 
