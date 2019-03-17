@@ -1,0 +1,25 @@
+package com.android.um.Model.Firebase;
+
+import com.android.um.Interface.DataCallBack;
+import com.android.um.Model.DataModels.Question;
+import com.android.um.Model.DataModels.User;
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.ArrayList;
+
+public interface FirebaseHandler {
+
+    void signUpUser(String email, String password, DataCallBack<User,String> callback);
+    void signInUser(String email, String password, DataCallBack<User,String> callback);
+    void resetPassword(String email,DataCallBack<String,String> callBack);
+    void signinWithGoogle(GoogleSignInAccount account, DataCallBack<User,String> callBack);
+    void signinWithFacebook(CallbackManager callbackManager,DataCallBack<User, FacebookException> response);
+    void getQuestions(String catgeory,DataCallBack<ArrayList<Question>,String> callBack);
+    boolean checkLogged();
+}

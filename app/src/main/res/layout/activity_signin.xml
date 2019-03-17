@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradient"
+    android:theme="@style/AppThemeEditText">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome_message2"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_25ssp"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="@dimen/_50sdp"
+        android:id="@+id/tv_welcome"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/il_et_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/username_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:textColorHint="@color/gray"
+        android:layout_below="@+id/tv_welcome"
+       >
+
+        <EditText
+            android:id="@+id/et_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:ems="10"
+            android:textColor="@color/white"
+            android:inputType="textPersonName" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/il_et_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/password_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:textColorHint="@color/gray"
+        android:layout_below="@+id/il_et_username"
+        >
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:ems="10"
+            android:textColor="@color/white"
+            android:inputType="textPassword" />
+    </android.support.design.widget.TextInputLayout>
+
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:id="@+id/ll_reset"
+       android:layout_below="@+id/il_et_password">
+
+       <CheckBox
+           android:id="@+id/ch_remember_me"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Remember Me"
+           android:layout_marginLeft="70dp"
+           android:textColor="@color/white" />
+
+       <TextView
+           android:id="@+id/tv_forget_password"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="@string/forget_password"
+           android:textColor="@color/white"
+           android:layout_marginLeft="5dp"/>
+
+   </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_reset"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp">
+
+        <Button
+            android:id="@+id/login_btn"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:background="@color/btn_background"
+            android:text="@string/login_text"
+            android:textColor="@color/white"
+            />
+
+        <TextView
+            android:id="@+id/tv_new_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_below="@+id/login_btn"
+            android:layout_centerHorizontal="true"
+            android:text="@string/new_user"
+            android:textColor="@color/white"
+            />
+
+        <TextView
+            android:id="@+id/tv_or"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:text="Or"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_below="@+id/tv_new_user"/>
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/google_login"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_or"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"/>
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/facebook_login"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:layout_below="@+id/google_login"/>
+
+
+    </RelativeLayout>
+
+
+    </RelativeLayout>
+</ScrollView>

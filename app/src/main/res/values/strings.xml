@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">UM</string>
+    <string name="welcome_message">Your opinion in 3 mintues \n Respondent\'s background</string>
+    <string name="get_started">Let\'s get started</string>
+    <string name="text_gender">1.Gender / Jantina :</string>
+    <string name="text_terms_service">Terms of Service</string>
+    <string name="text_create_account"> <u>Create an account</u> </string>
+    <string name="text_signin">SIGN IN</string>
+    <string name="welcome_message2">Glad to see you!</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="remember_me">Remember me</string>
+    <string name="username_text">Username</string>
+    <string name="email_text">Email</string>
+    <string name="password_text">Password</string>
+    <string name="confirm_password_text">Re-password</string>
+    <string name="age_text">Age</string>
+    <string name="gender_text">Gender</string>
+    <string name="login_text">LOGIN</string>
+    <string name="new_user">New user? Signup</string>
+    <string name="text_signup">SIGN UP</string>
+    <!--//                            views                              -->
+    <string name="text_male">Male/Lelaki</string>
+    <string name="text_female">Female/Perempuan</string>
+    <string name="forget_password_label">Forget password</string>
+    <string name="send_text">Send</string>
+    <string name="client_id">171945750837-b6c115sa4s5952up83m3dj8l6bndc26i.apps.googleusercontent.com</string>
+    <string name="facebook_app_id">2205409826454481</string>
+    <string name="fb_login_protocol_scheme">fb2205409826454481</string>
+    <string name="postlogin_note1">We use this information to know how much money</string>
+    <string name="postlogin_note2">you are saving by giving up smoking</string>
+    <string name="packet_cost">How much does a packet cost ?</string>
+    <string name="packet_many">How many in a packet ?</string>
+    <string name="currency_text">Malaysian Riggent(MYR)</string>
+    <string name="next_btn">Next</string>
+</resources>
