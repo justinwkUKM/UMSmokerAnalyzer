@@ -28,7 +28,10 @@ public class SigninPresenter implements SigninContract.Presenter{
         mDataHandler.signInUser(user, new DataCallBack<User,String>() {
             @Override
             public void onReponse(User result) {
+
                 mView.signInSuccess();
+                mDataHandler.setLogged();
+                mDataHandler.saveUserSharedPref(result);
             }
 
             @Override
@@ -44,27 +47,52 @@ public class SigninPresenter implements SigninContract.Presenter{
             @Override
             public void onReponse(User result)
             {
-                mView.signInSuccess();
+                if (result!=null && result.getAge()!=0) {
+                    mView.signInSuccess();
+                    mDataHandler.setLogged();
+                    mDataHandler.saveUserSharedPref(result);
+                }
+                else
+                    mView.continueToSignUp(result);
             }
             @Override
             public void onError(String result) {
-                mView.signInFailed(result);
+                if (result!=null && result!=null)
+                    mView.signInFailed(result);
+                else {
+                    mDataHandler.LogOut();
+                    mView.hideLoading();
+                }
             }
         });
     }
 
+    //TODO maybe later we can add flag to user model to know which provider created this user (fb-google...etc)
+    //in case if log in failed due to already exists email so we can now by which email we need to use..
 
     @Override
     public void signinWithFaceBook(CallbackManager callbackManager) {
         mDataHandler.signinWithFacebook(callbackManager,new DataCallBack<User, FacebookException>() {
             @Override
             public void onReponse(User result) {
-                mView.signInSuccess();
+                if (result!=null && result.getAge()!=0) {
+                    mView.signInSuccess();
+                    mDataHandler.setLogged();
+                    mDataHandler.saveUserSharedPref(result);
+                }
+                else
+                    mView.continueToSignUp(result);
             }
 
             @Override
             public void onError(FacebookException result) {
-                mView.signInFailed(result.getMessage());
+                mDataHandler.LogOut();
+
+                if (result!=null && result.getMessage()!=null)
+                    mView.signInFailed(result.getMessage());
+                else {
+                    mView.hideLoading();
+                }
             }
         });
     }

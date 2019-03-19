@@ -28,7 +28,9 @@ public class SignupPresenter implements SignupContract.Presenter {
         mDataHandler.signupUser(user, new DataCallBack<User, String>() {
             @Override
             public void onReponse(User result) {
+                mDataHandler.setLogged();
                 mView.handleSignup(result);
+                mDataHandler.saveUserSharedPref(result);
             }
 
             @Override
@@ -38,11 +40,31 @@ public class SignupPresenter implements SignupContract.Presenter {
         });
     }
 
+    @Override
+    public void saveUserInfo(final User user) {
+            mDataHandler.saveUserInFirebase(user, new DataCallBack<User, String>() {
+                @Override
+                public void onReponse(User result){
+                    mDataHandler.setLogged();
+                    mView.handleSignup(user);
+                    mDataHandler.saveUserSharedPref(result);
+                }
 
+                @Override
+                public void onError(String result) {
+                    mView.handleFailedSignup(result);
+                }
+            });
+    }
 
     @Override
     public void start(@Nullable Bundle extras) {
 
+        if (extras!=null && extras.getParcelable("mUser")!=null)
+        {
+                User  user=(User) extras.get("mUser");
+                mView.handleSignInActivity(user);
+        }
     }
 
     @Override

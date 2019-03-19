@@ -7,6 +7,8 @@ public interface SharedPrefsHandler {
 
     void saveUser(User user, DataCallBack<String,String> callBack);
     boolean checkLogged();
-    User getUsername();
-    void saveUserName(User user);
+    User getLoggedUser();
+    void saveUserSharedPref(User user);
+    void setLogged();
+    void LogOut();
 }

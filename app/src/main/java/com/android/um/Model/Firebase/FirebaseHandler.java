@@ -24,5 +24,5 @@ public interface FirebaseHandler {
     boolean checkLogged();
     void LogOut();
     User getLoggedUser();
-
+    void saveUserInFirebase(User user,DataCallBack<User,String> callBack);
 }

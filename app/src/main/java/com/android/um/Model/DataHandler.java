@@ -18,7 +18,10 @@ public interface DataHandler {
     void signinWithFacebook(CallbackManager callbackManager,DataCallBack<User, FacebookException> response);
     void saveUser(User user,DataCallBack<String, String> callBack);
     void getQuestions(String catgeory,DataCallBack<ArrayList<Question>,String> callBack);
+    void saveUserInFirebase(User user,DataCallBack<User,String> callBack);
     boolean checkLogged();
     void LogOut();
     User getLoggedUser();
+    void setLogged();
+    void saveUserSharedPref(User user);
 }

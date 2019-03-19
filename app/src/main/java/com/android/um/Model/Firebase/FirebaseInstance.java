@@ -1,6 +1,8 @@
 package com.android.um.Model.Firebase;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.um.Interface.DataCallBack;
@@ -12,6 +14,8 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
@@ -34,7 +38,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class FirebaseInstance implements FirebaseHandler {
 
@@ -86,7 +96,26 @@ public class FirebaseInstance implements FirebaseHandler {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful())
-                { callback.onReponse(user);
+                {
+                    checkifUserExist( user, new DataCallBack<User, String>() {
+                        @Override
+                        public void onReponse(User result) {
+                            if (result!=null)
+                                callback.onReponse(result);
+                            else
+                            {
+                                callback.onReponse(user);
+                            }
+
+                        }
+
+                        @Override
+                        public void onError(String result) {
+                            callback.onError("Failed,Please try again!");
+                        }
+                    });
+
+
                 }
                 else
                     callback.onError(task.getException().getMessage());
@@ -107,56 +136,97 @@ public class FirebaseInstance implements FirebaseHandler {
     }
 
     @Override
-    public void signinWithGoogle(GoogleSignInAccount account, final DataCallBack<User,String> callBack) {
+    public void signinWithGoogle(GoogleSignInAccount account, final DataCallBack<User,String> googleResponse) {
         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
         mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                final User user=new User();
+                user.setFirebaseUser(mAuth.getCurrentUser());
+                checkifUserExist( user, new DataCallBack<User, String>() {
+                    @Override
+                    public void onReponse(User result) {
+                        if (result!=null)
+                            googleResponse.onReponse(result);
+                        else
+                        {
+                            googleResponse.onReponse(user);
+                        }
 
-                if (task.isSuccessful())
-                {
-                    FirebaseUser firebaseUser = mAuth.getCurrentUser();
-                    if (firebaseUser!=null)
-                    {
-                        User user=new User();
-                        user.setFirebaseUser(firebaseUser);
-                        callBack.onReponse(user);
                     }
-                    else
-                        callBack.onError(task.getException().getMessage());
-                  }
-                else
-                    callBack.onError(task.getException().getMessage());
+
+                    @Override
+                    public void onError(String result) {
+                        googleResponse.onError("Failed,Please try again!");
+                    }
+                });
+
             }
         })
         .addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                callBack.onError(e.getMessage());
+                googleResponse.onError(e.getMessage());
             }
         });
 
     }
 
     @Override
-    public void signinWithFacebook( CallbackManager callbackManager,final DataCallBack<User,FacebookException> respone) {
+    public void signinWithFacebook( CallbackManager callbackManager,final DataCallBack<User,FacebookException> facebookResponse) {
 
         LoginManager.getInstance().registerCallback(callbackManager,
                 new FacebookCallback<LoginResult>() {
                     @Override
-                    public void onSuccess(LoginResult loginResult) {
+                    public void onSuccess(final LoginResult loginResult) {
                         authFaceBook(loginResult.getAccessToken(), new DataCallBack<FirebaseUser, String>() {
                             @Override
-                            public void onReponse(FirebaseUser result) {
-                                User user=new User();
-                                user.setFirebaseUser(result);
-                                respone.onReponse(user);
+                            public void onReponse(final FirebaseUser firebaseUser) {
+                                String username=firebaseUser.getDisplayName();
+                                GraphRequest request = GraphRequest.newMeRequest(
+                                        loginResult.getAccessToken(),
+                                        new GraphRequest.GraphJSONObjectCallback() {
+                                            @Override
+                                            public void onCompleted(JSONObject object, GraphResponse response) {
+                                                final User user=new User();
+                                                try {
+                                                    //get facebook user info to save it to our realtime database
+                                                    user.setUsername(object.getString("name"));
+                                                    user.setEmail(object.getString("email"));
+                                                    String birthday=object.getString("birthday");
+                                                    Date date=new SimpleDateFormat("dd/MM/yyyy").parse(birthday);
+                                                    user.setAge(date.getYear());
+                                                    user.setGender(object.getString("gender"));
+
+                                                    checkifUserExist(user, new DataCallBack<User, String>() {
+                                                        @Override
+                                                        public void onReponse(User result) {
+                                                            if (result!=null)
+                                                                facebookResponse.onReponse(result);
+                                                            else
+                                                                facebookResponse.onReponse(user);
+                                                        }
+
+                                                        @Override
+                                                        public void onError(String result) {
+                                                            facebookResponse.onError(null);
+                                                        }
+                                                    });
+                                                }
+                                                catch (JSONException exception) { }
+                                                catch (ParseException parse) { }
+                                            }
+                                        });
+                                Bundle parameters = new Bundle();
+                                parameters.putString("fields", "id,name,email,gender,birthday");
+                                request.setParameters(parameters);
+                                request.executeAsync();
                             }
 
                             @Override
                             public void onError(String result) {
                                 FacebookException exception=new FacebookException(result);
-                                respone.onError(exception);
+                                facebookResponse.onError(exception);
 
                             }
                         });
@@ -164,17 +234,44 @@ public class FirebaseInstance implements FirebaseHandler {
 
                     @Override
                     public void onCancel() {
-
+                        FacebookException exception=new FacebookException();
+                        facebookResponse.onError(exception);
                     }
 
                     @Override
                     public void onError(FacebookException exception) {
-                        respone.onError(exception);
+                        facebookResponse.onError(exception);
                     }
                 });
 
     }
 
+    public void checkifUserExist(final User user,final DataCallBack<User,String> callBack)
+    {
+        rootRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                boolean flag=false;
+                for (DataSnapshot data: dataSnapshot.getChildren())
+                {
+                    if (data.child("email").getValue()!=null && data.child("email").getValue().equals(user.getEmail()))
+                    {
+                        flag=true;
+                        User user=data.getValue(User.class);
+                        callBack.onReponse(user);
+                    }
+                }
+                //this flag is set to prevent the call back from calling again
+                if (!flag)
+                    callBack.onReponse(null);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                callBack.onError("");
+            }
+        });
+    }
     public void authFaceBook(AccessToken accessToken, final DataCallBack<FirebaseUser, String> callBack) {
         AuthCredential credential = FacebookAuthProvider.getCredential(accessToken.getToken());
         mAuth.signInWithCredential(credential)
@@ -251,7 +348,25 @@ public class FirebaseInstance implements FirebaseHandler {
     }
 
     @Override
-    public void LogOut() {
+    public void saveUserInFirebase(final User user, final DataCallBack<User, String> callBack) {
+        rootRef.child("users").push().setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                callBack.onReponse(user);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                callBack.onError("Failed,please try again");
+            }
+        });
+
+    }
+
+    @Override
+    public void LogOut()
+    {
+        LoginManager.getInstance().logOut();
         mAuth.signOut();
     }
 }

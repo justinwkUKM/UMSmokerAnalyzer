@@ -13,11 +13,12 @@ public interface SignupContract  {
 
         void handleSignup(User user);
         void handleFailedSignup(String message);
-
+        void handleSignInActivity(User user);
     }
 
     interface Presenter extends BasePresenter {
         void Signup(User user);
+        void saveUserInfo(User user);
     }
 
 

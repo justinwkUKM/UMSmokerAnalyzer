@@ -41,7 +41,6 @@ public class DataHandlerInstance implements DataHandler {
     @Override
     public void signupUser(User user, DataCallBack<User, String> callback) {
         mFirebaseHandler.signUpUser(user,callback);
-        mPrefsHandler.saveUserName(user);
     }
 
     @Override
@@ -87,14 +86,27 @@ public class DataHandlerInstance implements DataHandler {
 
     @Override
     public User getLoggedUser() {
-        if (mFirebaseHandler.getLoggedUser()!=null && mFirebaseHandler.getLoggedUser().getUsername()!=null)
-            return mFirebaseHandler.getLoggedUser();
-        else
-            return mPrefsHandler.getUsername();
+       return mPrefsHandler.getLoggedUser();
+    }
+
+    @Override
+    public void saveUserInFirebase(User user, DataCallBack<User, String> callBack) {
+        mFirebaseHandler.saveUserInFirebase(user,callBack);
+    }
+
+    @Override
+    public void setLogged() {
+        mPrefsHandler.setLogged();
+    }
+
+    @Override
+    public void saveUserSharedPref(User user) {
+        mPrefsHandler.saveUserSharedPref(user);
     }
 
     @Override
     public void LogOut() {
+        mPrefsHandler.LogOut();
         mFirebaseHandler.LogOut();
     }
 }

@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +31,7 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -67,7 +69,8 @@ public class SigninActivity extends BaseActivity implements SigninContract.View 
 
 
     ArrayList<EditText> fields = new ArrayList<>();
-    ProgressDialog dialog;
+    @BindView(R.id.avi)
+    AVLoadingIndicatorView loadingIndicatorView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         setContentView(R.layout.activity_signin);
@@ -78,12 +81,12 @@ public class SigninActivity extends BaseActivity implements SigninContract.View 
 
         callbackManager = CallbackManager.Factory.create();
         final String EMAIL = "email";
-        facebookLogin.setReadPermissions(Arrays.asList(EMAIL));
+        facebookLogin.setReadPermissions(Arrays.asList( "email", "user_birthday","user_gender"));
 
         fields.add(etUsername);
         fields.add(etPassword);
 
-        dialog= new ProgressDialog(SigninActivity.this);
+//        loadingIndicatorView.hide();
     }
 
     public boolean validate(ArrayList<EditText> validateFields) {
@@ -147,6 +150,13 @@ public class SigninActivity extends BaseActivity implements SigninContract.View 
         startActivity(intent);
     }
 
+    @Override
+    public void continueToSignUp(User user) {
+        hideLoading();
+        Intent intent = new Intent(this, SignupActivity.class);
+        intent.putExtra("mUser",user);
+        startActivity(intent);
+    }
 
     @Override
     public void startGoogleIntent() {
@@ -173,15 +183,21 @@ public class SigninActivity extends BaseActivity implements SigninContract.View 
 
     @Override
     public void showLoading() {
-        dialog.show(SigninActivity.this, "",
-                "Loading. Please wait...", true);
-        dialog.setCancelable(false);
+        googleLogin.setEnabled(false);
+        facebookLogin.setEnabled(false);
+        loginBtn.setEnabled(false);
+        loadingIndicatorView.setVisibility(View.VISIBLE);
 
     }
 
     @Override
     public void hideLoading() {
-        dialog.dismiss();
+        googleLogin.setEnabled(true);
+        facebookLogin.setEnabled(true);
+        loginBtn.setEnabled(true);
+
+        loadingIndicatorView.setVisibility(View.GONE);
+
     }
 
     public void resetPassword() {
@@ -234,6 +250,7 @@ public class SigninActivity extends BaseActivity implements SigninContract.View 
                 Log.e("Error", "Google sign in failed", e);
             }
         }
+        hideLoading();
     }
 
 

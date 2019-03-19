@@ -15,6 +15,7 @@ public interface SigninContract {
 
       void signInSuccess();
       void signInFailed(String message);
+      void continueToSignUp(User user);
       void startGoogleIntent();
       void signup();
     }

@@ -1,15 +1,18 @@
 package com.android.um.Model.DataModels;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
-public class User {
+public class User implements Parcelable {
 
     private String username;
     private String email;
     private String password;
-    private int age;
+    private int age=0;
     private String gender;
     private ArrayList<Question> questions;
 
@@ -17,6 +20,26 @@ public class User {
     public User() {
     }
 
+
+    protected User(Parcel in) {
+        username = in.readString();
+        email = in.readString();
+        password = in.readString();
+        age = in.readInt();
+        gender = in.readString();
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 
     public String getUsername() {
         return username;
@@ -31,6 +54,7 @@ public class User {
     }
 
     public void setEmail(String email) {
+
         this.email = email;
     }
 
@@ -69,5 +93,20 @@ public class User {
     public void setFirebaseUser(FirebaseUser user)
     {
         this.setUsername(user.getDisplayName());
+        this.setEmail(user.getEmail());
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(username);
+        dest.writeString(email);
+        dest.writeString(password);
+        dest.writeInt(age);
+        dest.writeString(gender);
     }
 }
