@@ -1,5 +1,7 @@
 package com.android.um.Interface;
 
+import com.android.um.Model.DataModels.options;
+
 public interface OnNextQuestion {
-    com.android.um.Model.DataModels.options getSelectedOption();
+    void setSelectedOption(String key,options option,int position);
 }

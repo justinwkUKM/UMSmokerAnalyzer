@@ -19,21 +19,24 @@ import com.android.um.R;
 import com.android.um.questionnaire.questions_a.QuestionActivity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class OptionsListAdapter extends RecyclerView.Adapter<OptionsListAdapter.OptionViewHolder> implements OnNextQuestion {
+public class OptionsListAdapter extends RecyclerView.Adapter<OptionsListAdapter.OptionViewHolder> {
 
     ArrayList<com.android.um.Model.DataModels.options> options;
     private int lastCheckedPosition = -1;
     private int optionPosition=0;
     private String selectedValue="";
+
+
     public OptionsListAdapter(ArrayList<com.android.um.Model.DataModels.options> options)
     {
         selectedValue="";
         this.options=options;
-        QuestionActivity.questionListener=this;
+
     }
 
     @NonNull
@@ -100,11 +103,7 @@ public class OptionsListAdapter extends RecyclerView.Adapter<OptionsListAdapter.
     }
 
 
-    @Override
-    public com.android.um.Model.DataModels.options getSelectedOption() {
-            options.get(optionPosition).setValue(selectedValue);
-        return options.get(optionPosition);
-    }
+
 
     @Override
     public int getItemCount() {

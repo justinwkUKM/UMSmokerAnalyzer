@@ -9,12 +9,12 @@ import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.um.BaseActivity;
 import com.android.um.Model.DataModels.User;
 import com.android.um.PresenterInjector;
 import com.android.um.R;
+import com.android.um.questionnaire.questions_a.QuestionActivity;
 import com.android.um.signin.SigninActivity;
 
 import butterknife.BindView;
@@ -89,8 +89,8 @@ public class PostLoginActivity extends BaseActivity implements PostLoginContract
     }
 
     void goToQuestionsPage() {
-        //Intent intent=new Intent(this, QuestionActivity.class);
-        // startActivity(intent);
+        Intent intent=new Intent(this, QuestionActivity.class);
+         startActivity(intent);
     }
 
     @OnClick({R.id.login_btn, R.id.logout_btn})

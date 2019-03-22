@@ -14,6 +14,6 @@ public class BaseActivity extends AppCompatActivity {
 
     public void showMessage(Context context,String message)
     {
-        Toast.makeText(context,message,Toast.LENGTH_LONG).show();
+        Toast.makeText(context,message,Toast.LENGTH_SHORT).show();
     }
 }

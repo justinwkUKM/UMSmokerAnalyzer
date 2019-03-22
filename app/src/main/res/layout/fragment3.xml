@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:orientation="horizontal"
+    android:weightSum="1">
+
+    <RelativeLayout
+        android:id="@+id/ll_option_selector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_group">
+
+            <RadioButton
+                android:id="@+id/option_radiobutton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <RadioButton
+                android:id="@+id/option_radiobutton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <RadioButton
+                android:id="@+id/option_radiobutton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <RadioButton
+                android:id="@+id/option_radiobutton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <RadioButton
+                android:id="@+id/option_radiobutton5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+
+
+
+        </RadioGroup>
+    </RelativeLayout>
+</LinearLayout>

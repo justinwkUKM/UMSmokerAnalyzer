@@ -9,6 +9,7 @@ public class Question {
     private ArrayList<com.android.um.Model.DataModels.options> options;
     private com.android.um.Model.DataModels.options selectedOptions;
     private String category;
+    private String Type;
 
     public int getId() {
         return id;
@@ -49,4 +50,14 @@ public class Question {
     public void setCategory(String category) {
         this.category = category;
     }
+
+    public String getType() {
+        return Type;
+    }
+
+    public void setType(String type) {
+        Type = type;
+    }
+
+
 }
