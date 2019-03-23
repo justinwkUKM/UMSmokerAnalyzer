@@ -7,23 +7,24 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 import android.widget.Button;
 
+import com.android.um.AgeFragment;
 import com.android.um.BaseActivity;
-import com.android.um.Fragment1;
-import com.android.um.Fragment2;
-import com.android.um.Fragment3;
 import com.android.um.Interface.OnNextQuestion;
 import com.android.um.Model.DataModels.Question;
 import com.android.um.Model.DataModels.options;
 import com.android.um.PresenterInjector;
 import com.android.um.R;
+import com.android.um.RaceFragment;
+import com.android.um.RadioButtonFragment;
+import com.rd.PageIndicatorView;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,11 +41,15 @@ public class QuestionActivity extends BaseActivity implements OnNextQuestion, Qu
     HashMap<String, Integer> hmapSelectedOptionsPostion;
 
     QuestionContract.Presenter mPresenter;
+    @BindView(R.id.pageIndicatorView)
+    PageIndicatorView pageIndicatorView;
+    @BindView(R.id.avi)
+    AVLoadingIndicatorView loadingIndicatorView;
     private ArrayList<Question> questions;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setContentView(R.layout.test);
+        setContentView(R.layout.questions_a_layout);
         ButterKnife.bind(this);
         super.onCreate(savedInstanceState);
         hmapSelectedOptions = new LinkedHashMap<>();
@@ -53,6 +58,21 @@ public class QuestionActivity extends BaseActivity implements OnNextQuestion, Qu
         PresenterInjector.injectQuestionPresenter(this);
 
         mPresenter.getQuestions();
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {/*empty*/}
+
+            @Override
+            public void onPageSelected(int position) {
+                pageIndicatorView.setSelection(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
     }
 
@@ -72,24 +92,13 @@ public class QuestionActivity extends BaseActivity implements OnNextQuestion, Qu
 
         }
         for (int i = 0; i < questions.size(); i++) {
-            try {
-                if ( hmapSelectedOptions.get(questions.get(i).getDescription()).getValue() == null || hmapSelectedOptions.get(questions.get(i).getDescription()).getValue().length() == 0) {
-                    viewPager.setCurrentItem(i, true);
-                    showMessage(this, "Error");
-                    return;
-                }
-
-            }
-            catch (NullPointerException e)
-            {
+            if (hmapSelectedOptions.get(questions.get(i).getDescription()) == null) {
                 viewPager.setCurrentItem(i, true);
-                showMessage(this, "Error");
+                showMessage(this, "Please Make a choice");
                 return;
-            }
-            catch (IndexOutOfBoundsException e)
-            {
+            } else if (hmapSelectedOptions.get(questions.get(i).getDescription()).getValue() == null || hmapSelectedOptions.get(questions.get(i).getDescription()).getValue().length() == 0) {
                 viewPager.setCurrentItem(i, true);
-                showMessage(this, "Error");
+                showMessage(this, "Please Make a choice");
                 return;
             }
         }
@@ -111,13 +120,13 @@ public class QuestionActivity extends BaseActivity implements OnNextQuestion, Qu
 
             switch (questions.get(pos).getType()) {
                 case "RadioButton":
-                    return Fragment1.newInstance(questions.get(pos).getDescription(), 0, questions.get(pos).getQustionOptions());
+                    return RadioButtonFragment.newInstance(questions.get(pos).getDescription(), 0, questions.get(pos).getQustionOptions());
                 case "EditText":
-                    return Fragment2.newInstance(questions.get(pos).getDescription(), 1);
+                    return AgeFragment.newInstance(questions.get(pos).getDescription(), 1, questions.get(pos).getQustionOptions());
                 case "Race":
-                    return Fragment3.newInstance();
+                    return RaceFragment.newInstance(questions.get(pos).getDescription(), 2, questions.get(pos).getQustionOptions());
                 default:
-                    return Fragment1.newInstance(questions.get(pos).getDescription(), 0, questions.get(pos).getQustionOptions());
+                    return RadioButtonFragment.newInstance(questions.get(pos).getDescription(), 0, questions.get(pos).getQustionOptions());
             }
         }
 
@@ -129,8 +138,13 @@ public class QuestionActivity extends BaseActivity implements OnNextQuestion, Qu
 
     @Override
     public void setSelectedOption(String key, options option, int position) {
+
         hmapSelectedOptions.put(key, option);
         hmapSelectedOptionsPostion.put(key, position);
+        if (hmapSelectedOptions.size() == questions.size())
+            button2.setVisibility(View.VISIBLE);
+        else
+            button2.setVisibility(View.GONE);
     }
 
     @Override
@@ -138,7 +152,9 @@ public class QuestionActivity extends BaseActivity implements OnNextQuestion, Qu
         this.questions = questions;
         MyPagerAdapter adapter = new MyPagerAdapter(getSupportFragmentManager(), questions);
         viewPager.setAdapter(adapter);
-
+        pageIndicatorView.setVisibility(View.VISIBLE);
+        pageIndicatorView.setCount(questions.size());
+        pageIndicatorView.setSelection(0);
     }
 
     @Override
@@ -158,12 +174,12 @@ public class QuestionActivity extends BaseActivity implements OnNextQuestion, Qu
 
     @Override
     public void showLoading() {
-
+        loadingIndicatorView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
-
+        loadingIndicatorView.setVisibility(View.GONE);
     }
 
     @Override

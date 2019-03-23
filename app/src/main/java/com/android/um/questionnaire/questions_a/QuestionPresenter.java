@@ -25,14 +25,18 @@ public class QuestionPresenter implements QuestionContract.Presenter {
 
     @Override
     public void getQuestions() {
+        mView.showLoading();
         mDataHandler.getQuestions("a", new DataCallBack<ArrayList<Question>, String>() {
             @Override
             public void onReponse(ArrayList<Question> result) {
+
+                mView.hideLoading();
                 mView.getQuestions(result);
             }
 
             @Override
             public void onError(String result) {
+                mView.hideLoading();
                 mView.failedToLoadQuestions(result);
             }
         });

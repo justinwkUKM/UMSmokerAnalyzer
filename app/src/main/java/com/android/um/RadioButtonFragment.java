@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.android.um.Interface.OnNextQuestion;
 import com.android.um.Model.DataModels.options;
@@ -20,7 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class Fragment1 extends Fragment {
+public class RadioButtonFragment extends Fragment {
 
     static OnNextQuestion mlistener;
 
@@ -39,12 +40,17 @@ public class Fragment1 extends Fragment {
     RadioButton optionRadiobutton4;
     @BindView(R.id.option_radiobutton5)
     RadioButton optionRadiobutton5;
+    @BindView(R.id.option_radiobutton6)
+    RadioButton optionRadiobutton6;
     ArrayList<RadioButton> radioButtons;
+    @BindView(R.id.text_description)
+    TextView textDescription;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View rootView = inflater.inflate(R.layout.fragment3, container, false);
+        View rootView = inflater.inflate(R.layout.radio_button_layout, container, false);
         mlistener = QuestionActivity.listener;
         ButterKnife.bind(this, rootView);
         if (getArguments() != null) {
@@ -52,16 +58,16 @@ public class Fragment1 extends Fragment {
             position = getArguments().getInt("position");
             options = getArguments().getParcelableArrayList("options");
         }
-        radioButtons=new ArrayList<>(5);
 
+        textDescription.setText(mKey);
+        radioButtons = new ArrayList<>(6);
         radioButtons.add(optionRadiobutton1);
         radioButtons.add(optionRadiobutton2);
         radioButtons.add(optionRadiobutton3);
         radioButtons.add(optionRadiobutton4);
         radioButtons.add(optionRadiobutton5);
-
-        for (int i=0;i<options.size();i++)
-        {
+        radioButtons.add(optionRadiobutton6);
+        for (int i = 0; i < options.size(); i++) {
             radioButtons.get(i).setText(options.get(i).getDescription());
             radioButtons.get(i).setTag(options.get(i));
             radioButtons.get(i).setVisibility(View.VISIBLE);
@@ -70,9 +76,9 @@ public class Fragment1 extends Fragment {
         return rootView;
     }
 
-    public static Fragment1 newInstance(String key, int position, ArrayList<options> options) {
+    public static RadioButtonFragment newInstance(String key, int position, ArrayList<options> options) {
 
-        Fragment1 f = new Fragment1();
+        RadioButtonFragment f = new RadioButtonFragment();
         Bundle b = new Bundle();
         b.putString("key", key);
         b.putInt("position", position);
@@ -81,34 +87,41 @@ public class Fragment1 extends Fragment {
         return f;
     }
 
-    @OnClick({R.id.option_radiobutton1, R.id.option_radiobutton2,R.id.option_radiobutton3, R.id.option_radiobutton4, R.id.option_radiobutton5})
+    @OnClick({R.id.option_radiobutton1, R.id.option_radiobutton2, R.id.option_radiobutton3, R.id.option_radiobutton4, R.id.option_radiobutton5, R.id.option_radiobutton6})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.option_radiobutton1:
-                options option1=(options) optionRadiobutton1.getTag();
+                options option1 = (options) optionRadiobutton1.getTag();
                 option1.setValue(optionRadiobutton1.getText().toString());
-                mlistener.setSelectedOption(mKey,option1, position);
+                mlistener.setSelectedOption(mKey, option1, position);
                 break;
             case R.id.option_radiobutton2:
-                options option2=(options) optionRadiobutton1.getTag();
+                options option2 = (options) optionRadiobutton2.getTag();
                 option2.setValue(optionRadiobutton2.getText().toString());
-                mlistener.setSelectedOption(mKey,option2, position);
+                mlistener.setSelectedOption(mKey, option2, position);
                 break;
             case R.id.option_radiobutton3:
-                options option3=(options) optionRadiobutton1.getTag();
+                options option3 = (options) optionRadiobutton3.getTag();
                 option3.setValue(optionRadiobutton3.getText().toString());
-                mlistener.setSelectedOption(mKey,option3, position);
+                mlistener.setSelectedOption(mKey, option3, position);
                 break;
             case R.id.option_radiobutton4:
-                options option4=(options) optionRadiobutton1.getTag();
+                options option4 = (options) optionRadiobutton4.getTag();
                 option4.setValue(optionRadiobutton4.getText().toString());
-                mlistener.setSelectedOption(mKey,option4, position);
+                mlistener.setSelectedOption(mKey, option4, position);
                 break;
             case R.id.option_radiobutton5:
-                options option5=(options) optionRadiobutton1.getTag();
+                options option5 = (options) optionRadiobutton5.getTag();
                 option5.setValue(optionRadiobutton5.getText().toString());
-                mlistener.setSelectedOption(mKey,option5, position);
+                mlistener.setSelectedOption(mKey, option5, position);
+                break;
+            case R.id.option_radiobutton6:
+                options option6 = (options) optionRadiobutton6.getTag();
+                option6.setValue(optionRadiobutton6.getText().toString());
+                mlistener.setSelectedOption(mKey, option6, position);
                 break;
         }
     }
+
+
 }

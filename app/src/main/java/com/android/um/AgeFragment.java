@@ -10,37 +10,45 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.android.um.Interface.OnNextQuestion;
 import com.android.um.Model.DataModels.options;
 import com.android.um.questionnaire.questions_a.QuestionActivity;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class Fragment2 extends Fragment {
+public class AgeFragment extends Fragment {
     static OnNextQuestion mlistener;
-    static String mKey="";
-    @BindView(R.id.editText)
-    EditText editText;
+    static String mKey = "";
+    @BindView(R.id.age_text)
+    EditText age_text;
     Unbinder unbinder;
-    int position=0;
+    int position = 0;
+    ArrayList<options> options;
+    @BindView(R.id.text_description)
+    TextView textDescription;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View rootView = inflater.inflate(R.layout.fragment2, container, false);
+        View rootView = inflater.inflate(R.layout.age_fragment_layout, container, false);
         unbinder = ButterKnife.bind(this, rootView);
-        mlistener= QuestionActivity.listener;
+        mlistener = QuestionActivity.listener;
 
         if (getArguments() != null) {
             mKey = getArguments().getString("key");
-            position=getArguments().getInt("position");
+            position = getArguments().getInt("position");
+            options = getArguments().getParcelableArrayList("options");
         }
+        textDescription.setText(mKey);
 
-        editText.addTextChangedListener(new TextWatcher() {
+        age_text.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -48,9 +56,8 @@ public class Fragment2 extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                options op=new options();
-                op.setValue("123");
-                mlistener.setSelectedOption(mKey,op,position);
+                options.get(0).setValue(s.toString());
+                mlistener.setSelectedOption(mKey, options.get(0), position);
             }
 
             @Override
@@ -62,13 +69,13 @@ public class Fragment2 extends Fragment {
     }
 
 
+    public static AgeFragment newInstance(String key, int position, ArrayList<options> options) {
 
-    public static Fragment2 newInstance(String key,int position) {
-
-        Fragment2 f = new Fragment2();
+        AgeFragment f = new AgeFragment();
         Bundle b = new Bundle();
         b.putString("key", key);
-        b.putInt("position",position);
+        b.putInt("position", position);
+        b.putParcelableArrayList("options", options);
         f.setArguments(b);
         return f;
     }
