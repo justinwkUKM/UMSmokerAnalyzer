@@ -1,4 +1,4 @@
-package com.android.um;
+package com.android.um.questionnaire.questions_a;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.android.um.Interface.OnNextQuestion;
 import com.android.um.Model.DataModels.options;
-import com.android.um.questionnaire.questions_a.QuestionActivity;
+import com.android.um.R;
 
 import java.util.ArrayList;
 
@@ -56,8 +56,17 @@ public class AgeFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                options.get(0).setValue(s.toString());
-                mlistener.setSelectedOption(mKey, options.get(0), position);
+                if (s.length()>0)
+                {
+                    options.get(0).setValue(s.toString());
+                    mlistener.setSelectedOption(mKey, options.get(0), position);
+                }
+                else
+                {
+                    options.get(0).setValue(" ");
+                    mlistener.setSelectedOption(mKey, options.get(0), position);
+
+                }
             }
 
             @Override

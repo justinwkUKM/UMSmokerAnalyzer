@@ -1,4 +1,4 @@
-package com.android.um;
+package com.android.um.questionnaire.questions_a;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.android.um.Interface.OnNextQuestion;
 import com.android.um.Model.DataModels.options;
-import com.android.um.questionnaire.questions_a.QuestionActivity;
+import com.android.um.R;
 
 import java.util.ArrayList;
 

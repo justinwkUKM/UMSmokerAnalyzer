@@ -10,6 +10,7 @@ import com.android.um.GenderActivity;
 import com.android.um.PresenterInjector;
 import com.android.um.R;
 import com.android.um.postLogin.PostLoginActivity;
+import com.android.um.prelogin.PreLoginActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -61,7 +62,7 @@ public class SplashScreenActivity extends BaseActivity implements SplashScreenCo
     }
 
     public void goToNextActivity() {
-        Intent intent = new Intent(this, GenderActivity.class);
+        Intent intent = new Intent(this, PreLoginActivity.class);
         startActivity(intent);
         finish();
     }
