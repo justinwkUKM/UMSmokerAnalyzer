@@ -44,28 +44,25 @@
                 android:layout_height="wrap_content"
                 android:visibility="visible"
                 android:textColor="@color/white"/>
+
+
+                <RadioButton
+                    android:id="@+id/option_radiobutton4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    android:textColor="@color/white"/>
         </RadioGroup>
 
-        <LinearLayout
+        <EditText
+            android:layout_below="@+id/radio_group"
+            android:id="@+id/race_others"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/radio_group"
-            android:orientation="horizontal"
-            android:paddingLeft="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Others"
-                />
-            <EditText
-                android:id="@+id/race_others"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="8"
-                android:textColor="@color/white"
-                />
-        </LinearLayout>
+            android:ems="8"
+            android:visibility="gone"
+            android:layout_marginLeft="20dp"
+            />
 
     </RelativeLayout>
 </RelativeLayout>

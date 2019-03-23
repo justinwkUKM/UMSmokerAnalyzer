@@ -96,7 +96,8 @@ public class QuestionActivity extends BaseActivity implements OnNextQuestion, Qu
                 viewPager.setCurrentItem(i, true);
                 showMessage(this, "Please Make a choice");
                 return;
-            } else if (hmapSelectedOptions.get(questions.get(i).getDescription()).getValue() == null || hmapSelectedOptions.get(questions.get(i).getDescription()).getValue().length() == 0) {
+            } else if (hmapSelectedOptions.get(questions.get(i).getDescription()).getValue() == null || hmapSelectedOptions.get(questions.get(i).getDescription()).getValue().length() == 0
+            || hmapSelectedOptions.get(questions.get(i).getDescription()).getValue().equals(" ")) {
                 viewPager.setCurrentItem(i, true);
                 showMessage(this, "Please Make a choice");
                 return;
