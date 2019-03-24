@@ -1,6 +1,7 @@
 package com.android.um.questionnaire.questions_a;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -13,6 +14,7 @@ import android.widget.Button;
 
 import com.android.um.BaseActivity;
 import com.android.um.Interface.OnNextQuestion;
+import com.android.um.MainActivity;
 import com.android.um.Model.DataModels.Question;
 import com.android.um.Model.DataModels.options;
 import com.android.um.PresenterInjector;
@@ -107,6 +109,14 @@ public class QuestionActivity extends BaseActivity implements OnNextQuestion, Qu
             }
         }
 
+        goToMainScreen();
+
+    }
+
+    private void goToMainScreen() {
+        Intent intent=new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 
