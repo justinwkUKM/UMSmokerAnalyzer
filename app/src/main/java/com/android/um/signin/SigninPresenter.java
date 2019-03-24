@@ -24,6 +24,13 @@ public class SigninPresenter implements SigninContract.Presenter{
     }
 
     @Override
+    public void showQuestionsA() {
+        if (mDataHandler.isQuestionsDone("A"))
+            mView.goToMainScreen();
+        mView.goToPostLoginScreen();
+    }
+
+    @Override
     public void signInUser(User user) {
         mDataHandler.signInUser(user, new DataCallBack<User,String>() {
             @Override
@@ -97,19 +104,19 @@ public class SigninPresenter implements SigninContract.Presenter{
         });
     }
 
-    @Override
-    public void saveUser(User user) {
-        mDataHandler.saveUser(user,new DataCallBack<String, String>() {
-            @Override
-            public void onReponse(String result) {
-                mView.signInSuccess();
-            }
-            @Override
-            public void onError(String result) {
-
-            }
-        });
-    }
+//    @Override
+//    public void saveUser(User user) {
+//        mDataHandler.saveUser(user,new DataCallBack<String, String>() {
+//            @Override
+//            public void onReponse(String result) {
+//                mView.signInSuccess();
+//            }
+//            @Override
+//            public void onError(String result) {
+//
+//            }
+//        });
+//    }
 
     @Override
     public void start(@Nullable Bundle extras) {

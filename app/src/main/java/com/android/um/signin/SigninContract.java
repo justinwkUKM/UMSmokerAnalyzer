@@ -18,13 +18,14 @@ public interface SigninContract {
       void continueToSignUp(User user);
       void startGoogleIntent();
       void signup();
+      void goToMainScreen();
+      void goToPostLoginScreen();
     }
 
     interface Presenter extends BasePresenter {
-
+        void showQuestionsA();
         void signInUser(User user);
         void signInWithGoogle(GoogleSignInAccount account);
         void signinWithFaceBook( CallbackManager callbackManager);
-        void saveUser(User user);
     }
 }

@@ -7,11 +7,12 @@ public interface SplashScreenContract {
 
     interface View extends BaseView<SplashScreenContract.Presenter> {
         void handleLogged();
-
+        void goToMainScreen();
+        void goToPostLoginScreen();
     }
 
     interface Presenter extends BasePresenter {
-
+        void showQuestionsA();
     }
 
 }

@@ -15,6 +15,7 @@ import android.widget.Button;
 import com.android.um.BaseActivity;
 import com.android.um.Interface.OnNextQuestion;
 import com.android.um.MainActivity;
+import com.android.um.Model.DataModels.AnsweredQuestion;
 import com.android.um.Model.DataModels.Question;
 import com.android.um.Model.DataModels.options;
 import com.android.um.PresenterInjector;
@@ -25,6 +26,7 @@ import com.wang.avi.AVLoadingIndicatorView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,8 +38,10 @@ public class QuestionActivity extends BaseActivity implements OnNextQuestion, Qu
     @BindView(R.id.view_pager)
     ViewPager viewPager;
     public static OnNextQuestion listener;
+    //this map to save the question with its selected value to be saved in firebase
+    LinkedHashMap<String,AnsweredQuestion> answeredQuestions;
     LinkedHashMap<String, options> hmapSelectedOptions;
-    LinkedHashMap<String, options> hmapAllOptions;
+    LinkedHashMap<Question, options> hmapAllQuestions;
     HashMap<String, Integer> hmapSelectedOptionsPostion;
 
     QuestionContract.Presenter mPresenter;
@@ -87,6 +91,11 @@ public class QuestionActivity extends BaseActivity implements OnNextQuestion, Qu
 
     }
 
+    @Override
+    public void failedToSaveQuestions(String error) {
+        showMessage(this,error);
+    }
+
     @OnClick(R.id.button2)
     public void onViewClicked() {
 
@@ -108,9 +117,19 @@ public class QuestionActivity extends BaseActivity implements OnNextQuestion, Qu
                 return;
             }
         }
+        ArrayList<AnsweredQuestion> answers=new ArrayList<>();
+        for (Map.Entry<String,AnsweredQuestion> map:answeredQuestions.entrySet())
+        {
+            answers.add(map.getValue());
+        }
 
+        mPresenter.saveAnsweredQuestions(answers);
+    }
+
+    @Override
+    public void SuccessSaveQuestions() {
+        mPresenter.setQuestionsAnswered("A");
         goToMainScreen();
-
     }
 
     private void goToMainScreen() {
@@ -156,6 +175,10 @@ public class QuestionActivity extends BaseActivity implements OnNextQuestion, Qu
         this.mPosition=position;
         hmapSelectedOptions.put(key, option);
         hmapSelectedOptionsPostion.put(key, position);
+
+        AnsweredQuestion answeredQuestion=new AnsweredQuestion();
+        answeredQuestion.AddAnsweredQuestion(questions.get(position),option);
+        answeredQuestions.put(key,answeredQuestion);
         if ((option.getValue()!=null) && (option.getValue().length()>0) && (!option.getValue().equals(" ")))
         {
             if (hmapSelectedOptions.size() == questions.size())
@@ -163,6 +186,7 @@ public class QuestionActivity extends BaseActivity implements OnNextQuestion, Qu
             else
                 button2.setVisibility(View.GONE);
         }
+
 //        if (option.getValue()!=null || option.getValue().length()>0 || option.getValue().equals(" "))
 //        {
 //         new Handler().postDelayed(new Runnable() {
@@ -178,6 +202,7 @@ public class QuestionActivity extends BaseActivity implements OnNextQuestion, Qu
     @Override
     public void getQuestions(ArrayList<Question> questions) {
         this.questions = questions;
+        this.answeredQuestions=new LinkedHashMap<>(questions.size());
         MyPagerAdapter adapter = new MyPagerAdapter(getSupportFragmentManager(), questions);
         viewPager.setAdapter(adapter);
         pageIndicatorView.setVisibility(View.VISIBLE);

@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.um.BaseActivity;
+import com.android.um.MainActivity;
 import com.android.um.Model.DataModels.User;
 import com.android.um.PresenterInjector;
 import com.android.um.R;
@@ -144,10 +145,23 @@ public class SigninActivity extends BaseActivity implements SigninContract.View 
     }
 
     @Override
-    public void signInSuccess() {
-        hideLoading();
+    public void goToMainScreen() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void goToPostLoginScreen() {
         Intent intent = new Intent(this, PostLoginActivity.class);
         startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void signInSuccess() {
+        hideLoading();
+        mPresenter.showQuestionsA();
     }
 
     @Override

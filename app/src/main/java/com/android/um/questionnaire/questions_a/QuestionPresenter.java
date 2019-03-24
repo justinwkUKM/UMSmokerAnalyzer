@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataHandler;
 import com.android.um.Model.DataHandlerInstance;
+import com.android.um.Model.DataModels.AnsweredQuestion;
 import com.android.um.Model.DataModels.Question;
 import com.android.um.Model.SharedPrefsManager;
 
@@ -40,6 +41,26 @@ public class QuestionPresenter implements QuestionContract.Presenter {
                 mView.failedToLoadQuestions(result);
             }
         });
+    }
+
+    @Override
+    public void saveAnsweredQuestions(ArrayList<AnsweredQuestion> questions) {
+        mDataHandler.saveUserAnsweredQuestions(questions, new DataCallBack<String, String>() {
+            @Override
+            public void onReponse(String result) {
+               mView.SuccessSaveQuestions();
+            }
+
+            @Override
+            public void onError(String result) {
+                mView.failedToSaveQuestions(result);
+            }
+        });
+    }
+
+    @Override
+    public void setQuestionsAnswered(String part) {
+        mDataHandler.setQuestionsAnswered(part);
     }
 
     @Override

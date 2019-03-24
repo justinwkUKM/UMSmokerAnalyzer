@@ -20,7 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class PreLoginActivity extends BaseActivity implements SplashScreenContract.View{
+public class PreLoginActivity extends BaseActivity {
 
 
     @BindView(R.id.sign_btn)
@@ -37,12 +37,6 @@ public class PreLoginActivity extends BaseActivity implements SplashScreenContra
 
     }
 
-    @Override
-    public void handleLogged() {
-        Intent intent=new Intent(this, PostLoginActivity.class);
-        startActivity(intent);
-        finish();
-    }
 
     public void goToSignin() {
         Intent intent = new Intent(this, SigninActivity.class);
@@ -66,23 +60,4 @@ public class PreLoginActivity extends BaseActivity implements SplashScreenContra
         }
     }
 
-    @Override
-    public void setPresenter(SplashScreenContract.Presenter presenter) {
-        this.mPresenter = presenter;
-    }
-
-    @Override
-    public Context getContext() {
-        return this;
-    }
-
-    @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void hideLoading() {
-
-    }
 }

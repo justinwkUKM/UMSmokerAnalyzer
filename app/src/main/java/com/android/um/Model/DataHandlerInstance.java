@@ -1,6 +1,7 @@
 package com.android.um.Model;
 
 import com.android.um.Interface.DataCallBack;
+import com.android.um.Model.DataModels.AnsweredQuestion;
 import com.android.um.Model.DataModels.Question;
 import com.android.um.Model.DataModels.User;
 import com.android.um.Model.Firebase.FirebaseHandler;
@@ -108,5 +109,21 @@ public class DataHandlerInstance implements DataHandler {
     public void LogOut() {
         mPrefsHandler.LogOut();
         mFirebaseHandler.LogOut();
+    }
+
+    @Override
+    public boolean isQuestionsDone(String part) {
+        return mPrefsHandler.isQuestionsDone(part);
+    }
+
+    @Override
+    public void setQuestionsAnswered(String part) {
+        mPrefsHandler.setQuestionsAnswered(part);
+
+    }
+
+    @Override
+    public void saveUserAnsweredQuestions(ArrayList<AnsweredQuestion> questions, DataCallBack<String,String> callBack) {
+        mFirebaseHandler.saveUserAnsweredQuestions(mPrefsHandler.getLoggedUser().getId(),questions,callBack);
     }
 }

@@ -15,7 +15,7 @@ public class User implements Parcelable {
     private int age=0;
     private String gender;
     private ArrayList<Question> questions;
-
+    private String id;
 
     public User() {
     }
@@ -27,6 +27,7 @@ public class User implements Parcelable {
         password = in.readString();
         age = in.readInt();
         gender = in.readString();
+        id = in.readString();
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
@@ -40,6 +41,14 @@ public class User implements Parcelable {
             return new User[size];
         }
     };
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
@@ -94,6 +103,7 @@ public class User implements Parcelable {
     {
         this.setUsername(user.getDisplayName());
         this.setEmail(user.getEmail());
+
     }
 
     @Override

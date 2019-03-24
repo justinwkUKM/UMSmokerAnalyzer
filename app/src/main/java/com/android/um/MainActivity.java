@@ -42,7 +42,7 @@ public class MainActivity extends BaseActivity {
         ButterKnife.bind(this);
         super.onCreate(savedInstanceState);
 
-
+        loadFragment(DashBoardFragment.newInstance());
     }
 
     private void loadFragment(final Fragment fragment) {

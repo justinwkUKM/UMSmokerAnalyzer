@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.android.um.Interface.DataCallBack;
+import com.android.um.Model.DataModels.AnsweredQuestion;
 import com.android.um.Model.DataModels.Question;
 import com.android.um.Model.DataModels.User;
 import com.android.um.Model.DataModels.options;
@@ -45,6 +46,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FirebaseInstance implements FirebaseHandler {
 
@@ -258,6 +261,7 @@ public class FirebaseInstance implements FirebaseHandler {
                     {
                         flag=true;
                         User user=data.getValue(User.class);
+                        user.setId(data.getKey());
                         callBack.onReponse(user);
                     }
                 }
@@ -330,34 +334,60 @@ public class FirebaseInstance implements FirebaseHandler {
     }
 
 
-    @Override
-    public User getLoggedUser() {
-        User user=new User();
-        try {
-            if (mAuth.getCurrentUser()!=null)
-                user.setFirebaseUser(mAuth.getCurrentUser());
-            else
-                user.setUsername("");
-
-        }
-        catch (NullPointerException e)
-        {
-            return user;
-        }
-        return user;
-    }
+//    @Override
+//    public User getLoggedUser() {
+//        User user=new User();
+//        try {
+//            if (mAuth.getCurrentUser()!=null)
+//                user.setFirebaseUser(mAuth.getCurrentUser());
+//            else
+//                user.setUsername("");
+//
+//        }
+//        catch (NullPointerException e)
+//        {
+//            return user;
+//        }
+//        return user;
+//    }
 
     @Override
     public void saveUserInFirebase(final User user, final DataCallBack<User, String> callBack) {
-        rootRef.child("users").push().setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+        final DatabaseReference ref=rootRef.child("users").push();
+        ref.setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
+                user.setId(ref.getKey());
                 callBack.onReponse(user);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 callBack.onError("Failed,please try again");
+            }
+        });
+
+    }
+
+    @Override
+    public void saveUserAnsweredQuestions(String userId,ArrayList<AnsweredQuestion> questions, final DataCallBack<String,String> callBack) {
+
+        DatabaseReference ref=rootRef.child("users").child(userId);
+        HashMap<String,Object> answersMap=new HashMap<>();
+        answersMap.put("questions",questions);
+        ref.updateChildren(answersMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful())
+                    callBack.onReponse("");
+                else
+                    callBack.onError("Failed to save answers,Try again");
+            }
+        })
+        .addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                callBack.onError("Failed to save answers,Try again");
             }
         });
 

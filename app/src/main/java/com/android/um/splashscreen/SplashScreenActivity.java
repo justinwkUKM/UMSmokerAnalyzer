@@ -7,6 +7,7 @@ import android.widget.Button;
 
 import com.android.um.BaseActivity;
 import com.android.um.GenderActivity;
+import com.android.um.MainActivity;
 import com.android.um.PresenterInjector;
 import com.android.um.R;
 import com.android.um.postLogin.PostLoginActivity;
@@ -35,10 +36,22 @@ public class SplashScreenActivity extends BaseActivity implements SplashScreenCo
     }
 
     @Override
-    public void handleLogged() {
+    public void goToMainScreen() {
+        Intent intent=new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void goToPostLoginScreen() {
         Intent intent=new Intent(this, PostLoginActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void handleLogged() {
+       mPresenter.showQuestionsA();
     }
 
     @Override

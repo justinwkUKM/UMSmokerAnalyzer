@@ -90,4 +90,18 @@ public class SharedPrefsInstance implements SharedPrefsHandler{
         editor.putString("LOGGED","true");
         editor.commit();
     }
+
+    @Override
+    public boolean isQuestionsDone(String part) {
+        if (mPrefs.getSharedPrefs().getString("Questions"+part, "")!="Questions"+part)
+            return true;
+        return false;
+    }
+
+    @Override
+    public void setQuestionsAnswered(String part) {
+        SharedPreferences.Editor editor=mPrefs.getSharedPrefs().edit();
+        editor.putString("Questions"+part,"true");
+        editor.commit();
+    }
 }

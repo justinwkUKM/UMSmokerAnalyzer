@@ -11,6 +11,7 @@ public class Question {
     private String category;
     private String Type;
 
+
     public int getId() {
         return id;
     }
@@ -59,5 +60,11 @@ public class Question {
         Type = type;
     }
 
+    public void setSelectedOption(options option)
+    {
+        ArrayList<options> options=new ArrayList<>();
+        options.add(option);
+        setQustionOptions(options);
+    }
 
 }

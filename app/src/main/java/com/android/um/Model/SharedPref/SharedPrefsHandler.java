@@ -11,4 +11,6 @@ public interface SharedPrefsHandler {
     void saveUserSharedPref(User user);
     void setLogged();
     void LogOut();
+    boolean isQuestionsDone(String part);
+    void setQuestionsAnswered(String part);
 }

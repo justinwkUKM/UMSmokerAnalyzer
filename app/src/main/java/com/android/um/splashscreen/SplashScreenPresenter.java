@@ -24,6 +24,15 @@ public class SplashScreenPresenter implements SplashScreenContract.Presenter{
     }
 
     @Override
+    public void showQuestionsA() {
+        if (mDataHandler.isQuestionsDone("A"))
+            mView.goToMainScreen();
+        else
+           mView.goToPostLoginScreen();
+
+    }
+
+    @Override
     public void destroy() {
 
     }

@@ -1,6 +1,7 @@
 package com.android.um.Model;
 
 import com.android.um.Interface.DataCallBack;
+import com.android.um.Model.DataModels.AnsweredQuestion;
 import com.android.um.Model.DataModels.Question;
 import com.android.um.Model.DataModels.User;
 import com.facebook.CallbackManager;
@@ -24,4 +25,7 @@ public interface DataHandler {
     User getLoggedUser();
     void setLogged();
     void saveUserSharedPref(User user);
+    boolean isQuestionsDone(String part);
+    void setQuestionsAnswered(String part);
+    void saveUserAnsweredQuestions(ArrayList<AnsweredQuestion> questions, DataCallBack<String,String> callBack);
 }
