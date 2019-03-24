@@ -27,4 +27,6 @@
     <color name="bluesilk">#488AC7</color>
     <color name="lightblue">#728FCE</color>
     <color name="btn_background">#43a87d</color>
+    <color name="transparent">#00000000</color>
+    <color name="forground_color">#401C87C0</color>
 </resources>

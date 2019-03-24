@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:weightSum="1">
 
@@ -20,46 +20,62 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@drawable/achievments_bg"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Achievemnts"
+                    android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true"/>
+                    android:text="Achievemnts"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_25ssp"/>
             </RelativeLayout>
         </android.support.v7.widget.CardView>
+
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.33">
+
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Money Saved"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"/>
+                android:layout_height="match_parent"
+                android:background="@drawable/save_money_bg"
+                android:layout_marginBottom="@dimen/_20sdp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="Money Saved"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_25ssp"/>
             </RelativeLayout>
         </android.support.v7.widget.CardView>
+
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.34">
+
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Super Quit Function"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"/>
+                android:layout_height="match_parent"
+                android:layout_marginBottom="40dp"
+                android:background="@drawable/quit_function_bg">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="Super Quit Function"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_20ssp"/>
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 
@@ -76,72 +92,122 @@
             android:layout_height="match_parent"
             android:layout_marginTop="70dp">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_50sdp"
-                android:paddingTop="@dimen/_5sdp"
-                android:paddingBottom="@dimen/_12sdp"
+            <ImageButton
                 android:id="@+id/test"
-                android:src="@drawable/profile_icon"/>
-            <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
+                android:layout_centerHorizontal="true"
+                android:background="?android:selectableItemBackground"
+                android:paddingLeft="@dimen/_8sdp"
                 android:paddingTop="@dimen/_5sdp"
-                android:paddingBottom="@dimen/_10sdp"
-                android:src="@drawable/dashboard_icon"
+                android:paddingRight="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_12sdp"
+                android:scaleType="fitXY"
+                android:src="@drawable/profile_icon" />
+
+            <ImageButton
                 android:id="@+id/test2"
-                android:layout_below="@+id/test"/>
-            <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
+                android:layout_below="@+id/test"
+                android:layout_centerHorizontal="true"
+                android:background="?android:selectableItemBackground"
+                android:paddingLeft="@dimen/_8sdp"
                 android:paddingTop="@dimen/_5sdp"
-                android:paddingBottom="@dimen/_10sdp"
-                android:src="@drawable/awards_icon"
+                android:paddingRight="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_12sdp"
+
+                android:scaleType="fitXY"
+                android:src="@drawable/dashboard_icon" />
+
+            <ImageButton
                 android:id="@+id/test1"
-                android:layout_below="@+id/test2"/>
-            <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
+                android:layout_below="@+id/test2"
+                android:layout_centerHorizontal="true"
+                android:background="?android:selectableItemBackground"
+                android:paddingLeft="@dimen/_8sdp"
                 android:paddingTop="@dimen/_5sdp"
-                android:paddingBottom="@dimen/_10sdp"
-                android:src="@drawable/music_icon"
+                android:paddingRight="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_12sdp"
+
+                android:scaleType="fitXY"
+                android:src="@drawable/awards_icon" />
+
+            <ImageButton
                 android:id="@+id/test3"
-                android:layout_below="@+id/test1"/>
-            <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
+                android:layout_below="@+id/test1"
+                android:layout_centerHorizontal="true"
+                android:background="?android:selectableItemBackground"
+                android:paddingLeft="@dimen/_8sdp"
                 android:paddingTop="@dimen/_5sdp"
-                android:paddingBottom="@dimen/_10sdp"
-                android:src="@drawable/support_icon"
+                android:paddingRight="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_12sdp"
+
+                android:scaleType="fitXY"
+                android:src="@drawable/music_icon" />
+
+            <ImageButton
                 android:id="@+id/test4"
-                android:layout_below="@+id/test3"/>
-            <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
+                android:layout_below="@+id/test3"
+                android:layout_centerHorizontal="true"
+                android:background="?android:selectableItemBackground"
+                android:paddingLeft="@dimen/_8sdp"
                 android:paddingTop="@dimen/_5sdp"
-                android:paddingBottom="@dimen/_10sdp"
-                android:src="@drawable/direction_icon"
+                android:paddingRight="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_12sdp"
+
+                android:scaleType="fitXY"
+                android:src="@drawable/support_icon" />
+
+            <ImageButton
                 android:id="@+id/test5"
-                android:layout_below="@+id/test4"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
+                android:layout_below="@+id/test4"
+                android:layout_centerHorizontal="true"
+                android:background="?android:selectableItemBackground"
+                android:paddingLeft="@dimen/_8sdp"
                 android:paddingTop="@dimen/_5sdp"
-                android:paddingBottom="@dimen/_10sdp"
-                android:src="@drawable/info"
+                android:paddingRight="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_12sdp"
+
+                android:scaleType="fitXY"
+                android:src="@drawable/direction_icon" />
+
+            <ImageButton
                 android:id="@+id/test6"
-                android:layout_below="@+id/test5"/>
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_below="@+id/test5"
+                android:layout_centerHorizontal="true"
+                android:background="?android:selectableItemBackground"
+                android:paddingLeft="@dimen/_8sdp"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingRight="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_12sdp"
+                android:scaleType="fitXY"
+                android:src="@drawable/info" />
 
-            <ImageView
+            <ImageButton
+                android:id="@+id/test7"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_50sdp"
-                android:paddingTop="@dimen/_5sdp"
-                android:paddingBottom="@dimen/_10sdp"
-                android:src="@drawable/logout"
-                android:id="@+id/test7"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="20dp"/>
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
+                android:background="?android:selectableItemBackground"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingRight="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_12sdp"
+                android:scaleType="fitXY"
+                android:src="@drawable/logout" />
 
         </RelativeLayout>
     </LinearLayout>
