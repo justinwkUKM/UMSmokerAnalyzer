@@ -1,17 +1,14 @@
 package com.android.um.signin;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.um.BaseActivity;
@@ -19,7 +16,8 @@ import com.android.um.MainActivity;
 import com.android.um.Model.DataModels.User;
 import com.android.um.PresenterInjector;
 import com.android.um.R;
-import com.android.um.postLogin.PostLoginActivity;
+import com.android.um.Utils.AppUtils;
+import com.android.um.questions.QuestionsActivity;
 import com.android.um.resetpassword.ForgetPasswordActivity;
 import com.android.um.signup.SignupActivity;
 import com.facebook.CallbackManager;
@@ -74,20 +72,20 @@ public class SigninActivity extends BaseActivity implements SigninContract.View 
     AVLoadingIndicatorView loadingIndicatorView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setContentView(R.layout.activity_signin);
+        PresenterInjector.injectSignInPresenter(this);
+        setLocale(mPresenter.getLanguage(),R.layout.activity_signin);
         ButterKnife.bind(this);
         super.onCreate(savedInstanceState);
+        init();
+        AppUtils.hideKeyboard(SigninActivity.this);
+    }
 
-        PresenterInjector.injectSignInPresenter(this);
-
+    public void init() {
         callbackManager = CallbackManager.Factory.create();
-        final String EMAIL = "email";
         facebookLogin.setReadPermissions(Arrays.asList( "email", "user_birthday","user_gender"));
 
         fields.add(etUsername);
         fields.add(etPassword);
-
-//        loadingIndicatorView.hide();
     }
 
     public boolean validate(ArrayList<EditText> validateFields) {
@@ -145,15 +143,24 @@ public class SigninActivity extends BaseActivity implements SigninContract.View 
     }
 
     @Override
-    public void goToMainScreen() {
-        Intent intent = new Intent(this, MainActivity.class);
+    public void goToDemographicQuestionsScreen() {
+        Intent intent = new Intent(this, QuestionsActivity.class);
+        intent.putExtra("category","demographicQuestions");
         startActivity(intent);
         finish();
     }
 
     @Override
-    public void goToPostLoginScreen() {
-        Intent intent = new Intent(this, PostLoginActivity.class);
+    public void goToLevelAddictionScreen() {
+        Intent intent = new Intent(this, QuestionsActivity.class);
+        intent.putExtra("category","leveladdictionQuestions");
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void goToMainScreen() {
+        Intent intent=new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }

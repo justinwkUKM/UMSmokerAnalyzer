@@ -28,9 +28,19 @@ public class SignupPresenter implements SignupContract.Presenter {
         mDataHandler.signupUser(user, new DataCallBack<User, String>() {
             @Override
             public void onReponse(User result) {
-                mDataHandler.setLogged();
-                mView.handleSignup(result);
-                mDataHandler.saveUserSharedPref(result);
+                mDataHandler.saveUserInFirebase(result, new DataCallBack<User, String>() {
+                    @Override
+                    public void onReponse(User result) {
+                        mDataHandler.saveUserSharedPref(result);
+                        mDataHandler.setLogged();
+                        mView.handleSignup(result);
+                    }
+                    @Override
+                    public void onError(String result) {
+                        mView.handleFailedSignup("Something went wrong,Please try again!");
+                    }
+                });
+
             }
 
             @Override
@@ -45,9 +55,10 @@ public class SignupPresenter implements SignupContract.Presenter {
             mDataHandler.saveUserInFirebase(user, new DataCallBack<User, String>() {
                 @Override
                 public void onReponse(User result){
+                    mDataHandler.saveUserSharedPref(result);
                     mDataHandler.setLogged();
                     mView.handleSignup(user);
-                    mDataHandler.saveUserSharedPref(result);
+
                 }
 
                 @Override
@@ -65,6 +76,11 @@ public class SignupPresenter implements SignupContract.Presenter {
                 User  user=(User) extras.get("mUser");
                 mView.handleSignInActivity(user);
         }
+    }
+
+    @Override
+    public String getLanguage() {
+        return mDataHandler.getLanguage();
     }
 
     @Override

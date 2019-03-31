@@ -11,53 +11,87 @@ import android.widget.TextView;
 import com.android.um.BaseActivity;
 import com.android.um.PresenterInjector;
 import com.android.um.R;
-import com.android.um.postLogin.PostLoginActivity;
+import com.android.um.terms.TermsActivity;
 import com.android.um.signin.SigninActivity;
 import com.android.um.signup.SignupActivity;
-import com.android.um.splashscreen.SplashScreenContract;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class PreLoginActivity extends BaseActivity {
+public class PreLoginActivity extends BaseActivity implements PreLoginContract.View {
 
 
     @BindView(R.id.sign_btn)
     Button signBtn;
     @BindView(R.id.tv_create_account)
     TextView tvCreateAccount;
-    private SplashScreenContract.Presenter mPresenter;
+
+    private PreLoginContract.Presenter mPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setContentView(R.layout.activity_login_register);
+        PresenterInjector.injectPreLoginPresenter(this);
+        setLocale(mPresenter.getLanguage(), R.layout.prelogin_activity);
         ButterKnife.bind(this);
         super.onCreate(savedInstanceState);
 
+
     }
 
-
-    public void goToSignin() {
+    @Override
+    public void goToSigninPage() {
         Intent intent = new Intent(this, SigninActivity.class);
         startActivity(intent);
     }
 
-    public void goToSignup() {
+    @Override
+    public void goToSignupPage() {
         Intent intent = new Intent(this, SignupActivity.class);
         startActivity(intent);
     }
 
-    @OnClick({R.id.sign_btn, R.id.tv_create_account})
+    @Override
+    public void goToTermsPage() {
+        Intent intent = new Intent(this, TermsActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void showTermsError() {
+        showMessage(this, getResources().getString(R.string.terms_error));
+    }
+
+    @Override
+    public void setPresenter(PreLoginContract.Presenter presenter) {
+        this.mPresenter = presenter;
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
+    }
+
+    @Override
+    public void showLoading() { }
+
+    @Override
+    public void hideLoading() { }
+
+    @OnClick({R.id.sign_btn, R.id.tv_create_account,R.id.terms_text})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.sign_btn:
-                goToSignin();
+                mPresenter.goToSigninPage();
                 break;
             case R.id.tv_create_account:
-                goToSignup();
+                mPresenter.goToSignupPage();
+                break;
+            case R.id.terms_text:
+                goToTermsPage();
                 break;
         }
     }
+
 
 }

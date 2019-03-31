@@ -56,6 +56,7 @@ public class FirebaseInstance implements FirebaseHandler {
     FirebaseAuth mAuth;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference rootRef;
+    boolean checkFlag=false;
     private FirebaseInstance() {
         firebaseDatabase = FirebaseDatabase.getInstance();
         rootRef= firebaseDatabase.getReference();
@@ -78,6 +79,7 @@ public class FirebaseInstance implements FirebaseHandler {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful())
                 {
+                    user.setFirebaseUser(mAuth.getCurrentUser());
                     signInUser(user,callback);
 
                 }
@@ -100,25 +102,17 @@ public class FirebaseInstance implements FirebaseHandler {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful())
                 {
-                    checkifUserExist( user, new DataCallBack<User, String>() {
-                        @Override
-                        public void onReponse(User result) {
-                            if (result!=null)
-                                callback.onReponse(result);
-                            else
-                            {
-                                callback.onReponse(user);
-                            }
+                   checkifUserExist(user, new DataCallBack<User, String>() {
+                       @Override
+                       public void onReponse(User result) {
+                           callback.onReponse(result);
+                       }
 
-                        }
-
-                        @Override
-                        public void onError(String result) {
-                            callback.onError("Failed,Please try again!");
-                        }
-                    });
-
-
+                       @Override
+                       public void onError(String result) {
+                           callback.onReponse(user);
+                       }
+                   });
                 }
                 else
                     callback.onError(task.getException().getMessage());
@@ -153,7 +147,18 @@ public class FirebaseInstance implements FirebaseHandler {
                             googleResponse.onReponse(result);
                         else
                         {
-                            googleResponse.onReponse(user);
+                            saveUserInFirebase(user, new DataCallBack<User, String>() {
+                                @Override
+                                public void onReponse(User result) {
+
+                                    googleResponse.onReponse(user);
+                                }
+
+                                @Override
+                                public void onError(String result) {
+                                    googleResponse.onError("Something went wrong,Please try again!");
+                                }
+                            });
                         }
 
                     }
@@ -192,6 +197,7 @@ public class FirebaseInstance implements FirebaseHandler {
                                             @Override
                                             public void onCompleted(JSONObject object, GraphResponse response) {
                                                 final User user=new User();
+                                                user.setFirebaseUser(firebaseUser);
                                                 try {
                                                     //get facebook user info to save it to our realtime database
                                                     user.setUsername(object.getString("name"));
@@ -207,7 +213,20 @@ public class FirebaseInstance implements FirebaseHandler {
                                                             if (result!=null)
                                                                 facebookResponse.onReponse(result);
                                                             else
-                                                                facebookResponse.onReponse(user);
+                                                            {
+                                                                saveUserInFirebase(user, new DataCallBack<User, String>() {
+                                                                    @Override
+                                                                    public void onReponse(User result) {
+                                                                        facebookResponse.onReponse(user);
+                                                                    }
+
+                                                                    @Override
+                                                                    public void onError(String result) {
+                                                                        facebookResponse.onError(null);
+                                                                    }
+                                                                });
+                                                            }
+
                                                         }
 
                                                         @Override
@@ -298,13 +317,14 @@ public class FirebaseInstance implements FirebaseHandler {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user!=null)
             return true;
-        return false;
+        else
+            return false;
     }
 
     @Override
     public void getQuestions(String catgeory, final DataCallBack<ArrayList<Question>, String> callBack) {
         String x=catgeory;
-        rootRef.child("questions").child("questions_"+catgeory).addValueEventListener(new ValueEventListener() {
+        rootRef.child("questions").child(catgeory).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 ArrayList<Question> questions=new ArrayList<>();
@@ -322,7 +342,7 @@ public class FirebaseInstance implements FirebaseHandler {
                 if (questions.size()>0)
                     callBack.onReponse(questions);
                 else
-                    callBack.onError("No Questions");
+                    callBack.onError("No Questions Found,Try Again");
             }
 
             @Override
@@ -332,24 +352,6 @@ public class FirebaseInstance implements FirebaseHandler {
         });
 
     }
-
-
-//    @Override
-//    public User getLoggedUser() {
-//        User user=new User();
-//        try {
-//            if (mAuth.getCurrentUser()!=null)
-//                user.setFirebaseUser(mAuth.getCurrentUser());
-//            else
-//                user.setUsername("");
-//
-//        }
-//        catch (NullPointerException e)
-//        {
-//            return user;
-//        }
-//        return user;
-//    }
 
     @Override
     public void saveUserInFirebase(final User user, final DataCallBack<User, String> callBack) {
@@ -370,11 +372,11 @@ public class FirebaseInstance implements FirebaseHandler {
     }
 
     @Override
-    public void saveUserAnsweredQuestions(String userId,ArrayList<AnsweredQuestion> questions, final DataCallBack<String,String> callBack) {
+    public void saveUserAnsweredQuestions(String category,String userId,ArrayList<AnsweredQuestion> questions, final DataCallBack<String,String> callBack) {
 
         DatabaseReference ref=rootRef.child("users").child(userId);
         HashMap<String,Object> answersMap=new HashMap<>();
-        answersMap.put("questions",questions);
+        answersMap.put(category,questions);
         ref.updateChildren(answersMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -391,6 +393,33 @@ public class FirebaseInstance implements FirebaseHandler {
             }
         });
 
+    }
+
+    @Override
+    public void isQuestionsDone(final String category,String userId, final DataCallBack<Boolean, Boolean> callBack) {
+        rootRef.child("users").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                boolean flag=false;
+                for (DataSnapshot data: dataSnapshot.getChildren())
+                {
+                    if (data.getKey()!=null && data.getKey().equals(category))
+                    {
+
+                        callBack.onReponse(true);
+                        flag=true;
+                        break;
+                    }
+                }
+                if (!flag)
+                    callBack.onReponse(false);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                callBack.onError(false);
+            }
+        });
     }
 
     @Override

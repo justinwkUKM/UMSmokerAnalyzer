@@ -1,5 +1,6 @@
 package com.android.um.signup;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -11,17 +12,19 @@ import android.view.Display;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.um.BaseActivity;
+import com.android.um.Model.DataModels.AnsweredQuestion;
+import com.android.um.Model.DataModels.Question;
 import com.android.um.Model.DataModels.User;
 import com.android.um.PresenterInjector;
 import com.android.um.R;
 import com.android.um.postLogin.PostLoginActivity;
+import com.android.um.questions.QuestionsActivity;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
@@ -49,8 +52,6 @@ public class SignupActivity extends BaseActivity implements SignupContract.View 
 
     @BindView(R.id.et_gender)
     EditText et_gender;
-
-
 
     @BindView(R.id.il_et_email)
     TextInputLayout il_et_email;
@@ -89,14 +90,22 @@ public class SignupActivity extends BaseActivity implements SignupContract.View 
     boolean validaqteAgeFlag=false;
     boolean validaqteGenderFlag=false;
     boolean signinFlag=false;
+
+    //this flag to check if he already answered the questions or not
+    boolean questionsFlag=false;
     User mUser;
+    private int QUESTIONS_REQUEST_CODE=1000;
+    private ArrayList<AnsweredQuestion> answers;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setContentView(R.layout.activity_signup);
-        ButterKnife.bind(this);
-        super.onCreate(savedInstanceState);
 
         PresenterInjector.injectSignupPresenter(this);
+        setLocale(mPresenter.getLanguage(),R.layout.activity_signup);
+        ButterKnife.bind(this);
+
+        super.onCreate(savedInstanceState);
+
         fields.add(et_username);
         fields.add(et_email);
         fields.add(et_password);
@@ -104,17 +113,15 @@ public class SignupActivity extends BaseActivity implements SignupContract.View 
         fields.add(et_age);
         fields.add(et_gender);
 
-//        loadingIndicatorView.hide();
         mPresenter.start(getIntent().getExtras());
     }
 
     @Override
     public void handleSignup(User user) {
-        hideLoading();
+                hideLoading();
                 Intent intent=new Intent(SignupActivity.this, PostLoginActivity.class);
                 startActivity(intent);
                 finish();
-
     }
 
     @Override
@@ -162,20 +169,20 @@ public class SignupActivity extends BaseActivity implements SignupContract.View 
                 String username=validateFields.get(i).getEditableText().toString();
                 if (username.length() <= 0)
                 {
-                    validateFields.get(i).setError("Username cant be empty");
+                    validateFields.get(i).setError(getResources().getString(R.string.text_empty_error));
                     return false;
                 }
             }
             if (validateFields.get(i).getId() == R.id.et_email && !validaqteEmailFlag) {
                 String email = validateFields.get(i).getEditableText().toString();
                 if (email.length() <= 0) {
-                    validateFields.get(i).setError("Email cant be empty");
+                    validateFields.get(i).setError(getResources().getString(R.string.text_empty_error));
                     return false;
                 } else {
                     Pattern pattern = Pattern.compile("^.+@.+\\..+$");
                     Matcher matcher = pattern.matcher(email);
                     if (!matcher.matches()) {
-                        validateFields.get(i).setError("Invalid email");
+                        validateFields.get(i).setError(getResources().getString(R.string.text_email_invalid));
                         return false;
                     }
                 }
@@ -184,13 +191,13 @@ public class SignupActivity extends BaseActivity implements SignupContract.View 
                 String password=validateFields.get(i).getEditableText().toString();
                 if (password.length() <= 0)
                 {
-                    validateFields.get(i).setError("Password cant be empty");
+                    validateFields.get(i).setError(getResources().getString(R.string.text_empty_error));
                     return false;
                 }
 
                 else if (password.length() < 6)
                 {
-                    validateFields.get(i).setError("Password at least 6 characters");
+                    validateFields.get(i).setError(getResources().getString(R.string.text_password_length_error));
                     return false;
                 }
 
@@ -200,13 +207,13 @@ public class SignupActivity extends BaseActivity implements SignupContract.View 
                 String repassword=validateFields.get(i).getEditableText().toString();
                 if (repassword.length() <= 0)
                 {
-                    validateFields.get(i).setError("Password cant be empty");
+                    validateFields.get(i).setError(getResources().getString(R.string.text_empty_error));
                     return false;
                 }
 
                 else if (!repassword.equals(mainPassword))
                 {
-                    validateFields.get(i).setError("Password doesnt match");
+                    validateFields.get(i).setError(getResources().getString(R.string.text_password_confirmation_error));
                     return false;
                 }
             }
@@ -214,13 +221,13 @@ public class SignupActivity extends BaseActivity implements SignupContract.View 
                 String age=validateFields.get(i).getEditableText().toString();
                 if (age.length() <= 0)
                 {
-                    validateFields.get(i).setError("Age cant be empty");
+                    validateFields.get(i).setError(getResources().getString(R.string.text_empty_error));
                     return false;
                 }
 
                 else if (Integer.parseInt(age)<18)
                 {
-                    validateFields.get(i).setError("Enter a valid age");
+                    validateFields.get(i).setError(getResources().getString(R.string.text_age_invalid));
                     return false;
                 }
             }
@@ -228,15 +235,14 @@ public class SignupActivity extends BaseActivity implements SignupContract.View 
                 String gender=validateFields.get(i).getEditableText().toString();
                 if (gender.length() <= 0)
                 {
-                    validateFields.get(i).setError("Gender cant be empty");
+                    validateFields.get(i).setError(getResources().getString(R.string.text_empty_error));
                     return false;
                 }
             }
-
         }
-
         return true;
     }
+
     @Override
     public void setPresenter(SignupContract.Presenter presenter) {
         this.mPresenter=presenter;
@@ -257,7 +263,6 @@ public class SignupActivity extends BaseActivity implements SignupContract.View 
     public void hideLoading() {
         btn_signup.setClickable(true);
         loadingIndicatorView.setVisibility(View.GONE);
-
     }
 
     public void signup()
@@ -276,9 +281,10 @@ public class SignupActivity extends BaseActivity implements SignupContract.View 
                 if (!validaqteAgeFlag)
                     mUser.setAge(Integer.parseInt(et_age.getEditableText().toString()));
 
-                    mPresenter.saveUserInfo(mUser);
-            }
+                mUser.setDemographicQuestions(answers);
+                mPresenter.saveUserInfo(mUser);
 
+            }
             else
             {
                 User user=new User();
@@ -287,26 +293,34 @@ public class SignupActivity extends BaseActivity implements SignupContract.View 
                 user.setPassword(et_password.getEditableText().toString());
                 user.setAge(Integer.valueOf(et_age.getEditableText().toString()));
                 user.setGender(et_gender.getEditableText().toString());
+                user.setDemographicQuestions(answers);
                 mPresenter.Signup(user);
             }
-
-
-
         }
     }
+
     @OnClick({R.id.btn_signup,R.id.il_et_gender})
     public void onClick(View view)
     {
         switch (view.getId())
         {
             case R.id.btn_signup:
-
-                signup();
+                if (questionsFlag)
+                    signup();
+                else
+                    goToQuestions();
                 break;
             case R.id.il_et_gender:
                 showDialog();
                 break;
         }
+    }
+
+    private void goToQuestions() {
+        Intent intent=new Intent(this, QuestionsActivity.class);
+        intent.putExtra("category","demographicQuestions");
+        startActivityForResult(intent,QUESTIONS_REQUEST_CODE);
+
     }
 
     @Override
@@ -315,24 +329,12 @@ public class SignupActivity extends BaseActivity implements SignupContract.View 
         showMessage(this,message);
     }
 
-    public void hideSoftKeyboard(View view) {
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_IMPLICIT_ONLY);
-    }
-
-    public void showSoftKeyboard(View view) {
-        if (view.requestFocus()) {
-            InputMethodManager imm = (InputMethodManager)
-                    getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
-        }
-    }
 
     public void showDialog()
     {
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.gender_dialog);
-        dialog.setTitle("Gender");
+        dialog.setTitle(getResources().getString(R.string.gender_text));
 
        final TextView text_male =  dialog.findViewById(R.id.tv_gender_male);
         final TextView text_female =  dialog.findViewById(R.id.tv_gender_female);
@@ -368,25 +370,20 @@ public class SignupActivity extends BaseActivity implements SignupContract.View 
         Window win = dialog.getWindow();
         win.setLayout(width.intValue(), height.intValue());
     }
-    //    public void getData()
-//    {
-//        FirebaseApp.initializeApp(SignupActivity.this);
-//        DatabaseReference database = FirebaseDatabase.getInstance().getReference("questions");
-//        database.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                ArrayList<Question> questions=new ArrayList<>();
-//                for(DataSnapshot dsp : dataSnapshot.getChildren()){
-//                    Question question = dsp.getValue(Question.class);
-//                    questions.add(question);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == QUESTIONS_REQUEST_CODE) {
+            if(resultCode == Activity.RESULT_OK){
+                answers=(ArrayList<AnsweredQuestion>)data.getSerializableExtra("QUESTIONS");
+                btn_signup.setText(getResources().getString(R.string.text_signup));
+
+                questionsFlag=true;
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
+    }
 }

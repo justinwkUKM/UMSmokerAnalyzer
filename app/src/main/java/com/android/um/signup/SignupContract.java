@@ -19,6 +19,7 @@ public interface SignupContract  {
     interface Presenter extends BasePresenter {
         void Signup(User user);
         void saveUserInfo(User user);
+        
     }
 
 

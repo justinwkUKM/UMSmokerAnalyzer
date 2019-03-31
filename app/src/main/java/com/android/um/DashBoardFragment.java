@@ -9,11 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.um.Model.DataModels.options;
-import com.android.um.questionnaire.questions_a.AgeFragment;
-
-import java.util.ArrayList;
-
 public class DashBoardFragment extends Fragment {
 
     @Nullable

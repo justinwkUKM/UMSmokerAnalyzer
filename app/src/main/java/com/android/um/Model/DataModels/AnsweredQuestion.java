@@ -1,8 +1,11 @@
 package com.android.um.Model.DataModels;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
-public class AnsweredQuestion {
+public class AnsweredQuestion implements Parcelable {
 
     private int id;
     private String description;
@@ -14,7 +17,26 @@ public class AnsweredQuestion {
 
     }
 
-    public void AddAnsweredQuestion(Question question,options option)
+    protected AnsweredQuestion(Parcel in) {
+        id = in.readInt();
+        description = in.readString();
+        selectedOption = in.readParcelable(options.class.getClassLoader());
+        category = in.readString();
+    }
+
+    public static final Creator<AnsweredQuestion> CREATOR = new Creator<AnsweredQuestion>() {
+        @Override
+        public AnsweredQuestion createFromParcel(Parcel in) {
+            return new AnsweredQuestion(in);
+        }
+
+        @Override
+        public AnsweredQuestion[] newArray(int size) {
+            return new AnsweredQuestion[size];
+        }
+    };
+
+    public void AddAnsweredQuestion(Question question, options option)
     {
         this.id=question.getId();
         this.category=question.getCategory();
@@ -51,5 +73,18 @@ public class AnsweredQuestion {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(description);
+        dest.writeParcelable(selectedOption, flags);
+        dest.writeString(category);
     }
 }

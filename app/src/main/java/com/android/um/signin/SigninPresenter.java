@@ -25,9 +25,35 @@ public class SigninPresenter implements SigninContract.Presenter{
 
     @Override
     public void showQuestionsA() {
-        if (mDataHandler.isQuestionsDone("A"))
-            mView.goToMainScreen();
-        mView.goToPostLoginScreen();
+        mDataHandler.isQuestionsDone("demographicQuestions",new DataCallBack<Boolean, Boolean>() {
+            @Override
+            public void onReponse(Boolean result) {
+                if (result)
+                {
+                    mDataHandler.isQuestionsDone("leveladdictionQuestions", new DataCallBack<Boolean, Boolean>() {
+                        @Override
+                        public void onReponse(Boolean result) {
+                            if (result)
+                                mView.goToMainScreen();
+                            else
+                                mView.goToLevelAddictionScreen();
+                        }
+
+                        @Override
+                        public void onError(Boolean result) {
+                            mView.goToLevelAddictionScreen();
+                        }
+                    });
+                }
+                else
+                    mView.goToDemographicQuestionsScreen();
+            }
+
+            @Override
+            public void onError(Boolean result) {
+                mView.goToDemographicQuestionsScreen();
+            }
+        });
     }
 
     @Override
@@ -35,10 +61,10 @@ public class SigninPresenter implements SigninContract.Presenter{
         mDataHandler.signInUser(user, new DataCallBack<User,String>() {
             @Override
             public void onReponse(User result) {
-
+                mDataHandler.saveUserSharedPref(result);
                 mView.signInSuccess();
                 mDataHandler.setLogged();
-                mDataHandler.saveUserSharedPref(result);
+
             }
 
             @Override
@@ -54,10 +80,27 @@ public class SigninPresenter implements SigninContract.Presenter{
             @Override
             public void onReponse(User result)
             {
+                mDataHandler.saveUserSharedPref(result);
                 if (result!=null && result.getAge()!=0) {
-                    mView.signInSuccess();
                     mDataHandler.setLogged();
-                    mDataHandler.saveUserSharedPref(result);
+                    mDataHandler.isQuestionsDone("leveladdictionQuestions", new DataCallBack<Boolean, Boolean>() {
+                        @Override
+                        public void onReponse(Boolean flag) {
+                            if (flag)
+                            {
+                                mView.signInSuccess();
+
+                            }
+                            else
+                            {
+                                mView.goToLevelAddictionScreen();
+                            }
+                        }
+                        @Override
+                        public void onError(Boolean result) {
+                            mView.goToLevelAddictionScreen();
+                        }
+                    });
                 }
                 else
                     mView.continueToSignUp(result);
@@ -82,10 +125,11 @@ public class SigninPresenter implements SigninContract.Presenter{
         mDataHandler.signinWithFacebook(callbackManager,new DataCallBack<User, FacebookException>() {
             @Override
             public void onReponse(User result) {
+                mDataHandler.saveUserSharedPref(result);
                 if (result!=null && result.getAge()!=0) {
                     mView.signInSuccess();
                     mDataHandler.setLogged();
-                    mDataHandler.saveUserSharedPref(result);
+
                 }
                 else
                     mView.continueToSignUp(result);
@@ -99,24 +143,16 @@ public class SigninPresenter implements SigninContract.Presenter{
                     mView.signInFailed(result.getMessage());
                 else {
                     mView.hideLoading();
+                    mView.signInFailed("Something went wrong,Please try again!");
                 }
             }
         });
     }
 
-//    @Override
-//    public void saveUser(User user) {
-//        mDataHandler.saveUser(user,new DataCallBack<String, String>() {
-//            @Override
-//            public void onReponse(String result) {
-//                mView.signInSuccess();
-//            }
-//            @Override
-//            public void onError(String result) {
-//
-//            }
-//        });
-//    }
+    @Override
+    public String getLanguage() {
+        return mDataHandler.getLanguage();
+    }
 
     @Override
     public void start(@Nullable Bundle extras) {

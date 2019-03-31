@@ -1,4 +1,4 @@
-package com.android.um.questionnaire.questions_a;
+package com.android.um.questions;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -51,7 +51,7 @@ public class RadioButtonFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.radio_button_layout, container, false);
-        mlistener = QuestionActivity.listener;
+        mlistener = QuestionsActivity.listener;
         ButterKnife.bind(this, rootView);
         if (getArguments() != null) {
             mKey = getArguments().getString("key");

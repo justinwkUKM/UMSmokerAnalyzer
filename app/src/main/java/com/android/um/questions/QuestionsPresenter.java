@@ -1,4 +1,4 @@
-package com.android.um.questionnaire.questions_a;
+package com.android.um.questions;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,21 +13,21 @@ import com.android.um.Model.SharedPrefsManager;
 import java.util.ArrayList;
 
 
-public class QuestionPresenter implements QuestionContract.Presenter {
+public class QuestionsPresenter implements QuestionsContract.Presenter {
 
-    private QuestionContract.View mView;
+    private QuestionsContract.View mView;
     private DataHandler mDataHandler;
 
-    public QuestionPresenter(QuestionContract.View view) {
+    public QuestionsPresenter(QuestionsContract.View view) {
         this.mView = view;
         this.mDataHandler = DataHandlerInstance.getInstance(SharedPrefsManager.getInstance(mView.getContext()));
         view.setPresenter(this);
     }
 
     @Override
-    public void getQuestions() {
+    public void getQuestions(String category) {
         mView.showLoading();
-        mDataHandler.getQuestions("a", new DataCallBack<ArrayList<Question>, String>() {
+        mDataHandler.getQuestions(category, new DataCallBack<ArrayList<Question>, String>() {
             @Override
             public void onReponse(ArrayList<Question> result) {
 
@@ -44,11 +44,11 @@ public class QuestionPresenter implements QuestionContract.Presenter {
     }
 
     @Override
-    public void saveAnsweredQuestions(ArrayList<AnsweredQuestion> questions) {
-        mDataHandler.saveUserAnsweredQuestions(questions, new DataCallBack<String, String>() {
+    public void saveAnsweredQuestions(String category,ArrayList<AnsweredQuestion> questions) {
+        mDataHandler.saveUserAnsweredQuestions(category,questions, new DataCallBack<String, String>() {
             @Override
             public void onReponse(String result) {
-               mView.SuccessSaveQuestions();
+             mView.SuccessSaveQuestions();
             }
 
             @Override
@@ -56,6 +56,29 @@ public class QuestionPresenter implements QuestionContract.Presenter {
                 mView.failedToSaveQuestions(result);
             }
         });
+    }
+
+    @Override
+    public void isQuestionAnswered(final String category) {
+         mDataHandler.isQuestionsDone(category, new DataCallBack<Boolean, Boolean>() {
+             @Override
+             public void onReponse(Boolean result) {
+                 if (result)
+                     mView.SuccessSaveQuestions();
+                 else
+                     mView.goToQuestions(category);
+             }
+
+             @Override
+             public void onError(Boolean result) {
+                 mView.goToQuestions(category);
+             }
+         });
+    }
+
+    @Override
+    public String getLanguage() {
+        return mDataHandler.getLanguage();
     }
 
     @Override
@@ -75,6 +98,6 @@ public class QuestionPresenter implements QuestionContract.Presenter {
 
     @Override
     public boolean checkifLogged() {
-        return false;
+        return mDataHandler.checkLogged();
     }
 }

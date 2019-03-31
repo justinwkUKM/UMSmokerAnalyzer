@@ -15,25 +15,22 @@
     <string name="confirm_password_text">Re-password</string>
     <string name="age_text">Age</string>
     <string name="gender_text">Gender</string>
-    
+    <string name="login_text">LOGIN</string>
+    <string name="new_user">New user? Signup</string>
+    <string name="text_signup">SIGN UP</string>
+    <string name="text_select_language">Please Select Language</string>
+
     <string name="text_empty_error">Mandatory Field</string>
     <string name="text_email_invalid">Invalid email</string>
     <string name="text_password_length_error">Password at least 6 characters</string>
     <string name="text_password_confirmation_error">Password not match</string>
     <string name="text_age_invalid">Enter a valid age</string>
-    
-    <string name="login_text">LOGIN</string>
-    <string name="new_user">New user? Signup</string>
-    <string name="text_signup">SIGN UP</string>
-    <string name="text_select_language">Please Select Language</string>
+
     <!--//                            views                              -->
     <string name="text_male">Male/Lelaki</string>
     <string name="text_female">Female/Perempuan</string>
     <string name="forget_password_label">Forget password</string>
     <string name="send_text">Send</string>
-    <string name="client_id">171945750837-b6c115sa4s5952up83m3dj8l6bndc26i.apps.googleusercontent.com</string>
-    <string name="facebook_app_id">2205409826454481</string>
-    <string name="fb_login_protocol_scheme">fb2205409826454481</string>
     <string name="postlogin_note1">We use this information to know how much money</string>
     <string name="postlogin_note2">you are saving by giving up smoking</string>
     <string name="packet_cost">How much does a packet cost ?</string>

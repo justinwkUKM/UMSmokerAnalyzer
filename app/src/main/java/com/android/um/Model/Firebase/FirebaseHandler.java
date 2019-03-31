@@ -26,5 +26,6 @@ public interface FirebaseHandler {
     void LogOut();
 //    User getLoggedUser();
     void saveUserInFirebase(User user,DataCallBack<User,String> callBack);
-    void saveUserAnsweredQuestions(String userId,ArrayList<AnsweredQuestion> questions, DataCallBack<String,String> callBack);
+    void saveUserAnsweredQuestions(String category,String userId,ArrayList<AnsweredQuestion> questions, DataCallBack<String,String> callBack);
+     void isQuestionsDone(String category,String userId,DataCallBack<Boolean,Boolean> callBack);
 }

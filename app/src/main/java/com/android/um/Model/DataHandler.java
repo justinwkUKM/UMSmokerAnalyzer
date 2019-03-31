@@ -25,7 +25,11 @@ public interface DataHandler {
     User getLoggedUser();
     void setLogged();
     void saveUserSharedPref(User user);
-    boolean isQuestionsDone(String part);
+    void isQuestionsDone(String category,DataCallBack<Boolean,Boolean> callBack);
     void setQuestionsAnswered(String part);
-    void saveUserAnsweredQuestions(ArrayList<AnsweredQuestion> questions, DataCallBack<String,String> callBack);
+    void saveUserAnsweredQuestions(String category,ArrayList<AnsweredQuestion> questions, DataCallBack<String,String> callBack);
+    void saveLanguage(String language);
+    String getLanguage();
+    void saveTermsAcceptence(boolean agree);
+    boolean getTermsAcceptence();
 }

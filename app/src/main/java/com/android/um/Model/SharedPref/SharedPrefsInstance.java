@@ -48,20 +48,6 @@ public class SharedPrefsInstance implements SharedPrefsHandler{
         return false;
     }
 
-//    @Override
-//    public User getUsername() {
-//        User user=new User();
-//        String value=mPrefs.getSharedPrefs().getString("Name","");
-//        if (value!=null && value.length()>0)
-//        {
-//            user.setUsername(value);
-//            return user;
-//        }
-//            user.setUsername("");
-//        return user;
-//
-//    }
-
 
     @Override
     public User getLoggedUser() {
@@ -93,7 +79,7 @@ public class SharedPrefsInstance implements SharedPrefsHandler{
 
     @Override
     public boolean isQuestionsDone(String part) {
-        if (mPrefs.getSharedPrefs().getString("Questions"+part, "")!="Questions"+part)
+        if (mPrefs.getSharedPrefs().getString(part, "")!= part)
             return true;
         return false;
     }
@@ -101,7 +87,33 @@ public class SharedPrefsInstance implements SharedPrefsHandler{
     @Override
     public void setQuestionsAnswered(String part) {
         SharedPreferences.Editor editor=mPrefs.getSharedPrefs().edit();
-        editor.putString("Questions"+part,"true");
+        editor.putString(part,"true");
         editor.commit();
+    }
+
+    @Override
+    public void saveLanguage(String language) {
+        SharedPreferences.Editor editor=mPrefs.getSharedPrefs().edit();
+        editor.putString("LANG",language);
+        editor.commit();
+    }
+
+    @Override
+    public String getLanguage()
+    {
+        String x= mPrefs.getSharedPrefs().getString("LANG", "en");
+        return mPrefs.getSharedPrefs().getString("LANG", "en");
+    }
+
+    @Override
+    public void saveTermsAcceptence(boolean agree) {
+        SharedPreferences.Editor editor=mPrefs.getSharedPrefs().edit();
+        editor.putBoolean("TERMS",agree);
+        editor.commit();
+    }
+
+    @Override
+    public boolean getTermsAcceptence() {
+        return mPrefs.getSharedPrefs().getBoolean("TERMS", false);
     }
 }

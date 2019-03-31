@@ -1,11 +1,14 @@
 package com.android.um;
 
 
-import com.android.um.Model.DataModels.Question;
+import com.android.um.language.LanguageContract;
+import com.android.um.language.LanguagePresenter;
 import com.android.um.postLogin.PostLoginContract;
 import com.android.um.postLogin.PostLoginPresenter;
-import com.android.um.questionnaire.questions_a.QuestionContract;
-import com.android.um.questionnaire.questions_a.QuestionPresenter;
+import com.android.um.prelogin.PreLoginContract;
+import com.android.um.prelogin.PreLoginPresenter;
+import com.android.um.questions.QuestionsContract;
+import com.android.um.questions.QuestionsPresenter;
 import com.android.um.splashscreen.SplashScreenContract;
 import com.android.um.splashscreen.SplashScreenPresenter;
 import com.android.um.resetpassword.ForgetPasswordContract;
@@ -14,6 +17,8 @@ import com.android.um.signin.SigninContract;
 import com.android.um.signin.SigninPresenter;
 import com.android.um.signup.SignupContract;
 import com.android.um.signup.SignupPresenter;
+import com.android.um.terms.TermsContract;
+import com.android.um.terms.TermsPresenter;
 
 
 public class PresenterInjector {
@@ -38,8 +43,20 @@ public class PresenterInjector {
         new SplashScreenPresenter(splashscreenView);
     }
 
-    public static void injectQuestionPresenter(QuestionContract.View questionView) {
-        new QuestionPresenter(questionView);
+    public static void injectDemographicQuestionsPresenter(QuestionsContract.View questionView) {
+        new QuestionsPresenter(questionView);
+    }
+
+    public static void injectLanguagePresenter(LanguageContract.View languageView) {
+        new LanguagePresenter(languageView);
+    }
+
+    public static void injectPreLoginPresenter(PreLoginContract.View preLoginView) {
+        new PreLoginPresenter(preLoginView);
+    }
+
+    public static void injectTermsPresenter(TermsContract.View termsView) {
+        new TermsPresenter(termsView);
     }
 
 

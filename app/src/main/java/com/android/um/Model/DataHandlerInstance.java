@@ -112,9 +112,10 @@ public class DataHandlerInstance implements DataHandler {
     }
 
     @Override
-    public boolean isQuestionsDone(String part) {
-        return mPrefsHandler.isQuestionsDone(part);
+    public void isQuestionsDone(String category,DataCallBack<Boolean,Boolean> callBack) {
+        mFirebaseHandler.isQuestionsDone(category,mPrefsHandler.getLoggedUser().getId(),callBack);
     }
+
 
     @Override
     public void setQuestionsAnswered(String part) {
@@ -123,7 +124,27 @@ public class DataHandlerInstance implements DataHandler {
     }
 
     @Override
-    public void saveUserAnsweredQuestions(ArrayList<AnsweredQuestion> questions, DataCallBack<String,String> callBack) {
-        mFirebaseHandler.saveUserAnsweredQuestions(mPrefsHandler.getLoggedUser().getId(),questions,callBack);
+    public void saveUserAnsweredQuestions(String category,ArrayList<AnsweredQuestion> questions, DataCallBack<String,String> callBack) {
+        mFirebaseHandler.saveUserAnsweredQuestions(category,mPrefsHandler.getLoggedUser().getId(),questions,callBack);
+    }
+
+    @Override
+    public void saveLanguage(String language) {
+        mPrefsHandler.saveLanguage(language);
+    }
+
+    @Override
+    public String getLanguage() {
+        return mPrefsHandler.getLanguage();
+    }
+
+    @Override
+    public void saveTermsAcceptence(boolean agree) {
+        mPrefsHandler.saveTermsAcceptence(agree);
+    }
+
+    @Override
+    public boolean getTermsAcceptence() {
+        return mPrefsHandler.getTermsAcceptence();
     }
 }

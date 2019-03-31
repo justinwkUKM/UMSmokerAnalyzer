@@ -18,8 +18,9 @@ public interface SigninContract {
       void continueToSignUp(User user);
       void startGoogleIntent();
       void signup();
+      void goToDemographicQuestionsScreen();
+      void goToLevelAddictionScreen();
       void goToMainScreen();
-      void goToPostLoginScreen();
     }
 
     interface Presenter extends BasePresenter {

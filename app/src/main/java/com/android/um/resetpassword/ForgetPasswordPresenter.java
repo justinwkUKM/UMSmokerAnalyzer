@@ -35,6 +35,11 @@ public class ForgetPasswordPresenter implements ForgetPasswordContract.Presenter
     }
 
     @Override
+    public String getLanguage() {
+        return mDataHandler.getLanguage();
+    }
+
+    @Override
     public void start(@Nullable Bundle extras) {
 
     }

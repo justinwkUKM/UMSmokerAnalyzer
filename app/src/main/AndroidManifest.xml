@@ -11,7 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
        >
-        <activity android:name=".splashscreen.SplashScreenActivity">
+        <activity
+            android:configChanges="locale"
+            android:name=".splashscreen.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,14 +21,29 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".GenderActivity"></activity>
-        <activity android:name=".signin.SigninActivity"></activity>
-        <activity android:name=".signup.SignupActivity"></activity>
-        <activity android:name=".prelogin.PreLoginActivity"></activity>
-        <activity android:name=".resetpassword.ForgetPasswordActivity"></activity>
-        <activity android:name=".postLogin.PostLoginActivity"></activity>
-        <activity android:name=".questionnaire.questions_a.QuestionActivity"></activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".language.LanguageActivity"></activity>
+        <activity
+            android:windowSoftInputMode="stateHidden"
+            android:name=".signin.SigninActivity"></activity>
+        <activity
+            android:name=".signup.SignupActivity"></activity>
+        <activity
+            android:windowSoftInputMode="stateHidden"
+            android:name=".prelogin.PreLoginActivity"></activity>
+        <activity
+            android:windowSoftInputMode="stateHidden"
+            android:name=".resetpassword.ForgetPasswordActivity"></activity>
+        <activity
+            android:windowSoftInputMode="stateHidden"
+            android:name=".postLogin.PostLoginActivity"></activity>
+        <activity
+            android:windowSoftInputMode="stateHidden"
+            android:name=".questions.QuestionsActivity"></activity>
+        <activity
+            android:windowSoftInputMode="stateHidden"
+            android:name=".MainActivity"></activity>
+        <activity android:name=".terms.TermsActivity"></activity>
+
         <meta-data android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"/>
 

@@ -1,4 +1,4 @@
-package com.android.um.questionnaire.questions_a;
+package com.android.um.questions;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -39,7 +39,7 @@ public class AgeFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.age_fragment_layout, container, false);
         unbinder = ButterKnife.bind(this, rootView);
-        mlistener = QuestionActivity.listener;
+        mlistener = QuestionsActivity.listener;
 
         if (getArguments() != null) {
             mKey = getArguments().getString("key");

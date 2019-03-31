@@ -1,47 +1,37 @@
-package com.android.um.postLogin;
+package com.android.um.language;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataHandler;
 import com.android.um.Model.DataHandlerInstance;
-import com.android.um.Model.DataModels.Question;
-import com.android.um.Model.DataModels.User;
 import com.android.um.Model.SharedPrefsManager;
 
-import java.util.ArrayList;
+public class LanguagePresenter implements LanguageContract.Presenter{
 
-public class PostLoginPresenter implements PostLoginContract.Presenter {
-
-    private PostLoginContract.View mView;
+    private LanguageContract.View mView;
     private DataHandler mDataHandler;
 
-    public PostLoginPresenter(PostLoginContract.View view) {
+    public LanguagePresenter(LanguageContract.View view) {
         this.mView = view;
         this.mDataHandler = DataHandlerInstance.getInstance(SharedPrefsManager.getInstance(mView.getContext()));
         view.setPresenter(this);
     }
 
     @Override
-    public User getLoggedUser() {
-        return mDataHandler.getLoggedUser();
+    public void start(@Nullable Bundle extras) {
+
     }
 
     @Override
-    public void LogOut() {
-        mDataHandler.LogOut();
-        mView.handleLogOut();
+    public void saveLanguage(String language) {
+        mDataHandler.saveLanguage(language);
+        mView.goToPreLogin();
     }
 
     @Override
     public String getLanguage() {
         return mDataHandler.getLanguage();
-    }
-
-    @Override
-    public void start(@Nullable Bundle extras) {
-
     }
 
     @Override

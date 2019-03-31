@@ -26,11 +26,10 @@ public class ForgetPasswordActivity extends BaseActivity implements ForgetPasswo
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setContentView(R.layout.forget_password_activity);
+        PresenterInjector.injectProfilePresenter(this);
+        setLocale(mPresenter.getLanguage(),R.layout.forget_password_activity);
         ButterKnife.bind(this);
         super.onCreate(savedInstanceState);
-        PresenterInjector.injectProfilePresenter(this);
-
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.firebase.auth.FirebaseUser;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
@@ -14,7 +15,8 @@ public class User implements Parcelable {
     private String password;
     private int age=0;
     private String gender;
-    private ArrayList<Question> questions;
+    private ArrayList<AnsweredQuestion> demographicQuestions;
+    private ArrayList<AnsweredQuestion> levelofAddictionsQuestions;
     private String id;
 
     public User() {
@@ -91,19 +93,27 @@ public class User implements Parcelable {
         this.gender = gender;
     }
 
-    public ArrayList<Question> getQuestions() {
-        return questions;
+    public ArrayList<AnsweredQuestion> getDemographicQuestions() {
+        return demographicQuestions;
     }
 
-    public void setQuestions(ArrayList<Question> questions) {
-        this.questions = questions;
+    public void setDemographicQuestions(ArrayList<AnsweredQuestion> questions) {
+        this.demographicQuestions = questions;
+    }
+
+    public ArrayList<AnsweredQuestion> getLevelofAddictionsQuestions() {
+        return levelofAddictionsQuestions;
+    }
+
+    public void setLevelofAddictionsQuestions(ArrayList<AnsweredQuestion> levelofAddictionsQuestions) {
+        this.levelofAddictionsQuestions = levelofAddictionsQuestions;
     }
 
     public void setFirebaseUser(FirebaseUser user)
     {
         this.setUsername(user.getDisplayName());
         this.setEmail(user.getEmail());
-
+        this.setId(user.getUid());
     }
 
     @Override
@@ -118,5 +128,6 @@ public class User implements Parcelable {
         dest.writeString(password);
         dest.writeInt(age);
         dest.writeString(gender);
+        dest.writeString(id);
     }
 }

@@ -1,9 +1,9 @@
-package com.android.um.questionnaire.questions_a;
+package com.android.um.questions;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -20,6 +20,8 @@ import com.android.um.Model.DataModels.Question;
 import com.android.um.Model.DataModels.options;
 import com.android.um.PresenterInjector;
 import com.android.um.R;
+import com.android.um.postLogin.PostLoginActivity;
+import com.android.um.signup.SignupActivity;
 import com.rd.PageIndicatorView;
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -32,7 +34,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class QuestionActivity extends BaseActivity implements OnNextQuestion, QuestionContract.View {
+public class QuestionsActivity extends BaseActivity implements OnNextQuestion, QuestionsContract.View {
     @BindView(R.id.button2)
     Button button2;
     @BindView(R.id.view_pager)
@@ -44,7 +46,7 @@ public class QuestionActivity extends BaseActivity implements OnNextQuestion, Qu
     LinkedHashMap<Question, options> hmapAllQuestions;
     HashMap<String, Integer> hmapSelectedOptionsPostion;
 
-    QuestionContract.Presenter mPresenter;
+    QuestionsContract.Presenter mPresenter;
     @BindView(R.id.pageIndicatorView)
     PageIndicatorView pageIndicatorView;
     @BindView(R.id.avi)
@@ -52,20 +54,20 @@ public class QuestionActivity extends BaseActivity implements OnNextQuestion, Qu
     private ArrayList<Question> questions;
 
     private int mPosition=0;
+    private ArrayList<AnsweredQuestion> answers;
+    String category="";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setContentView(R.layout.questions_a_layout);
+        PresenterInjector.injectDemographicQuestionsPresenter(this);
+        setLocale(mPresenter.getLanguage(),R.layout.activity_question);
         ButterKnife.bind(this);
         super.onCreate(savedInstanceState);
         hmapSelectedOptions = new LinkedHashMap<>();
         hmapSelectedOptionsPostion = new HashMap<>();
         listener = this;
-        PresenterInjector.injectQuestionPresenter(this);
-
-        mPresenter.getQuestions();
-
+        category=getIntent().getExtras().getString("category");
+        mPresenter.getQuestions(category);
         init();
-
     }
 
     private void init() {
@@ -117,24 +119,53 @@ public class QuestionActivity extends BaseActivity implements OnNextQuestion, Qu
                 return;
             }
         }
-        ArrayList<AnsweredQuestion> answers=new ArrayList<>();
+        answers=new ArrayList<>();
         for (Map.Entry<String,AnsweredQuestion> map:answeredQuestions.entrySet())
         {
             answers.add(map.getValue());
         }
-
-        mPresenter.saveAnsweredQuestions(answers);
+        if (mPresenter.checkifLogged()) {
+                mPresenter.saveAnsweredQuestions(category,answers);
+        }
+        else if (category.equals("demographicQuestions"))
+            goBackToSignUp();
     }
 
     @Override
     public void SuccessSaveQuestions() {
-        mPresenter.setQuestionsAnswered("A");
-        goToMainScreen();
+        mPresenter.setQuestionsAnswered(category);
+        if (category.equals("demographicQuestions"))
+            goToPostScreen();
+        else
+            goToMainScreen();
     }
 
-    private void goToMainScreen() {
+    @Override
+    public void goToQuestions(String category) {
+        Intent intent=new Intent(this, QuestionsActivity.class);
+        intent.putExtra("category",category);
+        startActivity(intent);
+        finish();
+    }
+
+    public void goToPostScreen()
+    {
+        Intent intent=new Intent(this, PostLoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void goToMainScreen()
+    {
         Intent intent=new Intent(this, MainActivity.class);
         startActivity(intent);
+        finish();
+    }
+
+    private void goBackToSignUp() {
+        Intent intent=new Intent(this, SignupActivity.class);
+        intent.putParcelableArrayListExtra("QUESTIONS",answers);
+        setResult(Activity.RESULT_OK, intent);
         finish();
     }
 
@@ -154,8 +185,8 @@ public class QuestionActivity extends BaseActivity implements OnNextQuestion, Qu
             switch (questions.get(pos).getType()) {
                 case "RadioButton":
                     return RadioButtonFragment.newInstance(questions.get(pos).getDescription(), 0, questions.get(pos).getQustionOptions());
-                case "EditText":
-                    return AgeFragment.newInstance(questions.get(pos).getDescription(), 1, questions.get(pos).getQustionOptions());
+//                case "EditText":
+//                    return AgeFragment.newInstance(questions.get(pos).getDescription(), 1, questions.get(pos).getQustionOptions());
                 case "Race":
                     return RaceFragment.newInstance(questions.get(pos).getDescription(), 2, questions.get(pos).getQustionOptions());
                 default:
@@ -216,7 +247,7 @@ public class QuestionActivity extends BaseActivity implements OnNextQuestion, Qu
     }
 
     @Override
-    public void setPresenter(QuestionContract.Presenter presenter) {
+    public void setPresenter(QuestionsContract.Presenter presenter) {
         this.mPresenter = presenter;
     }
 

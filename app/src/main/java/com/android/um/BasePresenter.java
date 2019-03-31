@@ -11,7 +11,6 @@ public interface BasePresenter {
     void start(@Nullable Bundle extras);
 
     void destroy();
-
     boolean checkifLogged();
-
+    String getLanguage();
 }

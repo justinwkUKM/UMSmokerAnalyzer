@@ -14,7 +14,7 @@ import com.android.um.BaseActivity;
 import com.android.um.Model.DataModels.User;
 import com.android.um.PresenterInjector;
 import com.android.um.R;
-import com.android.um.questionnaire.questions_a.QuestionActivity;
+import com.android.um.questions.QuestionsActivity;
 import com.android.um.signin.SigninActivity;
 
 import butterknife.BindView;
@@ -89,7 +89,8 @@ public class PostLoginActivity extends BaseActivity implements PostLoginContract
     }
 
     void goToQuestionsPage() {
-        Intent intent=new Intent(this, QuestionActivity.class);
+         Intent intent=new Intent(this, QuestionsActivity.class);
+         intent.putExtra("category","leveladdictionQuestions");
          startActivity(intent);
     }
 

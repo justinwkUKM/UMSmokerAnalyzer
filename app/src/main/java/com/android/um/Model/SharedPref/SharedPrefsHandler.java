@@ -13,4 +13,8 @@ public interface SharedPrefsHandler {
     void LogOut();
     boolean isQuestionsDone(String part);
     void setQuestionsAnswered(String part);
+    void saveLanguage(String language);
+    String getLanguage();
+    void saveTermsAcceptence(boolean agree);
+    boolean getTermsAcceptence();
 }
