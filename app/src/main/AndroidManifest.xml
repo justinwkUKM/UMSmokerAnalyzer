@@ -43,6 +43,13 @@
             android:windowSoftInputMode="stateHidden"
             android:name=".MainActivity"></activity>
         <activity android:name=".terms.TermsActivity"></activity>
+        <activity
+            android:windowSoftInputMode="stateHidden"
+            android:name=".targetTosave.TargetToSaveActivity"></activity>
+        <activity
+            android:windowSoftInputMode="stateHidden"
+            android:name=".targetTosavedetails.TargetToSaveDetailsActivity"></activity>
+
 
         <meta-data android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"/>

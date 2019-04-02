@@ -3,6 +3,7 @@ package com.android.um.Model;
 import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataModels.AnsweredQuestion;
 import com.android.um.Model.DataModels.Question;
+import com.android.um.Model.DataModels.TargetToSaveModel;
 import com.android.um.Model.DataModels.User;
 import com.android.um.Model.Firebase.FirebaseHandler;
 import com.android.um.Model.Firebase.FirebaseInstance;
@@ -146,5 +147,10 @@ public class DataHandlerInstance implements DataHandler {
     @Override
     public boolean getTermsAcceptence() {
         return mPrefsHandler.getTermsAcceptence();
+    }
+
+    @Override
+    public void saveTargetToSave(TargetToSaveModel target,final DataCallBack<String,String> callBack) {
+        mFirebaseHandler.saveTargetToSave(target,mPrefsHandler.getLoggedUser().getId(),callBack);
     }
 }

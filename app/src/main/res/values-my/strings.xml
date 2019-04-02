@@ -46,4 +46,19 @@
     <string name="terms_error">Please agree the terms and conditions first.</string>
     <string name="text_accept_btn">Accept</string>
     <string name="text_decline_btn">Decline</string>
+    <string name="text_save">Save</string>
+    <string name="text_travel">Travel</string>
+    <string name="text_luxurious">Luxurious (etc:Mobile,Shoes..)</string>
+    <string name="text_medical">Medical</string>
+    <string name="text_Saving">Saving</string>
+    <string name="text_target_save">Target To Save</string>
+    <string name="information_note1">We use this information to show you how much many</string>
+    <string name="information_note2">you are saving by giving up smoking</string>
+    <string name="text_target_save_link"><u>Target To Save</u></string>
+
+    <string name="text_by_day">Per Day</string>
+    <string name="text_by_week">Per Week</string>
+    <string name="text_by_month">Per Month</string>
+    <string name="text_by_year">Per Year</string>
+    <string name="text_done">Done</string>
 </resources>

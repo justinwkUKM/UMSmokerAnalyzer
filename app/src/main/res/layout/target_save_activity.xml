@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/AppThemeEditText">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/_20sdp">
+
+        <android.support.design.widget.TextInputLayout
+            android:paddingTop="@dimen/_8sdp"
+            android:id="@+id/il_et_travel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_welcome"
+            android:layout_centerHorizontal="true"
+            android:hint="@string/text_travel"
+            android:textColorHint="@color/gray">
+
+            <EditText
+                android:id="@+id/et_travel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:ems="12"
+                android:inputType="numberDecimal"
+                android:textColor="@color/black" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:paddingTop="@dimen/_8sdp"
+            android:id="@+id/il_et_luxrious"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/il_et_travel"
+            android:layout_centerHorizontal="true"
+            android:hint="@string/text_luxurious"
+            android:textColorHint="@color/gray">
+
+            <EditText
+                android:id="@+id/et_luxrious"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:ems="12"
+                android:inputType="numberDecimal"
+                android:textColor="@color/black" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:paddingTop="@dimen/_8sdp"
+            android:id="@+id/il_et_medical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/il_et_luxrious"
+            android:layout_centerHorizontal="true"
+            android:hint="@string/text_medical"
+            android:textColorHint="@color/gray">
+
+            <EditText
+                android:id="@+id/et_medical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:ems="12"
+                android:inputType="numberDecimal"
+                android:textColor="@color/black" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:paddingTop="@dimen/_8sdp"
+            android:id="@+id/il_et_saving"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/il_et_medical"
+            android:layout_centerHorizontal="true"
+            android:hint="@string/text_Saving"
+            android:textColorHint="@color/gray">
+
+            <EditText
+                android:id="@+id/et_saving"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:ems="12"
+                android:inputType="numberDecimal"
+                android:textColor="@color/black" />
+        </android.support.design.widget.TextInputLayout>
+
+        <View
+            android:id="@+id/tv_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"
+            android:layout_below="@+id/il_et_saving"
+            android:layout_marginTop="@dimen/_10sdp"/>
+
+        <LinearLayout
+            android:layout_below="@+id/tv_divider"
+            android:id="@+id/ll_target_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:layout_marginBottom="@dimen/_10sdp">
+
+            <TextView
+                android:padding="@dimen/_10sdp"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
+                android:text="@string/text_target_save"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="right">
+                <TextView
+                    android:padding="@dimen/_10sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RM"
+                    android:gravity="right"/>
+                <TextView
+                    android:padding="@dimen/_10sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_save_amount"
+                    android:text="0"
+                    android:gravity="center"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_below="@+id/ll_target_save"
+            android:id="@+id/ll_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/information_note1"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/information_note2"
+                android:gravity="center"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/save_btn"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_below="@+id/ll_note"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="wrap_content"
+            android:text="@string/text_save"
+            android:background="@color/lightgreen"
+            android:textColor="@color/white"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+</ScrollView>

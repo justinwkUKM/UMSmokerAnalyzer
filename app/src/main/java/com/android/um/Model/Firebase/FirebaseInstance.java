@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataModels.AnsweredQuestion;
 import com.android.um.Model.DataModels.Question;
+import com.android.um.Model.DataModels.TargetToSaveModel;
 import com.android.um.Model.DataModels.User;
 import com.android.um.Model.DataModels.options;
 import com.android.um.Utils.AppUtils;
@@ -420,6 +421,29 @@ public class FirebaseInstance implements FirebaseHandler {
                 callBack.onError(false);
             }
         });
+    }
+
+
+    @Override
+    public void saveTargetToSave(TargetToSaveModel target,String userId,final DataCallBack<String,String> callBack) {
+        DatabaseReference ref=rootRef.child("users").child(userId);
+        HashMap<String,Object> answersMap=new HashMap<>();
+        answersMap.put("TargetToSave",target);
+        ref.updateChildren(answersMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful())
+                    callBack.onReponse("");
+                else
+                    callBack.onError("Failed to save Target,Try again");
+            }
+        })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        callBack.onError("Failed to save Target,Try again");
+                    }
+                });
     }
 
     @Override

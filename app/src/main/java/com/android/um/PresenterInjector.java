@@ -17,6 +17,10 @@ import com.android.um.signin.SigninContract;
 import com.android.um.signin.SigninPresenter;
 import com.android.um.signup.SignupContract;
 import com.android.um.signup.SignupPresenter;
+import com.android.um.targetTosave.TargetToSaveContract;
+import com.android.um.targetTosave.TargetToSavePresenter;
+import com.android.um.targetTosavedetails.TargetToSaveDetailsContract;
+import com.android.um.targetTosavedetails.TargetToSaveDetailsPresenter;
 import com.android.um.terms.TermsContract;
 import com.android.um.terms.TermsPresenter;
 
@@ -59,5 +63,12 @@ public class PresenterInjector {
         new TermsPresenter(termsView);
     }
 
+    public static void injectTargetToSavePresenter(TargetToSaveContract.View targetView) {
+        new TargetToSavePresenter(targetView);
+    }
+
+    public static void injectTargetToSaveDetailsPresenter(TargetToSaveDetailsContract.View targetView) {
+        new TargetToSaveDetailsPresenter(targetView);
+    }
 
 }

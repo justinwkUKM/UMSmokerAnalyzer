@@ -3,6 +3,7 @@ package com.android.um.Model.SharedPref;
 import android.content.SharedPreferences;
 
 import com.android.um.Interface.DataCallBack;
+import com.android.um.Model.DataModels.TargetToSaveModel;
 import com.android.um.Model.DataModels.User;
 import com.android.um.Model.SharedPrefsManager;
 import com.google.gson.Gson;
@@ -115,5 +116,12 @@ public class SharedPrefsInstance implements SharedPrefsHandler{
     @Override
     public boolean getTermsAcceptence() {
         return mPrefs.getSharedPrefs().getBoolean("TERMS", false);
+    }
+
+    @Override
+    public void saveTargetToSave(TargetToSaveModel target) {
+        SharedPreferences.Editor editor=mPrefs.getSharedPrefs().edit();
+       // editor.putInt("TARGET_TO_SAVE",target.getTotal());
+        editor.commit();
     }
 }

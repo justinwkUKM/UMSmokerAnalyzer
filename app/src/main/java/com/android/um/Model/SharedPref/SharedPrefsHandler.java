@@ -1,6 +1,7 @@
 package com.android.um.Model.SharedPref;
 
 import com.android.um.Interface.DataCallBack;
+import com.android.um.Model.DataModels.TargetToSaveModel;
 import com.android.um.Model.DataModels.User;
 
 public interface SharedPrefsHandler {
@@ -17,4 +18,5 @@ public interface SharedPrefsHandler {
     String getLanguage();
     void saveTermsAcceptence(boolean agree);
     boolean getTermsAcceptence();
+    void saveTargetToSave(TargetToSaveModel target);
 }

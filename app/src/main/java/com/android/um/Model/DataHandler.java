@@ -3,6 +3,7 @@ package com.android.um.Model;
 import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataModels.AnsweredQuestion;
 import com.android.um.Model.DataModels.Question;
+import com.android.um.Model.DataModels.TargetToSaveModel;
 import com.android.um.Model.DataModels.User;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookException;
@@ -32,4 +33,5 @@ public interface DataHandler {
     String getLanguage();
     void saveTermsAcceptence(boolean agree);
     boolean getTermsAcceptence();
+    void saveTargetToSave(TargetToSaveModel target,final DataCallBack<String,String> callBack);
 }

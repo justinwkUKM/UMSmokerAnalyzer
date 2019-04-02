@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/AppThemeEditText"
+    android:background="@drawable/background_gradient">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/_30sdp">
+
+        <TextView
+            android:layout_marginTop="@dimen/_20sdp"
+            android:id="@+id/tv_target_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16ssp"
+            android:text="@string/text_target_save"/>
+
+        <TextView
+            android:layout_below="@+id/tv_target_save"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:id="@+id/tv_target_save_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16ssp"
+            />
+
+
+        <TextView
+            android:layout_below="@+id/tv_target_save_amount"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:id="@+id/tv_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16ssp"
+            android:text="@string/text_by_day"/>
+
+
+        <TextView
+            android:layout_marginTop="@dimen/_8sdp"
+            android:textSize="@dimen/_16ssp"
+            android:id="@+id/tv_day_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_day"
+
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white" />
+
+
+        <TextView
+            android:layout_marginTop="@dimen/_8sdp"
+            android:textSize="@dimen/_16ssp"
+            android:layout_below="@+id/tv_day_amount"
+            android:id="@+id/tv_week"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/text_by_week"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_marginTop="@dimen/_8sdp"
+            android:textSize="@dimen/_16ssp"
+            android:id="@+id/tv_week_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_week"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_marginTop="@dimen/_8sdp"
+            android:textSize="@dimen/_16ssp"
+            android:layout_below="@+id/tv_week_amount"
+            android:id="@+id/tv_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/text_by_month"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_marginTop="@dimen/_8sdp"
+            android:textSize="@dimen/_16ssp"
+            android:id="@+id/tv_month_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_month"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_marginTop="@dimen/_8sdp"
+            android:textSize="@dimen/_16ssp"
+            android:layout_below="@+id/tv_month_amount"
+            android:id="@+id/tv_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/text_by_year"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_marginTop="@dimen/_8sdp"
+            android:textSize="@dimen/_16ssp"
+            android:id="@+id/tv_year_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_year"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/save_btn"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_year_amount"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:background="@color/lightgreen"
+            android:text="@string/text_done"
+            android:textColor="@color/white" />
+
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/avi"
+            style="@style/AVLoadingIndicatorView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:visibility="gone"
+            app:indicatorColor="@color/colorAccent"
+            app:indicatorName="BallPulseIndicator"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+</ScrollView>

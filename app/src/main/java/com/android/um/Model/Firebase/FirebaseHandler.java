@@ -3,6 +3,7 @@ package com.android.um.Model.Firebase;
 import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataModels.AnsweredQuestion;
 import com.android.um.Model.DataModels.Question;
+import com.android.um.Model.DataModels.TargetToSaveModel;
 import com.android.um.Model.DataModels.User;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -28,4 +29,7 @@ public interface FirebaseHandler {
     void saveUserInFirebase(User user,DataCallBack<User,String> callBack);
     void saveUserAnsweredQuestions(String category,String userId,ArrayList<AnsweredQuestion> questions, DataCallBack<String,String> callBack);
      void isQuestionsDone(String category,String userId,DataCallBack<Boolean,Boolean> callBack);
+
+    void saveTargetToSave(TargetToSaveModel target,String userId,final DataCallBack<String,String> callBack);
+
 }

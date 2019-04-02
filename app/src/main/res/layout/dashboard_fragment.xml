@@ -49,6 +49,7 @@
                 android:background="@drawable/save_money_bg">
 
                 <TextView
+                    android:id="@+id/tv_money_saved"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -56,6 +57,31 @@
                     android:text="Money Saved"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_25ssp" />
+
+                <TextView
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_alignParentBottom="true"
+                    android:id="@+id/tv_target_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_target_save_link"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/_15ssp" />
+
+                <TextView
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/tv_target_save_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RMXXX"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_15ssp" />
+
+
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 
