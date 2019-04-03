@@ -31,9 +31,9 @@
     <string name="text_female">Female/Perempuan</string>
     <string name="forget_password_label">Forget password</string>
     <string name="send_text">Send</string>
-    <string name="client_id">171945750837-b6c115sa4s5952up83m3dj8l6bndc26i.apps.googleusercontent.com</string>
-    <string name="facebook_app_id">2205409826454481</string>
-    <string name="fb_login_protocol_scheme">fb2205409826454481</string>
+    <string name="client_id" translatable="false">171945750837-b6c115sa4s5952up83m3dj8l6bndc26i.apps.googleusercontent.com</string>
+    <string name="facebook_app_id" translatable="false">2205409826454481</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb2205409826454481</string>
     <string name="postlogin_note1">We use this information to know how much money</string>
     <string name="postlogin_note2">you are saving by giving up smoking</string>
     <string name="packet_cost">How much does a packet cost ?</string>
@@ -64,4 +64,17 @@
     <string name="text_by_month">Per Month</string>
     <string name="text_by_year">Per Year</string>
     <string name="text_done">Done</string>
+
+    <string name="text_smoked">Smoked</string>
+    <string name="text_cravings">Cravings</string>
+    <string name="text_severity">Severity</string>
+    <string name="text_smoke_question">Did you Smoke</string>
+    <string name="text_i_smoked">I Smoked</string>
+    <string name="text_resisted">T Resisted</string>
+    <string name="text_carvings_question">How intense in your craving?</string>
+    <string name="text_feel_questions">How do you feel?</string>
+    <string name="text_happy">Happy</string>
+    <string name="text_bored">Bored</string>
+    <string name="text_lonely">Lonely</string>
+    <string name="text_stressed">Stressed</string>
 </resources>

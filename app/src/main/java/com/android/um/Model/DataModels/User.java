@@ -18,7 +18,7 @@ public class User implements Parcelable {
     private ArrayList<AnsweredQuestion> demographicQuestions;
     private ArrayList<AnsweredQuestion> levelofAddictionsQuestions;
     private String id;
-
+    private TargetToSaveModel target;
     public User() {
     }
 
@@ -107,6 +107,14 @@ public class User implements Parcelable {
 
     public void setLevelofAddictionsQuestions(ArrayList<AnsweredQuestion> levelofAddictionsQuestions) {
         this.levelofAddictionsQuestions = levelofAddictionsQuestions;
+    }
+
+    public TargetToSaveModel getTarget() {
+        return target;
+    }
+
+    public void setTarget(TargetToSaveModel target) {
+        this.target = target;
     }
 
     public void setFirebaseUser(FirebaseUser user)

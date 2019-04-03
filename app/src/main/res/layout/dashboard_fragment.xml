@@ -104,6 +104,17 @@
                     android:text="Super Quit Function"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_20ssp" />
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/btn_smoke_diary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    app:backgroundTint="@color/navy"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="@dimen/_10sdp"
+                    app:srcCompat="@drawable/ic_smoking_rooms_black_24dp" />
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 

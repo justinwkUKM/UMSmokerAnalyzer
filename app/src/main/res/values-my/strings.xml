@@ -61,4 +61,19 @@
     <string name="text_by_month">Per Month</string>
     <string name="text_by_year">Per Year</string>
     <string name="text_done">Done</string>
+
+
+    <string name="text_smoked">Smoked</string>
+    <string name="text_cravings">Cravings</string>
+    <string name="text_severity">Severity</string>
+    <string name="text_smoke_question">Did you Smoke</string>
+    <string name="text_i_smoked">I Smoked</string>
+    <string name="text_resisted">T Resisted</string>
+    <string name="text_carvings_question">How intense in your craving?</string>
+    <string name="text_feel_questions">How do you feel?</string>
+    <string name="text_happy">Happy</string>
+    <string name="text_bored">Bored</string>
+    <string name="text_lonely">Lonely</string>
+    <string name="text_stressed">Stressed</string>
+
 </resources>

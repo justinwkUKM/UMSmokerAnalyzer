@@ -50,6 +50,10 @@
             android:windowSoftInputMode="stateHidden"
             android:name=".targetTosavedetails.TargetToSaveDetailsActivity"></activity>
 
+        <activity
+
+            android:name=".SmokeDiaryActivity"></activity>
+
 
         <meta-data android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"/>
