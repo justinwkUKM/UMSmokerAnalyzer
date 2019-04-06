@@ -119,9 +119,15 @@ public class SharedPrefsInstance implements SharedPrefsHandler{
     }
 
     @Override
-    public void saveTargetToSave(TargetToSaveModel target) {
+    public void saveTargetToSave(Double target) {
         SharedPreferences.Editor editor=mPrefs.getSharedPrefs().edit();
-       // editor.putInt("TARGET_TO_SAVE",target.getTotal());
+        editor.putString("TARGET_TO_SAVE",""+target);
         editor.commit();
     }
+
+    @Override
+    public String getTargetToSaveLocaly() {
+        return mPrefs.getSharedPrefs().getString("TARGET_TO_SAVE", "0.0");
+    }
+
 }

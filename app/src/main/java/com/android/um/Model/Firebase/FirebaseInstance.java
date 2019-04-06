@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataModels.AnsweredQuestion;
 import com.android.um.Model.DataModels.Question;
+import com.android.um.Model.DataModels.SmokeDiaryModel;
 import com.android.um.Model.DataModels.TargetToSaveModel;
 import com.android.um.Model.DataModels.User;
 import com.android.um.Model.DataModels.options;
@@ -46,9 +47,12 @@ import org.json.JSONObject;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 
 public class FirebaseInstance implements FirebaseHandler {
 
@@ -425,11 +429,72 @@ public class FirebaseInstance implements FirebaseHandler {
 
 
     @Override
-    public void saveTargetToSave(TargetToSaveModel target,String userId,final DataCallBack<String,String> callBack) {
+    public void saveTargetToSave(final TargetToSaveModel target, String userId, final DataCallBack<Double,String> callBack) {
         DatabaseReference ref=rootRef.child("users").child(userId);
         HashMap<String,Object> answersMap=new HashMap<>();
         answersMap.put("TargetToSave",target);
         ref.updateChildren(answersMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful())
+                    callBack.onReponse(target.getTotal());
+                else
+                    callBack.onError("Failed to save Target,Try again");
+            }
+        })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        callBack.onError("Failed to save Target,Try again");
+                    }
+                });
+    }
+
+    @Override
+    public void getTargetToSave(String userId,final DataCallBack<Double,String> callBack) {
+        rootRef.child("users").child(userId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+               TargetToSaveModel targetToSaveModel=new TargetToSaveModel();
+                for(DataSnapshot dsp : dataSnapshot.getChildren()){
+                        if (dsp.getKey().equals("TargetToSave"))
+                        targetToSaveModel=dsp.getValue(TargetToSaveModel.class);
+                }
+                callBack.onReponse(targetToSaveModel.getTotal());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                callBack.onError(databaseError.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void addSmokeDiary(String userId,String smoked, int cravings, double severity,final DataCallBack<String,String> callBack) {
+        SmokeDiaryModel smokeDiaryModel=new SmokeDiaryModel();
+        smokeDiaryModel.setSmoked(smoked);
+        smokeDiaryModel.setCravings(cravings);
+        smokeDiaryModel.setSeverity(severity);
+
+        Calendar cal= Calendar.getInstance();
+        SimpleDateFormat month_date = new SimpleDateFormat("MMMM");
+        SimpleDateFormat year_date = new SimpleDateFormat("YYYY");
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        String month_name = month_date.format(cal.getTime());
+        String year_name = year_date.format(cal.getTime());
+        String date_name = ""+day;
+
+        smokeDiaryModel.setDay(date_name);
+        smokeDiaryModel.setDate(month_name+" "+year_name);
+
+
+        DatabaseReference ref=rootRef.child("users").child(userId).child("SmokeDiarys").push();
+        HashMap<String,Object> answersMap=new HashMap<>();
+        answersMap.put("SmokeDiary",smokeDiaryModel);
+
+        ref.setValue(answersMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful())
@@ -444,6 +509,35 @@ public class FirebaseInstance implements FirebaseHandler {
                         callBack.onError("Failed to save Target,Try again");
                     }
                 });
+
+
+    }
+
+    @Override
+    public void getSmokeDiarys(String userId,final DataCallBack<ArrayList<SmokeDiaryModel>, String> callBack) {
+
+
+
+        rootRef.child("users").child(userId).child("SmokeDiarys").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<SmokeDiaryModel> smokeDiaryModels=new ArrayList<>();
+                for(DataSnapshot dsp : dataSnapshot.getChildren()){
+                    for (DataSnapshot dataSnapshot1:dsp.getChildren() )
+                     smokeDiaryModels.add(dataSnapshot1.getValue(SmokeDiaryModel.class));
+                }
+                if (smokeDiaryModels.size()>0)
+                    callBack.onReponse(smokeDiaryModels);
+                else
+                    callBack.onError("Failed to Load Diarys ,Try again");
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                callBack.onError(databaseError.getMessage());
+            }
+        });
+
     }
 
     @Override

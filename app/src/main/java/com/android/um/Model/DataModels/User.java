@@ -19,6 +19,8 @@ public class User implements Parcelable {
     private ArrayList<AnsweredQuestion> levelofAddictionsQuestions;
     private String id;
     private TargetToSaveModel target;
+    private SmokeDiaryModel smokeDiaryModel;
+
     public User() {
     }
 
@@ -122,6 +124,14 @@ public class User implements Parcelable {
         this.setUsername(user.getDisplayName());
         this.setEmail(user.getEmail());
         this.setId(user.getUid());
+    }
+
+    public SmokeDiaryModel getSmokeDiaryModel() {
+        return smokeDiaryModel;
+    }
+
+    public void setSmokeDiaryModel(SmokeDiaryModel smokeDiaryModel) {
+        this.smokeDiaryModel = smokeDiaryModel;
     }
 
     @Override

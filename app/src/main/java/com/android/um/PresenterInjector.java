@@ -1,6 +1,10 @@
 package com.android.um;
 
 
+import com.android.um.addsmokediary.AddSmokeDiaryContract;
+import com.android.um.addsmokediary.AddSmokeDiaryPresenter;
+import com.android.um.dashboard.DashboardContract;
+import com.android.um.dashboard.DashboardPresenter;
 import com.android.um.language.LanguageContract;
 import com.android.um.language.LanguagePresenter;
 import com.android.um.postLogin.PostLoginContract;
@@ -9,6 +13,8 @@ import com.android.um.prelogin.PreLoginContract;
 import com.android.um.prelogin.PreLoginPresenter;
 import com.android.um.questions.QuestionsContract;
 import com.android.um.questions.QuestionsPresenter;
+import com.android.um.smokediary.SmokeDiaryContract;
+import com.android.um.smokediary.SmokeDiaryPresenter;
 import com.android.um.splashscreen.SplashScreenContract;
 import com.android.um.splashscreen.SplashScreenPresenter;
 import com.android.um.resetpassword.ForgetPasswordContract;
@@ -70,5 +76,17 @@ public class PresenterInjector {
     public static void injectTargetToSaveDetailsPresenter(TargetToSaveDetailsContract.View targetView) {
         new TargetToSaveDetailsPresenter(targetView);
     }
+
+    public static void injectSmokeDiaryPresenter(SmokeDiaryContract.View smokeDiaryView) {
+        new SmokeDiaryPresenter(smokeDiaryView);
+    }
+
+    public static void injectAddSmokeDiaryPresenter(AddSmokeDiaryContract.View addSmokeDiaryView) {
+        new AddSmokeDiaryPresenter(addSmokeDiaryView);
+    }
+    public static void injectDashboardPresenter(DashboardContract.View dashboardView) {
+        new DashboardPresenter(dashboardView);
+    }
+
 
 }

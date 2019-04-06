@@ -3,6 +3,7 @@ package com.android.um.Model;
 import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataModels.AnsweredQuestion;
 import com.android.um.Model.DataModels.Question;
+import com.android.um.Model.DataModels.SmokeDiaryModel;
 import com.android.um.Model.DataModels.TargetToSaveModel;
 import com.android.um.Model.DataModels.User;
 import com.android.um.Model.Firebase.FirebaseHandler;
@@ -150,7 +151,31 @@ public class DataHandlerInstance implements DataHandler {
     }
 
     @Override
-    public void saveTargetToSave(TargetToSaveModel target,final DataCallBack<String,String> callBack) {
+    public void saveTargetToSave(TargetToSaveModel target,final DataCallBack<Double,String> callBack) {
         mFirebaseHandler.saveTargetToSave(target,mPrefsHandler.getLoggedUser().getId(),callBack);
     }
+
+    @Override
+    public void addSmokeDiary(String smoked, int cravings, double severity,final DataCallBack<String,String> callBack) {
+        mFirebaseHandler.addSmokeDiary(mPrefsHandler.getLoggedUser().getId(),smoked,cravings,severity,callBack);
+    }
+
+    @Override
+    public void getSmokeDiarys(DataCallBack<ArrayList<SmokeDiaryModel>, String> callBack) {
+        mFirebaseHandler.getSmokeDiarys(mPrefsHandler.getLoggedUser().getId(),callBack);
+    }
+
+    @Override
+    public void saveTargetToSaveLocally(Double total) {
+        mPrefsHandler.saveTargetToSave(total);
+    }
+
+    @Override
+    public String getTargetToSaveLocaly() {
+            return mPrefsHandler.getTargetToSaveLocaly();
+    }
+
+    @Override
+    public void getTargetToSaveOnline(DataCallBack<Double,String> callBack) {
+        mFirebaseHandler.getTargetToSave(mPrefsHandler.getLoggedUser().getId(),callBack);    }
 }

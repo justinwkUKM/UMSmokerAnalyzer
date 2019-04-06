@@ -3,6 +3,7 @@ package com.android.um.Model.Firebase;
 import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataModels.AnsweredQuestion;
 import com.android.um.Model.DataModels.Question;
+import com.android.um.Model.DataModels.SmokeDiaryModel;
 import com.android.um.Model.DataModels.TargetToSaveModel;
 import com.android.um.Model.DataModels.User;
 import com.facebook.AccessToken;
@@ -30,6 +31,8 @@ public interface FirebaseHandler {
     void saveUserAnsweredQuestions(String category,String userId,ArrayList<AnsweredQuestion> questions, DataCallBack<String,String> callBack);
      void isQuestionsDone(String category,String userId,DataCallBack<Boolean,Boolean> callBack);
 
-    void saveTargetToSave(TargetToSaveModel target,String userId,final DataCallBack<String,String> callBack);
-
+    void saveTargetToSave(TargetToSaveModel target,String userId,final DataCallBack<Double,String> callBack);
+    void getTargetToSave(String userId,DataCallBack<Double,String> callBack);
+    void addSmokeDiary(String userId,String smoked, int cravings, double severity,final DataCallBack<String,String> callBack);
+    void getSmokeDiarys(String userId,DataCallBack<ArrayList<SmokeDiaryModel>,String> callBack);
 }

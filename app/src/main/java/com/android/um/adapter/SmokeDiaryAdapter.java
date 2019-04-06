@@ -39,7 +39,7 @@ public class SmokeDiaryAdapter extends RecyclerView.Adapter<SmokeDiaryAdapter.Vi
         viewHolder.tvDiaryMonth.setText(smokeDiaryModels.get(position).getDate());
         viewHolder.tvCravings.setText(""+smokeDiaryModels.get(position).getCravings());
         viewHolder.tvSeverity.setText(""+smokeDiaryModels.get(position).getSeverity());
-
+        viewHolder.tvSmoked.setText(smokeDiaryModels.get(position).getSmoked());
     }
 
     @Override

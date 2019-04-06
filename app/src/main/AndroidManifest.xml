@@ -52,7 +52,10 @@
 
         <activity
 
-            android:name=".SmokeDiaryActivity"></activity>
+            android:name=".smokediary.SmokeDiaryActivity"></activity>
+        <activity
+            android:windowSoftInputMode="stateHidden"
+            android:name=".addsmokediary.AddSmokeDiaryActivity"></activity>
 
 
         <meta-data android:name="com.facebook.sdk.ApplicationId"

@@ -18,5 +18,6 @@ public interface SharedPrefsHandler {
     String getLanguage();
     void saveTermsAcceptence(boolean agree);
     boolean getTermsAcceptence();
-    void saveTargetToSave(TargetToSaveModel target);
+    void saveTargetToSave(Double total);
+    String getTargetToSaveLocaly();
 }

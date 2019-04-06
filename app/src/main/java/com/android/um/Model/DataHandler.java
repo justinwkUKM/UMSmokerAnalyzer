@@ -3,6 +3,7 @@ package com.android.um.Model;
 import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataModels.AnsweredQuestion;
 import com.android.um.Model.DataModels.Question;
+import com.android.um.Model.DataModels.SmokeDiaryModel;
 import com.android.um.Model.DataModels.TargetToSaveModel;
 import com.android.um.Model.DataModels.User;
 import com.facebook.CallbackManager;
@@ -33,5 +34,12 @@ public interface DataHandler {
     String getLanguage();
     void saveTermsAcceptence(boolean agree);
     boolean getTermsAcceptence();
-    void saveTargetToSave(TargetToSaveModel target,final DataCallBack<String,String> callBack);
+    void saveTargetToSave(TargetToSaveModel target,final DataCallBack<Double,String> callBack);
+    void saveTargetToSaveLocally(Double total);
+    String getTargetToSaveLocaly();
+    void getTargetToSaveOnline(DataCallBack<Double,String> callBack);
+    void addSmokeDiary(String smoked, int cravings, double severity, DataCallBack<String,String> callBack);
+    void getSmokeDiarys(DataCallBack<ArrayList<SmokeDiaryModel>,String> smokeDiaryList);
+
+
 }

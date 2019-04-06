@@ -24,10 +24,11 @@ public class TargetToSaveDetailsPresenter implements TargetToSaveDetailsContract
 
     @Override
     public void saveTarget() {
-        mDataHandler.saveTargetToSave(target, new DataCallBack<String, String>() {
+        mDataHandler.saveTargetToSave(target, new DataCallBack<Double, String>() {
             @Override
-            public void onReponse(String result) {
+            public void onReponse(Double result) {
                 mView.goToDashBoard();
+                mDataHandler.saveTargetToSaveLocally(result);
             }
 
             @Override

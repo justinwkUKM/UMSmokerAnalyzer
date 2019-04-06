@@ -77,7 +77,7 @@
                     android:id="@+id/tv_target_save_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="RMXXX"
+                    android:text=""
                     android:textColor="@color/white"
                     android:textSize="@dimen/_15ssp" />
 

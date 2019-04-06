@@ -8,8 +8,12 @@ public class TargetToSaveModel implements Parcelable {
     double luxurios=0;
     double medical=0;
     double savings=0;
-    double total=0;
+    double total=0.0;
 
+    public TargetToSaveModel()
+    {
+
+    }
     public TargetToSaveModel(double travel,double luxurios,double medical,double savings)
     {
         this.travel=travel;

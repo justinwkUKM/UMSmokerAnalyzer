@@ -21,25 +21,27 @@
 
         <RadioGroup
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:weightSum="1">
+            android:id="@+id/radio_group"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
                 <RadioButton
+                    android:id="@+id/rb_smoked"
                     android:layout_weight="0.5"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/text_i_smoked"/>
 
                 <RadioButton
+                    android:id="@+id/rb_resisted"
                     android:layout_weight="0.5"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/text_resisted"/>
-            </LinearLayout>
+
         </RadioGroup>
     </LinearLayout>
+
 
     <TextView
         android:layout_width="match_parent"
@@ -52,17 +54,108 @@
         android:paddingTop="@dimen/_10sdp"
         android:paddingBottom="@dimen/_10sdp"/>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_intense_question"
+
+        android:id="@+id/ll_feel_bar"
+        android:orientation="horizontal">
+
+        <View
+            android:padding="@dimen/_10sdp"
+            android:background="@drawable/unselected_carvings"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="1dp"
+            android:id="@+id/carving_1"/>
+
+        <View
+            android:padding="@dimen/_10sdp"
+            android:background="@drawable/unselected_carvings"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="1dp"
+
+            android:id="@+id/carving_2"/>
+        <View
+            android:padding="@dimen/_10sdp"
+            android:background="@drawable/unselected_carvings"
+            android:layout_marginRight="1dp"
+
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:id="@+id/carving_3"/>
+        <View
+            android:padding="@dimen/_10sdp"
+            android:background="@drawable/unselected_carvings"
+            android:layout_width="30dp"
+            android:layout_marginRight="1dp"
+
+            android:layout_height="20dp"
+            android:id="@+id/carving_4"/>
+        <View
+            android:padding="@dimen/_10sdp"
+            android:background="@drawable/unselected_carvings"
+            android:layout_width="30dp"
+            android:layout_marginRight="1dp"
+
+            android:layout_height="20dp"
+            android:id="@+id/carving_5"/>
+        <View
+            android:padding="@dimen/_10sdp"
+            android:background="@drawable/unselected_carvings"
+            android:layout_width="30dp"
+            android:layout_marginRight="1dp"
+
+            android:layout_height="20dp"
+            android:id="@+id/carving_6"/>
+        <View
+            android:padding="@dimen/_10sdp"
+            android:background="@drawable/unselected_carvings"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="1dp"
+
+            android:id="@+id/carving_7"/>
+        <View
+            android:padding="@dimen/_10sdp"
+            android:background="@drawable/unselected_carvings"
+            android:layout_width="30dp"
+            android:layout_marginRight="1dp"
+
+            android:layout_height="20dp"
+            android:id="@+id/carving_8"/>
+        <View
+            android:padding="@dimen/_10sdp"
+            android:background="@drawable/unselected_carvings"
+            android:layout_width="30dp"
+            android:layout_marginRight="1dp"
+            android:layout_height="20dp"
+            android:id="@+id/carving_9"/>
+        <View
+            android:padding="@dimen/_10sdp"
+            android:background="@drawable/unselected_carvings"
+            android:layout_width="30dp"
+            android:layout_marginRight="1dp"
+
+            android:layout_height="20dp"
+            android:id="@+id/carving_10"/>
+
+
+    </LinearLayout>
     <TextView
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tv_feel_question"
-        android:layout_below="@+id/tv_intense_question"
+        android:layout_below="@+id/ll_feel_bar"
         android:text="@string/text_feel_questions"
         android:textSize="20sp"
         android:textStyle="bold"
         android:paddingTop="@dimen/_10sdp"
         android:paddingBottom="@dimen/_10sdp"/>
+
 
 
     <LinearLayout
@@ -76,6 +169,7 @@
         android:background="@drawable/rounder_border">
 
         <TextView
+            android:id="@+id/ll_tv_happy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/text_happy"
@@ -94,6 +188,7 @@
         android:background="@drawable/rounder_border">
 
         <TextView
+            android:id="@+id/ll_tv_bored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/text_bored"
@@ -112,6 +207,7 @@
         android:background="@drawable/rounder_border">
 
         <TextView
+            android:id="@+id/ll_tv_lonely"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/text_lonely"
@@ -130,6 +226,7 @@
         android:background="@drawable/rounder_border">
 
         <TextView
+            android:id="@+id/ll_tv_stressed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/text_stressed"
@@ -146,6 +243,7 @@
         android:layout_margin="@dimen/_20sdp"
         android:layout_centerHorizontal="true"
         android:text="@string/text_save"
+        android:id="@+id/save_btn"
         />
 
 </RelativeLayout>
