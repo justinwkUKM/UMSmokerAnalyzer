@@ -121,7 +121,9 @@ public class User implements Parcelable {
 
     public void setFirebaseUser(FirebaseUser user)
     {
-        this.setUsername(user.getDisplayName());
+        if (this.username==null)
+            this.setUsername(user.getDisplayName());
+
         this.setEmail(user.getEmail());
         this.setId(user.getUid());
     }

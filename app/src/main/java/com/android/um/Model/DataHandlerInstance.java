@@ -202,18 +202,22 @@ public class DataHandlerInstance implements DataHandler {
     @Override
     public void startTimer(final DataCallBack<Long,String> callBack) {
 
-        smokeFreeDisposable=Observable.interval(1,TimeUnit.SECONDS)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext(
-                        new Consumer<Long>() {
-                            @Override
-                            public void accept(Long aLong) throws Exception {
-                                callBack.onReponse(aLong);
+        if (smokeFreeDisposable!=null)
+            smokeFreeDisposable.dispose();
 
+            smokeFreeDisposable=Observable.interval(1,TimeUnit.SECONDS)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnNext(
+                            new Consumer<Long>() {
+                                @Override
+                                public void accept(Long aLong) throws Exception {
+                                    callBack.onReponse(aLong);
+
+                                }
                             }
-                        }
-                ).subscribe();
+                    ).subscribe();
+
     }
 
     @Override
@@ -259,5 +263,10 @@ public class DataHandlerInstance implements DataHandler {
 
             }
         });
+    }
+
+    @Override
+    public void updateSmokeFreeTime(SmokeFreeTime smokeFreeTime) {
+        mFirebaseHandler.updateSmokeFreeTime(mPrefsHandler.getLoggedUser().getId(),smokeFreeTime);
     }
 }

@@ -70,7 +70,7 @@ public class DashboardPresenter implements DashboardContract.Presenter{
                         Date firebaseDate = new Date(result);
 
                        final SmokeFreeTime smokeFreeDiffernce= getDifferentSmokeFreeTime(smokeFreeTime.getStartDate(),firebaseDate);
-
+                            smokeFreeDiffernce.setStartDate(smokeFreeTime.getStartDate());
                             mDataHandler.startTimer(new DataCallBack<Long, String>() {
                                 @Override
                                 public void onReponse(Long result) {
@@ -85,6 +85,12 @@ public class DashboardPresenter implements DashboardContract.Presenter{
                                         smokeFreeDiffernce.setMinutes(0);
                                         smokeFreeDiffernce.setHour(smokeFreeDiffernce.getHour()+1);
                                     }
+                                    if (smokeFreeDiffernce.getMinutes()!=0 &&((int)smokeFreeDiffernce.getMinutes()%10)==0)
+                                    {
+
+                                        mDataHandler.updateSmokeFreeTime(smokeFreeDiffernce);
+                                    }
+
                                     mView.updateSmokeFreeTimer(smokeFreeDiffernce.getSeconds(),smokeFreeDiffernce.getMinutes(),smokeFreeDiffernce.getHour());
                                 }
 

@@ -1,6 +1,7 @@
 package com.android.um.dashboard;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -47,8 +48,16 @@ public class DashBoardFragment extends Fragment implements DashboardContract.Vie
         ButterKnife.bind(this, rootView);
         PresenterInjector.injectDashboardPresenter(this);
         mPresenter.getTargetToSave();
-        mPresenter.startSmokeFreeTime();
+
         return rootView;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mPresenter!=null)
+            mPresenter.startSmokeFreeTime();
     }
 
     @Override

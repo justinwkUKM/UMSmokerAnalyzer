@@ -111,7 +111,10 @@ public class FirebaseInstance implements FirebaseHandler {
                    checkifUserExist(user, new DataCallBack<User, String>() {
                        @Override
                        public void onReponse(User result) {
-                           callback.onReponse(result);
+                           if (result!=null)
+                                callback.onReponse(result);
+                           else
+                               callback.onReponse(user);
                        }
 
                        @Override
@@ -361,22 +364,87 @@ public class FirebaseInstance implements FirebaseHandler {
 
     @Override
     public void saveUserInFirebase(final User user, final DataCallBack<User, String> callBack) {
-        final DatabaseReference ref=rootRef.child("users").push();
-        ref.setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                user.setId(ref.getKey());
-                callBack.onReponse(user);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                callBack.onError("Failed,please try again");
-            }
-        });
+
+
+      checkifUserExist(user, new DataCallBack<User, String>() {
+          @Override
+          public void onReponse(User result) {
+              if (result!=null)
+              {
+
+                  //in case for google sign in we wont be able to get the age and gender
+                  //so user is asked to enter age and gender but then we need to update the firebase user we added after signin with google
+                  //here we are comparing the two users the first one is (result) which is the user found in firebase and the second user is
+                  // the user with age and gender so will be comparing if there is no gender nor age in the firebase user then we need to update that user
+                  User saveUser=compareUser(result,user);
+                  final DatabaseReference ref=rootRef.child("users");
+                  Map<String,Object> userMap=new HashMap<>();
+                  userMap.put(result.getId(),saveUser);
+                  ref.updateChildren(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                      @Override
+                      public void onComplete(@NonNull Task<Void> task) {
+                          if (task.isSuccessful())
+                          {
+                              //if the user already had its key no need to assign a new key
+                              if (user.getId().length()==0 )
+                                    user.setId(ref.getKey());
+
+                              callBack.onReponse(user);
+                          }
+                          else
+                              callBack.onError("Failed,please try again");
+
+                      }
+                  }).addOnFailureListener(new OnFailureListener() {
+                      @Override
+                      public void onFailure(@NonNull Exception e) {
+                          callBack.onError("Failed,please try again");
+                      }
+                  });
+
+              }
+              else
+              {
+                  final DatabaseReference ref=rootRef.child("users").push();
+                  ref.setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                      @Override
+                      public void onComplete(@NonNull Task<Void> task) {
+                          if (task.isSuccessful())
+                          {
+                              user.setId(ref.getKey());
+                              callBack.onReponse(user);
+                          }
+                          else
+                              callBack.onError("Failed,please try again");
+
+                      }
+                  }).addOnFailureListener(new OnFailureListener() {
+                      @Override
+                      public void onFailure(@NonNull Exception e) {
+                          callBack.onError("Failed,please try again");
+                      }
+                  });
+              }
+          }
+
+          @Override
+          public void onError(String result) {
+                callBack.onError(result);
+          }
+      });
 
     }
 
+    public User compareUser(User firebaseUser,User signupUser)
+    {
+        if (signupUser.getAge()==0 && firebaseUser!=null)
+            signupUser.setAge(firebaseUser.getAge());
+        else if ((signupUser.getGender()==null || signupUser.getGender().length()==0) && firebaseUser.getGender()!=null)
+            signupUser.setGender(firebaseUser.getGender());
+
+        return signupUser;
+
+    }
     @Override
     public void saveUserAnsweredQuestions(String category,String userId,ArrayList<AnsweredQuestion> questions, final DataCallBack<String,String> callBack) {
 
@@ -526,8 +594,7 @@ public class FirebaseInstance implements FirebaseHandler {
                 }
                 if (smokeDiaryModels.size()>0)
                     callBack.onReponse(smokeDiaryModels);
-                else
-                    callBack.onError("Failed to Load Diarys ,Try again");
+
             }
 
             @Override
@@ -580,13 +647,20 @@ public class FirebaseInstance implements FirebaseHandler {
                 else
                     callBack.onError("Failed to save Smoke Free Time,Try again");
             }
-        })
-                .addOnFailureListener(new OnFailureListener() {
+        }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         callBack.onError("Failed to save Smoke Free Time,Try again");
                     }
                 });
+    }
+
+    @Override
+    public void updateSmokeFreeTime(String userId,SmokeFreeTime smokeFreeTime) {
+        DatabaseReference ref=rootRef.child("users").child(userId);
+        HashMap<String,Object> answersMap=new HashMap<>();
+        answersMap.put("SmokeFreeTime",smokeFreeTime);
+        ref.updateChildren(answersMap);
     }
 
     @Override

@@ -39,4 +39,6 @@ public interface FirebaseHandler {
     void getSmokeDiarys(String userId,DataCallBack<ArrayList<SmokeDiaryModel>,String> callBack);
     void getSmokeFreeTime(String userId,DataCallBack<SmokeFreeTime,String> callBack);
     void addSmokeFreeTime(String userId,Date startDate,DataCallBack<String, String> callBack);
+    void updateSmokeFreeTime(String userId,SmokeFreeTime smokeFreeTime);
+
 }

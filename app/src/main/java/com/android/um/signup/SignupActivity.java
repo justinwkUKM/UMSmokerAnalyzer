@@ -118,11 +118,18 @@ public class SignupActivity extends BaseActivity implements SignupContract.View 
 
     @Override
     public void handleSignup(User user) {
-                hideLoading();
-                Intent intent=new Intent(SignupActivity.this, PostLoginActivity.class);
-                startActivity(intent);
-                finish();
-    }
+        hideLoading();
+        if (questionsFlag)
+        {
+            hideLoading();
+            Intent intent=new Intent(SignupActivity.this, PostLoginActivity.class);
+            startActivity(intent);
+            finish();
+
+        }
+        else
+            goToQuestions();
+                }
 
     @Override
     public void handleSignInActivity(User user) {
@@ -267,7 +274,7 @@ public class SignupActivity extends BaseActivity implements SignupContract.View 
 
     public void signup()
     {
-        showLoading();
+
         if (validate(fields))
         {
             if (signinFlag)
@@ -305,10 +312,18 @@ public class SignupActivity extends BaseActivity implements SignupContract.View 
         switch (view.getId())
         {
             case R.id.btn_signup:
-                if (questionsFlag)
+                showLoading();
+                if (signinFlag)
+                {
                     signup();
+                }
                 else
-                    goToQuestions();
+                {
+                    if (questionsFlag)
+                        signup();
+                    else
+                        goToQuestions();
+                }
                 break;
             case R.id.il_et_gender:
                 showDialog();
@@ -317,6 +332,7 @@ public class SignupActivity extends BaseActivity implements SignupContract.View 
     }
 
     private void goToQuestions() {
+        hideLoading();
         Intent intent=new Intent(this, QuestionsActivity.class);
         intent.putExtra("category","demographicQuestions");
         startActivityForResult(intent,QUESTIONS_REQUEST_CODE);

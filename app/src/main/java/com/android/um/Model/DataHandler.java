@@ -46,4 +46,5 @@ public interface DataHandler {
     void addSmokeFreeTime(DataCallBack<String,String> callBack);
     void getSmokeFreeTime(DataCallBack<SmokeFreeTime,String> callBack);
     void getFirebaseTime(DataCallBack<Long,String> callBack);
+    void updateSmokeFreeTime(SmokeFreeTime smokeFreeTime);
 }

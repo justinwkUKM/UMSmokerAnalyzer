@@ -26,25 +26,27 @@ public class AddSmokeDiaryPresenter implements AddSmokeDiaryContract.Presenter{
 
 
     @Override
-    public void addSmokeDiary(String smoked, int cravings, String severity) {
+    public void addSmokeDiary(final String smoked, int cravings, String severity) {
         double mSeverity=0.0;
 
         mDataHandler.addSmokeDiary(smoked, cravings, mSeverity, new DataCallBack<String, String>() {
             @Override
             public void onReponse(String result) {
                 mView.savingDiarySuccess();
+                if (!smoked.equals("I Resisted"))
+                {
+                    mDataHandler.addSmokeFreeTime(new DataCallBack<String, String>() {
+                        @Override
+                        public void onReponse(String result) {
+                            //DO NOTHING
+                        }
 
-                mDataHandler.addSmokeFreeTime(new DataCallBack<String, String>() {
-                    @Override
-                    public void onReponse(String result) {
-                        //DO NOTHING
-                    }
+                        @Override
+                        public void onError(String result) {
 
-                    @Override
-                    public void onError(String result) {
-
-                    }
-                });
+                        }
+                    });
+                }
             }
 
             @Override
