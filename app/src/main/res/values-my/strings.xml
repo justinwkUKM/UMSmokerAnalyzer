@@ -31,9 +31,6 @@
     <string name="text_female">Female/Perempuan</string>
     <string name="forget_password_label">Forget password</string>
     <string name="send_text">Send</string>
-    <string name="client_id" translatable="false">171945750837-b6c115sa4s5952up83m3dj8l6bndc26i.apps.googleusercontent.com</string>
-    <string name="facebook_app_id" translatable="false">2205409826454481</string>
-    <string name="fb_login_protocol_scheme" translatable="false">fb2205409826454481</string>
     <string name="postlogin_note1">We use this information to know how much money</string>
     <string name="postlogin_note2">you are saving by giving up smoking</string>
     <string name="packet_cost">How much does a packet cost ?</string>
@@ -80,5 +77,7 @@
     <string name="text_lonely">Lonely</string>
     <string name="text_stressed">Stressed</string>
 
-    <string name="unlock_feature">Unlock Feature</string>
+    <string name="unlock_feature"><u>Unlock Feature</u></string>
+    <string name="text_smoke_free">Smoke Free</string>
+    <string name="text_collect_points">Collect Points</string>
 </resources>

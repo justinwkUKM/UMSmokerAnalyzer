@@ -16,6 +16,7 @@ import com.android.um.PresenterInjector;
 import com.android.um.R;
 import com.android.um.smokediary.SmokeDiaryActivity;
 import com.android.um.targetTosave.TargetToSaveActivity;
+import com.android.um.unlockfeature.UnlockFeatureActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -96,8 +97,15 @@ public class DashBoardFragment extends Fragment implements DashboardContract.Vie
 
     }
 
+    public void goToUnlockFeature()
+    {
+        Intent intent = new Intent(getActivity(), UnlockFeatureActivity.class);
+        intent.putExtra("FEATURE","Smoke Free 24 Hours");
+        startActivity(intent);
 
-    @OnClick({R.id.tv_target_save, R.id.btn_smoke_diary})
+    }
+
+    @OnClick({R.id.tv_target_save, R.id.btn_smoke_diary,R.id.tv_unlock_achievement_feature})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_target_save:
@@ -105,6 +113,9 @@ public class DashBoardFragment extends Fragment implements DashboardContract.Vie
                 break;
             case R.id.btn_smoke_diary:
                 goToSmokeDiary();
+                break;
+            case R.id.tv_unlock_achievement_feature:
+                goToUnlockFeature();
                 break;
 
         }

@@ -56,6 +56,9 @@
         <activity
             android:windowSoftInputMode="stateHidden"
             android:name=".addsmokediary.AddSmokeDiaryActivity"></activity>
+        <activity
+            android:windowSoftInputMode="stateHidden"
+            android:name=".unlockfeature.UnlockFeatureActivity"></activity>
 
 
         <meta-data android:name="com.facebook.sdk.ApplicationId"

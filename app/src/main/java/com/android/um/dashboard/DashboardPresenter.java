@@ -91,6 +91,9 @@ public class DashboardPresenter implements DashboardContract.Presenter{
                                         mDataHandler.updateSmokeFreeTime(smokeFreeDiffernce);
                                     }
 
+                                    if (smokeFreeDiffernce.getHour()>=24)
+                                        mView.unlockFeature();
+
                                     mView.updateSmokeFreeTimer(smokeFreeDiffernce.getSeconds(),smokeFreeDiffernce.getMinutes(),smokeFreeDiffernce.getHour());
                                 }
 

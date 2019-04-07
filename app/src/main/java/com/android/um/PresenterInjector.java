@@ -29,6 +29,8 @@ import com.android.um.targetTosavedetails.TargetToSaveDetailsContract;
 import com.android.um.targetTosavedetails.TargetToSaveDetailsPresenter;
 import com.android.um.terms.TermsContract;
 import com.android.um.terms.TermsPresenter;
+import com.android.um.unlockfeature.UnlockFeatureContract;
+import com.android.um.unlockfeature.UnlockFeaturePresenter;
 
 
 public class PresenterInjector {
@@ -84,9 +86,15 @@ public class PresenterInjector {
     public static void injectAddSmokeDiaryPresenter(AddSmokeDiaryContract.View addSmokeDiaryView) {
         new AddSmokeDiaryPresenter(addSmokeDiaryView);
     }
+
     public static void injectDashboardPresenter(DashboardContract.View dashboardView) {
         new DashboardPresenter(dashboardView);
     }
+
+    public static void injectUnlockFeaturePresenter(UnlockFeatureContract.View unlockFeatureView) {
+        new UnlockFeaturePresenter(unlockFeatureView);
+    }
+
 
 
 }
