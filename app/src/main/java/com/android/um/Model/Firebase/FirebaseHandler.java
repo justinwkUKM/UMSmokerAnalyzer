@@ -4,6 +4,7 @@ import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataModels.AnsweredQuestion;
 import com.android.um.Model.DataModels.Question;
 import com.android.um.Model.DataModels.SmokeDiaryModel;
+import com.android.um.Model.DataModels.SmokeFreeTime;
 import com.android.um.Model.DataModels.TargetToSaveModel;
 import com.android.um.Model.DataModels.User;
 import com.facebook.AccessToken;
@@ -15,6 +16,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public interface FirebaseHandler {
 
@@ -35,4 +37,6 @@ public interface FirebaseHandler {
     void getTargetToSave(String userId,DataCallBack<Double,String> callBack);
     void addSmokeDiary(String userId,String smoked, int cravings, double severity,final DataCallBack<String,String> callBack);
     void getSmokeDiarys(String userId,DataCallBack<ArrayList<SmokeDiaryModel>,String> callBack);
+    void getSmokeFreeTime(String userId,DataCallBack<SmokeFreeTime,String> callBack);
+    void addSmokeFreeTime(String userId,Date startDate,DataCallBack<String, String> callBack);
 }

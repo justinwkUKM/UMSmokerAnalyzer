@@ -1,9 +1,12 @@
 package com.android.um.Model;
 
+import android.support.annotation.NonNull;
+
 import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataModels.AnsweredQuestion;
 import com.android.um.Model.DataModels.Question;
 import com.android.um.Model.DataModels.SmokeDiaryModel;
+import com.android.um.Model.DataModels.SmokeFreeTime;
 import com.android.um.Model.DataModels.TargetToSaveModel;
 import com.android.um.Model.DataModels.User;
 import com.android.um.Model.Firebase.FirebaseHandler;
@@ -13,8 +16,24 @@ import com.android.um.Model.SharedPref.SharedPrefsInstance;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookException;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.functions.FirebaseFunctions;
+import com.google.firebase.functions.HttpsCallableResult;
+
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 public class DataHandlerInstance implements DataHandler {
 
@@ -25,6 +44,7 @@ public class DataHandlerInstance implements DataHandler {
     private SharedPrefsHandler mPrefsHandler;
     private FirebaseHandler mFirebaseHandler;
 
+    private Disposable smokeFreeDisposable;
     private DataHandlerInstance(SharedPrefsManager manager) {
         this.manager = manager;
         mFirebaseHandler = FirebaseInstance.getInstance();
@@ -178,4 +198,66 @@ public class DataHandlerInstance implements DataHandler {
     @Override
     public void getTargetToSaveOnline(DataCallBack<Double,String> callBack) {
         mFirebaseHandler.getTargetToSave(mPrefsHandler.getLoggedUser().getId(),callBack);    }
+
+    @Override
+    public void startTimer(final DataCallBack<Long,String> callBack) {
+
+        smokeFreeDisposable=Observable.interval(1,TimeUnit.SECONDS)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnNext(
+                        new Consumer<Long>() {
+                            @Override
+                            public void accept(Long aLong) throws Exception {
+                                callBack.onReponse(aLong);
+
+                            }
+                        }
+                ).subscribe();
+    }
+
+    @Override
+    public void stopTimer() {
+        if (smokeFreeDisposable!=null)
+            smokeFreeDisposable.dispose();
+    }
+
+    public void getFirebaseTime(final DataCallBack<Long,String> callBack)
+    {
+        FirebaseFunctions.getInstance().getHttpsCallable("getTime")
+                .call().addOnSuccessListener(new OnSuccessListener<HttpsCallableResult>() {
+            @Override
+            public void onSuccess(HttpsCallableResult httpsCallableResult) {
+                callBack.onReponse((long) httpsCallableResult.getData());
+
+            }
+        })
+        .addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                callBack.onError("");
+            }
+        });
+    }
+
+
+    @Override
+    public void getSmokeFreeTime(DataCallBack<SmokeFreeTime, String> callBack) {
+        mFirebaseHandler.getSmokeFreeTime(mPrefsHandler.getLoggedUser().getId(),callBack);
+    }
+
+    @Override
+    public void addSmokeFreeTime(final DataCallBack<String, String> callBack) {
+        getFirebaseTime(new DataCallBack<Long, String>() {
+            @Override
+            public void onReponse(Long result) {
+                Date startDate=new Date(result);
+                mFirebaseHandler.addSmokeFreeTime(mPrefsHandler.getLoggedUser().getId(),startDate,callBack);
+            }
+            @Override
+            public void onError(String result) {
+
+            }
+        });
+    }
 }

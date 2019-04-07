@@ -58,7 +58,9 @@
     <string name="information_note1">We use this information to show you how much many</string>
     <string name="information_note2">you are saving by giving up smoking</string>
     <string name="text_target_save_link"><u>Target To Save</u></string>
-
+    <string name="text_money">Money Saved</string>
+    <string name="text_achievemnts"><u>Achievemnts</u></string>
+    <string name="text_quit_function">Super Quit Function</string>
     <string name="text_by_day">Per Day</string>
     <string name="text_by_week">Per Week</string>
     <string name="text_by_month">Per Month</string>
@@ -77,4 +79,7 @@
     <string name="text_bored">Bored</string>
     <string name="text_lonely">Lonely</string>
     <string name="text_stressed">Stressed</string>
+
+    <string name="unlock_feature"><u>Unlock Feature</u></string>
+    <string name="text_smoke_free">Smoke Free</string>
 </resources>

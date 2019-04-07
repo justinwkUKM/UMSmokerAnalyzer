@@ -9,6 +9,7 @@ import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataModels.AnsweredQuestion;
 import com.android.um.Model.DataModels.Question;
 import com.android.um.Model.DataModels.SmokeDiaryModel;
+import com.android.um.Model.DataModels.SmokeFreeTime;
 import com.android.um.Model.DataModels.TargetToSaveModel;
 import com.android.um.Model.DataModels.User;
 import com.android.um.Model.DataModels.options;
@@ -515,9 +516,6 @@ public class FirebaseInstance implements FirebaseHandler {
 
     @Override
     public void getSmokeDiarys(String userId,final DataCallBack<ArrayList<SmokeDiaryModel>, String> callBack) {
-
-
-
         rootRef.child("users").child(userId).child("SmokeDiarys").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -538,6 +536,57 @@ public class FirebaseInstance implements FirebaseHandler {
             }
         });
 
+    }
+
+    @Override
+    public void getSmokeFreeTime(String userId,final DataCallBack<SmokeFreeTime, String> callBack) {
+        rootRef.child("users").child(userId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                SmokeFreeTime smokeFreeTime=new SmokeFreeTime();
+
+                for(DataSnapshot dsp : dataSnapshot.getChildren()){
+                    if (dsp.getKey().equals("SmokeFreeTime"))
+                    smokeFreeTime=dsp.getValue(SmokeFreeTime.class);
+
+                }
+
+                if (smokeFreeTime.getStartDate()!=null)
+                    callBack.onReponse(smokeFreeTime);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                callBack.onError(databaseError.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void addSmokeFreeTime(String userId,Date startDate,final DataCallBack<String, String> callBack) {
+
+        SmokeFreeTime smokeFreeTime=new SmokeFreeTime();
+        smokeFreeTime.setStartDate(startDate);
+
+        DatabaseReference ref=rootRef.child("users").child(userId);
+        HashMap<String,Object> answersMap=new HashMap<>();
+        answersMap.put("SmokeFreeTime",smokeFreeTime);
+
+        ref.updateChildren(answersMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful())
+                    callBack.onReponse("");
+                else
+                    callBack.onError("Failed to save Smoke Free Time,Try again");
+            }
+        })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        callBack.onError("Failed to save Smoke Free Time,Try again");
+                    }
+                });
     }
 
     @Override

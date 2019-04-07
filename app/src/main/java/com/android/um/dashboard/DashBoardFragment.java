@@ -20,7 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class DashBoardFragment extends Fragment implements DashboardContract.View{
+public class DashBoardFragment extends Fragment implements DashboardContract.View {
 
     @BindView(R.id.tv_money_saved)
     TextView tvMoneySaved;
@@ -32,6 +32,13 @@ public class DashBoardFragment extends Fragment implements DashboardContract.Vie
     FloatingActionButton btn_smoke_diary;
 
     DashboardContract.Presenter mPresenter;
+    @BindView(R.id.tv_smoke_free)
+    TextView tvSmokeFree;
+    @BindView(R.id.tv_smoke_free_time)
+    TextView tvSmokeFreeTime;
+    @BindView(R.id.tv_unlock_achievement_feature)
+    TextView tvUnlockAchievementFeature;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -40,12 +47,13 @@ public class DashBoardFragment extends Fragment implements DashboardContract.Vie
         ButterKnife.bind(this, rootView);
         PresenterInjector.injectDashboardPresenter(this);
         mPresenter.getTargetToSave();
+        mPresenter.startSmokeFreeTime();
         return rootView;
     }
 
     @Override
     public void showTargetToSave(String total) {
-        tvTargetSaveAmount.setText("RM"+total);
+        tvTargetSaveAmount.setText("RM" + total);
     }
 
     public static DashBoardFragment newInstance() {
@@ -58,19 +66,31 @@ public class DashBoardFragment extends Fragment implements DashboardContract.Vie
         startActivity(intent);
     }
 
-    public void goToSmokeDiary()
-    {
+    @Override
+    public void showSmokeFreeTime() {
+        tvSmokeFree.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void unlockFeature() {
+        tvUnlockAchievementFeature.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void updateSmokeFreeTimer(long seconds,long minutes,long hours) {
+        tvSmokeFreeTime.setText(hours+"H "+minutes+"M "+seconds+"S");
+    }
+
+    public void goToSmokeDiary() {
         Intent intent = new Intent(getActivity(), SmokeDiaryActivity.class);
         startActivity(intent);
 
     }
 
 
-    @OnClick({R.id.tv_target_save,R.id.btn_smoke_diary})
-    public void onViewClicked(View view)
-    {
-        switch (view.getId())
-        {
+    @OnClick({R.id.tv_target_save, R.id.btn_smoke_diary})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
             case R.id.tv_target_save:
                 goToTargetToSave();
                 break;
@@ -85,7 +105,7 @@ public class DashBoardFragment extends Fragment implements DashboardContract.Vie
 
     @Override
     public void setPresenter(DashboardContract.Presenter presenter) {
-        this.mPresenter=presenter;
+        this.mPresenter = presenter;
     }
 
     @Override
@@ -96,5 +116,11 @@ public class DashBoardFragment extends Fragment implements DashboardContract.Vie
     @Override
     public void hideLoading() {
 
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mPresenter.stopTimer();
     }
 }

@@ -4,6 +4,7 @@ import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataModels.AnsweredQuestion;
 import com.android.um.Model.DataModels.Question;
 import com.android.um.Model.DataModels.SmokeDiaryModel;
+import com.android.um.Model.DataModels.SmokeFreeTime;
 import com.android.um.Model.DataModels.TargetToSaveModel;
 import com.android.um.Model.DataModels.User;
 import com.facebook.CallbackManager;
@@ -40,6 +41,9 @@ public interface DataHandler {
     void getTargetToSaveOnline(DataCallBack<Double,String> callBack);
     void addSmokeDiary(String smoked, int cravings, double severity, DataCallBack<String,String> callBack);
     void getSmokeDiarys(DataCallBack<ArrayList<SmokeDiaryModel>,String> smokeDiaryList);
-
-
+    void startTimer(DataCallBack<Long,String> callBack);
+    void stopTimer();
+    void addSmokeFreeTime(DataCallBack<String,String> callBack);
+    void getSmokeFreeTime(DataCallBack<SmokeFreeTime,String> callBack);
+    void getFirebaseTime(DataCallBack<Long,String> callBack);
 }
