@@ -41,7 +41,7 @@ public class QuestionsActivity extends BaseActivity implements OnNextQuestion, Q
     ViewPager viewPager;
     public static OnNextQuestion listener;
     //this map to save the question with its selected value to be saved in firebase
-    LinkedHashMap<String,AnsweredQuestion> answeredQuestions;
+    LinkedHashMap<String, AnsweredQuestion> answeredQuestions;
     LinkedHashMap<String, options> hmapSelectedOptions;
     LinkedHashMap<Question, options> hmapAllQuestions;
     HashMap<String, Integer> hmapSelectedOptionsPostion;
@@ -53,19 +53,20 @@ public class QuestionsActivity extends BaseActivity implements OnNextQuestion, Q
     AVLoadingIndicatorView loadingIndicatorView;
     private ArrayList<Question> questions;
 
-    private int mPosition=0;
+    private int mPosition = 0;
     private ArrayList<AnsweredQuestion> answers;
-    String category="";
+    String category = "";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         PresenterInjector.injectDemographicQuestionsPresenter(this);
-        setLocale(mPresenter.getLanguage(),R.layout.activity_question);
+        setLocale(mPresenter.getLanguage(), R.layout.activity_question);
         ButterKnife.bind(this);
         super.onCreate(savedInstanceState);
         hmapSelectedOptions = new LinkedHashMap<>();
         hmapSelectedOptionsPostion = new HashMap<>();
         listener = this;
-        category=getIntent().getExtras().getString("category");
+        category = getIntent().getExtras().getString("category");
         mPresenter.getQuestions(category);
         init();
     }
@@ -95,7 +96,7 @@ public class QuestionsActivity extends BaseActivity implements OnNextQuestion, Q
 
     @Override
     public void failedToSaveQuestions(String error) {
-        showMessage(this,error);
+        showMessage(this, error);
     }
 
     @OnClick(R.id.button2)
@@ -113,21 +114,19 @@ public class QuestionsActivity extends BaseActivity implements OnNextQuestion, Q
                 showMessage(this, "Mandatory choice");
                 return;
             } else if (hmapSelectedOptions.get(questions.get(i).getDescription()).getValue() == null || hmapSelectedOptions.get(questions.get(i).getDescription()).getValue().length() == 0
-            || hmapSelectedOptions.get(questions.get(i).getDescription()).getValue().equals(" ")) {
+                    || hmapSelectedOptions.get(questions.get(i).getDescription()).getValue().equals(" ")) {
                 viewPager.setCurrentItem(i, true);
                 showMessage(this, "Mandatory choice");
                 return;
             }
         }
-        answers=new ArrayList<>();
-        for (Map.Entry<String,AnsweredQuestion> map:answeredQuestions.entrySet())
-        {
+        answers = new ArrayList<>();
+        for (Map.Entry<String, AnsweredQuestion> map : answeredQuestions.entrySet()) {
             answers.add(map.getValue());
         }
         if (mPresenter.checkifLogged()) {
-                mPresenter.saveAnsweredQuestions(category,answers);
-        }
-        else if (category.equals("demographicQuestions"))
+            mPresenter.saveAnsweredQuestions(category, answers);
+        } else if (category.equals("demographicQuestions"))
             goBackToSignUp();
     }
 
@@ -142,29 +141,27 @@ public class QuestionsActivity extends BaseActivity implements OnNextQuestion, Q
 
     @Override
     public void goToQuestions(String category) {
-        Intent intent=new Intent(this, QuestionsActivity.class);
-        intent.putExtra("category",category);
+        Intent intent = new Intent(this, QuestionsActivity.class);
+        intent.putExtra("category", category);
         startActivity(intent);
         finish();
     }
 
-    public void goToPostScreen()
-    {
-        Intent intent=new Intent(this, PostLoginActivity.class);
+    public void goToPostScreen() {
+        Intent intent = new Intent(this, PostLoginActivity.class);
         startActivity(intent);
         finish();
     }
 
-    public void goToMainScreen()
-    {
-        Intent intent=new Intent(this, MainActivity.class);
+    public void goToMainScreen() {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
 
     private void goBackToSignUp() {
-        Intent intent=new Intent(this, SignupActivity.class);
-        intent.putParcelableArrayListExtra("QUESTIONS",answers);
+        Intent intent = new Intent(this, SignupActivity.class);
+        intent.putParcelableArrayListExtra("QUESTIONS", answers);
         setResult(Activity.RESULT_OK, intent);
         finish();
     }
@@ -201,17 +198,16 @@ public class QuestionsActivity extends BaseActivity implements OnNextQuestion, Q
     }
 
     @Override
-    public void setSelectedOption(String key, options option,int position) {
+    public void setSelectedOption(String key, options option, int position) {
 
-        this.mPosition=position;
+        this.mPosition = position;
         hmapSelectedOptions.put(key, option);
         hmapSelectedOptionsPostion.put(key, position);
 
-        AnsweredQuestion answeredQuestion=new AnsweredQuestion();
-        answeredQuestion.AddAnsweredQuestion(questions.get(position),option);
-        answeredQuestions.put(key,answeredQuestion);
-        if ((option.getValue()!=null) && (option.getValue().length()>0) && (!option.getValue().equals(" ")))
-        {
+        AnsweredQuestion answeredQuestion = new AnsweredQuestion();
+        answeredQuestion.AddAnsweredQuestion(questions.get(position), option);
+        answeredQuestions.put(key, answeredQuestion);
+        if ((option.getValue() != null) && (option.getValue().length() > 0) && (!option.getValue().equals(" "))) {
             if (hmapSelectedOptions.size() == questions.size())
                 button2.setVisibility(View.VISIBLE);
             else
@@ -233,7 +229,7 @@ public class QuestionsActivity extends BaseActivity implements OnNextQuestion, Q
     @Override
     public void getQuestions(ArrayList<Question> questions) {
         this.questions = questions;
-        this.answeredQuestions=new LinkedHashMap<>(questions.size());
+        this.answeredQuestions = new LinkedHashMap<>(questions.size());
         MyPagerAdapter adapter = new MyPagerAdapter(getSupportFragmentManager(), questions);
         viewPager.setAdapter(adapter);
         pageIndicatorView.setVisibility(View.VISIBLE);
