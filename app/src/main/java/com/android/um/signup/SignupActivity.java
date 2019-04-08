@@ -277,6 +277,7 @@ public class SignupActivity extends BaseActivity implements SignupContract.View 
 
         if (validate(fields))
         {
+            showLoading();
             if (signinFlag)
             {
                 if (!validaqteUserNameFlag)
@@ -312,7 +313,7 @@ public class SignupActivity extends BaseActivity implements SignupContract.View 
         switch (view.getId())
         {
             case R.id.btn_signup:
-                showLoading();
+
                 if (signinFlag)
                 {
                     signup();

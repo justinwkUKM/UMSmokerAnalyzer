@@ -14,6 +14,7 @@ import com.android.um.Model.DataModels.Question;
 import com.android.um.PresenterInjector;
 import com.android.um.R;
 import com.android.um.language.LanguageActivity;
+import com.android.um.prelogin.PreLoginActivity;
 import com.android.um.questions.QuestionsActivity;
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -43,7 +44,13 @@ public class SplashScreenActivity extends BaseActivity implements SplashScreenCo
             handleLogged();
         }
         else
-            container.setVisibility(View.VISIBLE);
+        {
+            if (mPresenter.getLanguage()!=null && mPresenter.getLanguage().length()>0)
+                goToPreLoginActivity();
+            else
+                container.setVisibility(View.VISIBLE);
+        }
+
 
         super.onCreate(savedInstanceState);
     }
@@ -106,6 +113,14 @@ public class SplashScreenActivity extends BaseActivity implements SplashScreenCo
         Intent intent = new Intent(this, LanguageActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public void goToPreLoginActivity()
+    {
+        Intent intent = new Intent(this, PreLoginActivity.class);
+        startActivity(intent);
+        finish();
+
     }
 
     @OnClick(R.id.next_btn)

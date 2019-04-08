@@ -69,7 +69,8 @@ public class SigninPresenter implements SigninContract.Presenter{
 
             @Override
             public void onError(String error) {
-                    mView.signInFailed(error);
+                mDataHandler.LogOut();
+                mView.signInFailed(error);
             }
         });
     }
@@ -103,14 +104,18 @@ public class SigninPresenter implements SigninContract.Presenter{
                     });
                 }
                 else
+                {
+
                     mView.continueToSignUp(result);
+                }
+
             }
             @Override
             public void onError(String result) {
+                mDataHandler.LogOut();
                 if (result!=null && result!=null)
                     mView.signInFailed(result);
                 else {
-                    mDataHandler.LogOut();
                     mView.hideLoading();
                 }
             }
@@ -126,6 +131,7 @@ public class SigninPresenter implements SigninContract.Presenter{
             @Override
             public void onReponse(User result) {
                 mDataHandler.saveUserSharedPref(result);
+                mView.hideLoading();
                 if (result!=null && result.getAge()!=0) {
                     mView.signInSuccess();
                     mDataHandler.setLogged();
@@ -138,11 +144,11 @@ public class SigninPresenter implements SigninContract.Presenter{
             @Override
             public void onError(FacebookException result) {
                 mDataHandler.LogOut();
+                mView.hideLoading();
 
                 if (result!=null && result.getMessage()!=null)
                     mView.signInFailed(result.getMessage());
                 else {
-                    mView.hideLoading();
                     mView.signInFailed("Something went wrong,Please try again!");
                 }
             }

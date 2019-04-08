@@ -211,10 +211,10 @@ public class FirebaseInstance implements FirebaseHandler {
                                                     //get facebook user info to save it to our realtime database
                                                     user.setUsername(object.getString("name"));
                                                     user.setEmail(object.getString("email"));
-                                                    String birthday=object.getString("birthday");
-                                                    Date date=new SimpleDateFormat("dd/MM/yyyy").parse(birthday);
-                                                    user.setAge(date.getYear());
-                                                    user.setGender(object.getString("gender"));
+//                                                    String birthday = object.getString("birthday");
+//                                                    Date date = new SimpleDateFormat("dd/MM/yyyy").parse(birthday);
+//                                                    user.setAge(date.getYear());
+//                                                    user.setGender(object.getString("gender"));
 
                                                     checkifUserExist(user, new DataCallBack<User, String>() {
                                                         @Override
@@ -244,8 +244,13 @@ public class FirebaseInstance implements FirebaseHandler {
                                                         }
                                                     });
                                                 }
-                                                catch (JSONException exception) { }
-                                                catch (ParseException parse) { }
+                                                catch (JSONException exception) {
+
+                                                    facebookResponse.onError(null);
+                                                }
+//                                                catch (ParseException parse) {
+//
+//                                                    facebookResponse.onError(null); }
                                             }
                                         });
                                 Bundle parameters = new Bundle();

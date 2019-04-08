@@ -22,7 +22,7 @@
     <string name="text_password_confirmation_error">Password not match</string>
     <string name="text_age_invalid">Enter a valid age</string>
 
-    <string name="login_text">LOGIN</string>
+    <string name="login_text">Log Masuk</string>
     <string name="new_user">New user? Signup</string>
     <string name="text_signup">SIGN UP</string>
     <string name="text_select_language">Please Select Language</string>

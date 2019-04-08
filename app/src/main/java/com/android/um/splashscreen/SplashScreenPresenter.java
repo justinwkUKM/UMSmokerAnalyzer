@@ -89,7 +89,7 @@ public class SplashScreenPresenter implements SplashScreenContract.Presenter{
 
     @Override
     public String getLanguage() {
-        return null;
+        return mDataHandler.getLanguage();
     }
 
     @Override

@@ -83,7 +83,8 @@ public class SigninActivity extends BaseActivity implements SigninContract.View 
 
     public void init() {
         callbackManager = CallbackManager.Factory.create();
-        facebookLogin.setReadPermissions(Arrays.asList( "email", "user_birthday","user_gender"));
+        facebookLogin.setReadPermissions(Arrays.asList( "email"));
+//        facebookLogin.setReadPermissions(Arrays.asList( "email", "user_birthday","user_gender"));
 
         fields.add(etUsername);
         fields.add(etPassword);

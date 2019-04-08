@@ -68,6 +68,10 @@ public class SharedPrefsInstance implements SharedPrefsHandler{
     public void LogOut() {
         SharedPreferences.Editor editor=mPrefs.getSharedPrefs().edit();
         editor.putString("LOGGED","false");
+        Gson gson = new Gson();
+        String json = gson.toJson(null);
+        editor.putString("user", json);
+        editor.commit();
         editor.commit();
     }
 
@@ -102,8 +106,7 @@ public class SharedPrefsInstance implements SharedPrefsHandler{
     @Override
     public String getLanguage()
     {
-        String x= mPrefs.getSharedPrefs().getString("LANG", "en");
-        return mPrefs.getSharedPrefs().getString("LANG", "en");
+        return mPrefs.getSharedPrefs().getString("LANG", "");
     }
 
     @Override
