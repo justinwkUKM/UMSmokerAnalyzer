@@ -3,7 +3,6 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/layout_background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:theme="@style/AppThemeEditText">
 
@@ -36,6 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#fff"
+            android:id="@+id/subHeaderText"
             android:text="create a new account"/>
 
     </LinearLayout>
@@ -46,6 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="-15dp"
         android:layout_below="@+id/ll_header"
         app:cardUseCompatPadding="true">
 
@@ -256,11 +257,12 @@
         <Button
             android:layout_below="@+id/cardview"
             android:id="@+id/btn_signup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_30sdp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
-            android:background="@color/lightgreen"
+            android:textColor="@color/white"
+            android:background="@color/btn_background"
             android:text="@string/next_btn" />
 
     </RelativeLayout>
