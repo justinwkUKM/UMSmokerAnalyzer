@@ -1,0 +1,42 @@
+[debug] [2019-04-06T13:31:23.037Z] ----------------------------------------------------------------------
+[debug] [2019-04-06T13:31:23.039Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Basel\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2019-04-06T13:31:23.040Z] CLI Version:   6.5.3
+[debug] [2019-04-06T13:31:23.040Z] Platform:      win32
+[debug] [2019-04-06T13:31:23.040Z] Node Version:  v10.15.3
+[debug] [2019-04-06T13:31:23.041Z] Time:          Sat Apr 06 2019 21:31:23 GMT+0800 (Malaysia Time)
+[debug] [2019-04-06T13:31:23.041Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-04-06T13:31:23.048Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-04-06T13:31:23.049Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\UMSmokerAnalyzer
+
+[debug] [2019-04-06T13:32:11.928Z] ----------------------------------------------------------------------
+[debug] [2019-04-06T13:32:11.930Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Basel\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2019-04-06T13:32:11.931Z] CLI Version:   6.5.3
+[debug] [2019-04-06T13:32:11.931Z] Platform:      win32
+[debug] [2019-04-06T13:32:11.931Z] Node Version:  v10.15.3
+[debug] [2019-04-06T13:32:11.932Z] Time:          Sat Apr 06 2019 21:32:11 GMT+0800 (Malaysia Time)
+[debug] [2019-04-06T13:32:11.932Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-04-06T13:32:11.940Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-04-06T13:32:11.941Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\UMSmokerAnalyzer
+
