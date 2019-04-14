@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataModels.AnsweredQuestion;
+import com.android.um.Model.DataModels.MotivationMessageModel;
 import com.android.um.Model.DataModels.Question;
 import com.android.um.Model.DataModels.SmokeDiaryModel;
 import com.android.um.Model.DataModels.SmokeFreeTime;
@@ -666,6 +667,55 @@ public class FirebaseInstance implements FirebaseHandler {
         HashMap<String,Object> answersMap=new HashMap<>();
         answersMap.put("SmokeFreeTime",smokeFreeTime);
         ref.updateChildren(answersMap);
+    }
+
+
+    @Override
+    public void getMotivationMessages(String userId,final DataCallBack<ArrayList<MotivationMessageModel>, String> callBack) {
+
+        rootRef.child("users").child(userId).child("MotivationMessages").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<MotivationMessageModel> messageModels=new ArrayList<>();
+                for(DataSnapshot dsp : dataSnapshot.getChildren()){
+                    for (DataSnapshot dataSnapshot1:dsp.getChildren() )
+                        messageModels.add(dataSnapshot1.getValue(MotivationMessageModel.class));
+                }
+                if (messageModels.size()>0)
+                    callBack.onReponse(messageModels);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                callBack.onError(databaseError.getMessage());
+            }
+        });
+
+    }
+
+    @Override
+    public void addMotivtationMessages(MotivationMessageModel messageModel, String userId,final DataCallBack<String, String> callBack) {
+
+        DatabaseReference ref=rootRef.child("users").child(userId).child("MotivationMessages").push();
+        HashMap<String,Object> answersMap=new HashMap<>();
+        answersMap.put("MotivationMessages",messageModel);
+
+        ref.setValue(answersMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful())
+                    callBack.onReponse("");
+                else
+                    callBack.onError("Failed to save message,Try again");
+            }
+        })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        callBack.onError("Failed to save message,Try again");
+                    }
+                });
     }
 
     @Override

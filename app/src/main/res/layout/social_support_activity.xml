@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_weight="1">
+
+    <RelativeLayout
+        android:background="@drawable/background_gradient"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_quit_love"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/text_quiting_love"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_margin="@dimen/_20sdp"/>
+
+        <TextView
+
+            android:layout_below="@+id/tv_quit_love"
+            android:id="@+id/tv_quit_love_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/text_social_feaute_desc"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:layout_marginLeft="@dimen/_20sdp"/>
+
+        <TextView
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_below="@+id/tv_quit_love_desc"
+            android:id="@+id/tv_unlock_feature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/unlock_feature"
+            android:layout_centerVertical="true"
+            android:textColor="@color/navy"
+            android:textSize="20sp"
+            android:layout_marginLeft="@dimen/_20sdp"/>
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.7"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_social_support"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/text_social_support"
+            android:textColor="@color/blue"
+            android:textSize="30sp"
+            android:layout_marginTop="@dimen/_30sdp"/>
+
+
+        <TextView
+            android:layout_below="@+id/tv_social_support"
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/text_name_socail_support"
+            android:textColor="@color/blue"
+            android:textSize="15sp"
+            android:layout_marginTop="@dimen/_8sdp"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/il_et_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/text_name"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:paddingTop="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:textColorHint="@color/blue">
+
+            <EditText
+                android:id="@+id/et_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:paddingLeft="@dimen/_10sdp"
+                android:textColor="@color/blue" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/blue" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/_30sdp"
+            android:text="@string/next_btn"
+            android:textColor="@color/white"
+            android:background="@color/lightgreen"/>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

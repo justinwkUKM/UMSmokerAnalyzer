@@ -1,12 +1,16 @@
 package com.android.um;
 
 
+import com.android.um.addmotivationmessage.AddMotivationMessagesContract;
+import com.android.um.addmotivationmessage.AddMotivationMessagesPresenter;
 import com.android.um.addsmokediary.AddSmokeDiaryContract;
 import com.android.um.addsmokediary.AddSmokeDiaryPresenter;
 import com.android.um.dashboard.DashboardContract;
 import com.android.um.dashboard.DashboardPresenter;
 import com.android.um.language.LanguageContract;
 import com.android.um.language.LanguagePresenter;
+import com.android.um.motivation_messages.MotivationMessagesContract;
+import com.android.um.motivation_messages.MotivationMessagesPresenter;
 import com.android.um.postLogin.PostLoginContract;
 import com.android.um.postLogin.PostLoginPresenter;
 import com.android.um.prelogin.PreLoginContract;
@@ -95,6 +99,13 @@ public class PresenterInjector {
         new UnlockFeaturePresenter(unlockFeatureView);
     }
 
+    public static void injectMotivationMessagesPresenter(MotivationMessagesContract.View motiviationMessagesView) {
+        new MotivationMessagesPresenter(motiviationMessagesView);
+    }
+
+    public static void injectAddMotivationMessagesPresenter(AddMotivationMessagesContract.View addMotiviationMessagesView) {
+        new AddMotivationMessagesPresenter(addMotiviationMessagesView);
+    }
 
 
 }

@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataModels.AnsweredQuestion;
+import com.android.um.Model.DataModels.MotivationMessageModel;
 import com.android.um.Model.DataModels.Question;
 import com.android.um.Model.DataModels.SmokeDiaryModel;
 import com.android.um.Model.DataModels.SmokeFreeTime;
@@ -268,5 +269,15 @@ public class DataHandlerInstance implements DataHandler {
     @Override
     public void updateSmokeFreeTime(SmokeFreeTime smokeFreeTime) {
         mFirebaseHandler.updateSmokeFreeTime(mPrefsHandler.getLoggedUser().getId(),smokeFreeTime);
+    }
+
+    @Override
+    public void getMotivationMessages(DataCallBack<ArrayList<MotivationMessageModel>, String> callBack) {
+        mFirebaseHandler.getMotivationMessages(mPrefsHandler.getLoggedUser().getId(),callBack);
+    }
+
+    @Override
+    public void addMotivtationMessages(MotivationMessageModel messageModel,DataCallBack<String,String> callBack) {
+        mFirebaseHandler.addMotivtationMessages(messageModel,mPrefsHandler.getLoggedUser().getId(),callBack);
     }
 }

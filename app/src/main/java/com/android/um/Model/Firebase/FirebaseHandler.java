@@ -2,6 +2,7 @@ package com.android.um.Model.Firebase;
 
 import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataModels.AnsweredQuestion;
+import com.android.um.Model.DataModels.MotivationMessageModel;
 import com.android.um.Model.DataModels.Question;
 import com.android.um.Model.DataModels.SmokeDiaryModel;
 import com.android.um.Model.DataModels.SmokeFreeTime;
@@ -40,5 +41,6 @@ public interface FirebaseHandler {
     void getSmokeFreeTime(String userId,DataCallBack<SmokeFreeTime,String> callBack);
     void addSmokeFreeTime(String userId,Date startDate,DataCallBack<String, String> callBack);
     void updateSmokeFreeTime(String userId,SmokeFreeTime smokeFreeTime);
-
+    void getMotivationMessages(String userId, DataCallBack<ArrayList<MotivationMessageModel>,String> callBack);
+    void addMotivtationMessages(MotivationMessageModel messageModel,String userId, DataCallBack<String,String> callBack);
 }

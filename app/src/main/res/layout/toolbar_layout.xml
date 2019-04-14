@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:padding="@dimen/_8sdp"
+        android:background="@drawable/background_gradient"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="0.10"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/back_btn"
+            android:layout_marginRight="@dimen/_10sdp"/>
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:layout_width="0dp"
+            android:id="@+id/image_view"
+            android:layout_weight="0.20"
+            android:layout_height="@dimen/_45sdp"
+            android:maxHeight="@dimen/_25sdp"
+            android:src="@drawable/quit_function_bg"
+            app:civ_border_color="#EEEEEE"
+            app:civ_border_width="1dp"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.70"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14ssp"
+            android:text="Username"/>
+
+    </LinearLayout>
+
+</LinearLayout>

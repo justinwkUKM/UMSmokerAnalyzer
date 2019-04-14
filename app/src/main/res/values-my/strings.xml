@@ -78,6 +78,19 @@
     <string name="text_stressed">Stressed</string>
 
     <string name="unlock_feature"><u>Unlock Feature</u></string>
+    <string name="unlock_feature_capital">UNLOCK FEATURE</string>
     <string name="text_smoke_free">Smoke Free</string>
     <string name="text_collect_points">Collect Points</string>
+    <string name="text_successfully_hit_target">SUCCESSFULLY HIT YOUR TARGET SAVE</string>
+    <string name="text_congrats">Congratulations!</string>
+    <string name="text_lorem_ipsum">Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet</string>
+    <string name="text_forget_password_subheader">Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet</string>
+    <string name="text_quiting_love">Quitting with love</string>
+    <string name="text_social_support">Social Support</string>
+    <string name="text_name_socail_support">Name of someone you love the most</string>
+    <string name="text_social_feaute_desc">Lorem ipsum dolor sit amet, et homero tempor\nridens pri, ea sit illum debet. Ne pri graeci</string>
+    <string name="text_name">Name</string>
+    <string name="text_upload">Upload a photo of the one you love the most</string>
+    <string name="text_skip">Skip</string>
+    <string name="text_motvation_header">What Quitting Smoking\nTaught Me About Love</string>
 </resources>

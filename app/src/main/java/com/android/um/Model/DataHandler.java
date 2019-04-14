@@ -2,6 +2,7 @@ package com.android.um.Model;
 
 import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataModels.AnsweredQuestion;
+import com.android.um.Model.DataModels.MotivationMessageModel;
 import com.android.um.Model.DataModels.Question;
 import com.android.um.Model.DataModels.SmokeDiaryModel;
 import com.android.um.Model.DataModels.SmokeFreeTime;
@@ -47,4 +48,6 @@ public interface DataHandler {
     void getSmokeFreeTime(DataCallBack<SmokeFreeTime,String> callBack);
     void getFirebaseTime(DataCallBack<Long,String> callBack);
     void updateSmokeFreeTime(SmokeFreeTime smokeFreeTime);
+    void getMotivationMessages(DataCallBack<ArrayList<MotivationMessageModel>,String> callBack);
+    void addMotivtationMessages(MotivationMessageModel messageModel,DataCallBack<String,String> callBack);
 }

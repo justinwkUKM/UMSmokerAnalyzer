@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.30"
+        android:background="@drawable/motivation_message_bg">
+
+        <TextView
+            android:id="@+id/tv_social_support"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="24sp"
+            android:textColor="@color/white"
+            android:text="@string/text_social_support"/>
+
+        <View
+            android:id="@+id/divider_social_support"
+            android:layout_width="50dp"
+            android:layout_height="1dp"
+            android:background="@color/red"
+            android:layout_below="@+id/tv_social_support"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_centerHorizontal="true"/>
+        <TextView
+            android:layout_below="@+id/divider_social_support"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="24sp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:textColor="@color/white"
+            android:text="@string/text_motvation_header"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.50"
+        android:background="@drawable/background_gradient">
+
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_25sdp"
+            android:id="@+id/rv_motivation_messages">
+        </android.support.v7.widget.RecyclerView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.20">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/add_message_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            app:backgroundTint="@color/lightgreen"
+            android:layout_margin="@dimen/_30sdp"
+            android:src="@drawable/add"
+            />
+    </RelativeLayout>
+</LinearLayout>

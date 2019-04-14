@@ -13,6 +13,7 @@
        >
         <activity
             android:configChanges="locale"
+            android:windowSoftInputMode="adjustResize"
             android:name=".splashscreen.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -59,6 +60,9 @@
         <activity
             android:windowSoftInputMode="stateHidden"
             android:name=".unlockfeature.UnlockFeatureActivity"></activity>
+        <activity
+            android:windowSoftInputMode="stateHidden"
+            android:name=".motivation_messages.MotivationMessagesActivity"></activity>
 
 
         <meta-data android:name="com.facebook.sdk.ApplicationId"

@@ -33,6 +33,7 @@ public class SplashScreenActivity extends BaseActivity implements SplashScreenCo
     TextView textView;
     @BindView(R.id.next_btn)
     Button nextBtn;
+
     private SplashScreenContract.Presenter mPresenter;
 
     @Override

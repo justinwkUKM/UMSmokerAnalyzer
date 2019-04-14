@@ -15,5 +15,12 @@
         <item name="colorAccent">@color/gray</item>
     </style>
 
+    <style name="AchivmentsStyle" >
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/lightgreen</item>
+    </style>
+
 
 </resources>

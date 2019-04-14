@@ -48,6 +48,8 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     implementation 'com.google.firebase:firebase-functions:16.1.0'
 
+    implementation 'com.mikhaellopez:circularimageview:3.2.0'
+
 
     implementation 'com.romandanylyk:pageindicatorview:1.0.2'
 
