@@ -39,6 +39,7 @@ public class MotivationMessagesPresenter implements MotivationMessagesContract.P
 
     @Override
     public void start(@Nullable Bundle extras){
+        mView.getMotivator(extras.getString("MOTIVATOR_NAME"));
     }
 
     @Override

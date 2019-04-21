@@ -15,6 +15,7 @@ import com.android.um.Model.DataModels.TargetToSaveModel;
 import com.android.um.Model.DataModels.User;
 import com.android.um.Model.DataModels.options;
 import com.android.um.Utils.AppUtils;
+import com.android.um.main.MainActivity;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -42,6 +43,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -566,6 +569,8 @@ public class FirebaseInstance implements FirebaseHandler {
 
 
         DatabaseReference ref=rootRef.child("users").child(userId).child("SmokeDiarys").push();
+
+        //TODO channge this to remove SmokeDiaryobject inside the pushID
         HashMap<String,Object> answersMap=new HashMap<>();
         answersMap.put("SmokeDiary",smokeDiaryModel);
 
@@ -596,6 +601,7 @@ public class FirebaseInstance implements FirebaseHandler {
                 ArrayList<SmokeDiaryModel> smokeDiaryModels=new ArrayList<>();
                 for(DataSnapshot dsp : dataSnapshot.getChildren()){
                     for (DataSnapshot dataSnapshot1:dsp.getChildren() )
+                        //TODO channge this to remove SmokeDiaryobject inside the pushID
                      smokeDiaryModels.add(dataSnapshot1.getValue(SmokeDiaryModel.class));
                 }
                 if (smokeDiaryModels.size()>0)
@@ -717,6 +723,29 @@ public class FirebaseInstance implements FirebaseHandler {
                     }
                 });
     }
+
+    @Override
+    public void getToken(final String userId) {
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            return;
+                        }
+                        sendToken(userId,task.getResult().getToken());
+                    }
+                });
+    }
+
+    @Override
+    public void sendToken(String userId, String token) {
+        DatabaseReference ref=rootRef.child("users").child(userId);
+        ref.child("FcmToken")
+                .setValue(token);
+    }
+
+
 
     @Override
     public void LogOut()

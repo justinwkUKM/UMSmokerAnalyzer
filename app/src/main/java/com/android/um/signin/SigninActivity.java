@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.um.BaseActivity;
-import com.android.um.MainActivity;
+import com.android.um.main.MainActivity;
 import com.android.um.Model.DataModels.User;
 import com.android.um.PresenterInjector;
 import com.android.um.R;
@@ -28,7 +28,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.common.api.Result;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.wang.avi.AVLoadingIndicatorView;

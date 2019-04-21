@@ -14,7 +14,7 @@ import android.widget.Button;
 
 import com.android.um.BaseActivity;
 import com.android.um.Interface.OnNextQuestion;
-import com.android.um.MainActivity;
+import com.android.um.main.MainActivity;
 import com.android.um.Model.DataModels.AnsweredQuestion;
 import com.android.um.Model.DataModels.Question;
 import com.android.um.Model.DataModels.options;

@@ -1,5 +1,6 @@
 package com.android.um.adapter;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
@@ -22,9 +23,9 @@ public class MotivationMessagesAdapter extends RecyclerView.Adapter<MotivationMe
 
     ArrayList<MotivationMessageModel> messageModels;
 
+    Context mContext;
 
-
-    public MotivationMessagesAdapter(ArrayList<MotivationMessageModel> messageModels) {
+    public MotivationMessagesAdapter(ArrayList<MotivationMessageModel> messageModels, Context mContext) {
         this.messageModels = messageModels;
     }
 

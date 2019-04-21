@@ -129,8 +129,26 @@ public class SharedPrefsInstance implements SharedPrefsHandler{
     }
 
     @Override
+    public void saveString(String key,String value) {
+        SharedPreferences.Editor editor=mPrefs.getSharedPrefs().edit();
+        editor.putString(key,value);
+        editor.commit();
+    }
+
+    @Override
+    public String getString(String key) {
+        return mPrefs.getSharedPrefs().getString(key, "");
+    }
+
+    @Override
     public String getTargetToSaveLocaly() {
         return mPrefs.getSharedPrefs().getString("TARGET_TO_SAVE", "0.0");
     }
 
+    @Override
+    public void deleteString(String key) {
+        SharedPreferences.Editor editor=mPrefs.getSharedPrefs().edit();
+        editor.putString(key,"");
+        editor.commit();
+    }
 }

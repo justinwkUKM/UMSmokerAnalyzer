@@ -3,56 +3,74 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:weightSum="1"
-    android:padding="@dimen/_8sdp">
+    android:orientation="vertical"
+>
 
-    <com.mikhaellopez.circularimageview.CircularImageView
-        android:layout_width="0dp"
-        android:id="@+id/image_view"
-        android:layout_weight="0.20"
-        android:layout_height="@dimen/_50sdp"
-        android:maxHeight="@dimen/_80sdp"
-        app:civ_border_color="#EEEEEE"
-        app:civ_border_width="1dp"
-        />
-
-    <RelativeLayout
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.8">
+        android:weightSum="1"
 
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
+        android:background="@color/white"
+        >
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:layout_width="0dp"
+            android:layout_margin="@dimen/_4sdp"
+            android:id="@+id/image_view"
+            android:layout_weight="0.20"
+            android:layout_height="@dimen/_50sdp"
+            android:maxHeight="@dimen/_80sdp"
+            app:civ_border_color="#EEEEEE"
+            app:civ_border_width="1dp"
+
+            />
+
+        <RelativeLayout
+            android:layout_margin="@dimen/_4sdp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_weight="0.8">
 
-            android:textColor="@color/black"
-            android:textSize="@dimen/_16ssp" />
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
 
-        <TextView
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/_12ssp"
-            android:textColor="@color/gray"
-            android:layout_alignParentTop="true"
-            android:id="@+id/tv_message_date"
-            android:layout_toEndOf="@+id/tv_name"
-            android:layout_alignParentRight="true"
-           />
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:textColor="@color/gray"
+                android:layout_alignParentTop="true"
+                android:id="@+id/tv_message_date"
+                android:layout_alignParentEnd="true"
+                />
 
-        <TextView
-            android:id="@+id/tv_message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/_16ssp"
-            android:textColor="@color/black"
-            android:padding="@dimen/_8sdp"
-            android:layout_below="@+id/tv_name"
-            android:text=""/>
+            <TextView
+                android:id="@+id/tv_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:paddingTop="@dimen/_4sdp"
+                android:layout_below="@+id/tv_name"
+                />
 
-    </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:orientation="vertical"
+        android:background="@drawable/rv_divider">
+
+    </LinearLayout>
 
 
 

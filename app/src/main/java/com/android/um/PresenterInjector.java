@@ -9,16 +9,24 @@ import com.android.um.dashboard.DashboardContract;
 import com.android.um.dashboard.DashboardPresenter;
 import com.android.um.language.LanguageContract;
 import com.android.um.language.LanguagePresenter;
+import com.android.um.main.MainActivityContract;
+import com.android.um.main.MainActivityPresenter;
 import com.android.um.motivation_messages.MotivationMessagesContract;
 import com.android.um.motivation_messages.MotivationMessagesPresenter;
 import com.android.um.postLogin.PostLoginContract;
 import com.android.um.postLogin.PostLoginPresenter;
 import com.android.um.prelogin.PreLoginContract;
 import com.android.um.prelogin.PreLoginPresenter;
+import com.android.um.premotivationmessage.PreMotivationMessageContract;
+import com.android.um.premotivationmessage.PreMotivationMessagePresenter;
 import com.android.um.questions.QuestionsContract;
 import com.android.um.questions.QuestionsPresenter;
+import com.android.um.services.FirebaseServiceContract;
+import com.android.um.services.FirebaseServicePresenter;
 import com.android.um.smokediary.SmokeDiaryContract;
 import com.android.um.smokediary.SmokeDiaryPresenter;
+import com.android.um.socialsupport.SocialSupportContract;
+import com.android.um.socialsupport.SocialSupportPresenter;
 import com.android.um.splashscreen.SplashScreenContract;
 import com.android.um.splashscreen.SplashScreenPresenter;
 import com.android.um.resetpassword.ForgetPasswordContract;
@@ -105,6 +113,22 @@ public class PresenterInjector {
 
     public static void injectAddMotivationMessagesPresenter(AddMotivationMessagesContract.View addMotiviationMessagesView) {
         new AddMotivationMessagesPresenter(addMotiviationMessagesView);
+    }
+
+    public static void injectPreMotivationMessagesPresenter(PreMotivationMessageContract.View preMotiviationMessagesView) {
+        new PreMotivationMessagePresenter(preMotiviationMessagesView);
+    }
+
+    public static void injectSocialSupportPresenter(SocialSupportContract.View socialSupportView) {
+        new SocialSupportPresenter(socialSupportView);
+    }
+
+    public static void injectMainPresenter(MainActivityContract.View mainView) {
+        new MainActivityPresenter(mainView);
+    }
+
+    public static void injectFirebaseServicePresenter(FirebaseServiceContract.Service firebaseService) {
+        new FirebaseServicePresenter(firebaseService);
     }
 
 

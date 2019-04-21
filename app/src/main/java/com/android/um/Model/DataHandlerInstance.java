@@ -52,6 +52,11 @@ public class DataHandlerInstance implements DataHandler {
         mPrefsHandler=SharedPrefsInstance.getInstance(manager);
     }
 
+    private DataHandlerInstance() {
+        mFirebaseHandler = FirebaseInstance.getInstance();
+    }
+
+
 
     public static DataHandlerInstance getInstance(SharedPrefsManager manager) {
         if (INSTANCE == null) {
@@ -61,6 +66,16 @@ public class DataHandlerInstance implements DataHandler {
         }
         return INSTANCE;
     }
+
+    public static DataHandlerInstance getInstance() {
+        if (INSTANCE == null) {
+            if (INSTANCE == null) {
+                INSTANCE = new DataHandlerInstance();
+            }
+        }
+        return INSTANCE;
+    }
+
 
     @Override
     public void signupUser(User user, DataCallBack<User, String> callback) {
@@ -279,5 +294,30 @@ public class DataHandlerInstance implements DataHandler {
     @Override
     public void addMotivtationMessages(MotivationMessageModel messageModel,DataCallBack<String,String> callBack) {
         mFirebaseHandler.addMotivtationMessages(messageModel,mPrefsHandler.getLoggedUser().getId(),callBack);
+    }
+
+    @Override
+    public void saveString(String key, String value) {
+        mPrefsHandler.saveString(key,value);
+    }
+
+    @Override
+    public String getString(String key) {
+        return mPrefsHandler.getString(key);
+    }
+
+    @Override
+    public void deleteString(String key) {
+        mPrefsHandler.deleteString(key);
+    }
+
+    @Override
+    public void getToken() {
+        mFirebaseHandler.getToken(mPrefsHandler.getLoggedUser().getId());
+    }
+
+    @Override
+    public void sendToken(String token) {
+        mFirebaseHandler.sendToken(mPrefsHandler.getLoggedUser().getId(),token);
     }
 }

@@ -91,7 +91,7 @@
             android:textColorHint="@color/blue">
 
             <EditText
-                android:id="@+id/et_email"
+                android:id="@+id/et_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -115,6 +115,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/_30sdp"
             android:text="@string/next_btn"
+            android:id="@+id/next_btn"
             android:textColor="@color/white"
             android:background="@color/lightgreen"/>
 

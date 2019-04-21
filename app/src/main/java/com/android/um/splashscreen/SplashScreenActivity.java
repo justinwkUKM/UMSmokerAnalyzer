@@ -9,8 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.um.BaseActivity;
-import com.android.um.MainActivity;
-import com.android.um.Model.DataModels.Question;
+import com.android.um.main.MainActivity;
 import com.android.um.PresenterInjector;
 import com.android.um.R;
 import com.android.um.language.LanguageActivity;

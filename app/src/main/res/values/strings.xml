@@ -96,4 +96,10 @@
     <string name="text_upload">Upload a photo of the one you love the most</string>
     <string name="text_skip">Skip</string>
     <string name="text_motvation_header">What Quitting Smoking\nTaught Me About Love</string>
+
+    <string name="image_type_jpeg" translatable="false">image/jpeg</string>
+    <string name="image_type_all" translatable="false">image/*</string>
+    <string name="image_type_png" translatable="false">image/png</string>
+    <string name="text_upload_btn">Upload</string>
+
 </resources>

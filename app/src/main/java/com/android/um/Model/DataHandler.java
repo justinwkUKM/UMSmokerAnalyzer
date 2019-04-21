@@ -50,4 +50,10 @@ public interface DataHandler {
     void updateSmokeFreeTime(SmokeFreeTime smokeFreeTime);
     void getMotivationMessages(DataCallBack<ArrayList<MotivationMessageModel>,String> callBack);
     void addMotivtationMessages(MotivationMessageModel messageModel,DataCallBack<String,String> callBack);
+    void saveString(String key,String value);
+    String getString(String key);
+    void deleteString(String key);
+    void getToken();
+    void sendToken(String token);
+
 }

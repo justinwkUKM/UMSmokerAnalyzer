@@ -43,4 +43,6 @@ public interface FirebaseHandler {
     void updateSmokeFreeTime(String userId,SmokeFreeTime smokeFreeTime);
     void getMotivationMessages(String userId, DataCallBack<ArrayList<MotivationMessageModel>,String> callBack);
     void addMotivtationMessages(MotivationMessageModel messageModel,String userId, DataCallBack<String,String> callBack);
+    void getToken(String userId);
+    void sendToken(String userId,String token);
 }

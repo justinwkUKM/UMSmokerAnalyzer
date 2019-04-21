@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.android.um">
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,6 +26,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service android:name=".services.FirebaseService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
         <activity android:name=".language.LanguageActivity"></activity>
         <activity
@@ -42,7 +53,7 @@
             android:name=".questions.QuestionsActivity"></activity>
         <activity
             android:windowSoftInputMode="stateHidden"
-            android:name=".MainActivity"></activity>
+            android:name=".main.MainActivity"></activity>
         <activity android:name=".terms.TermsActivity"></activity>
         <activity
             android:windowSoftInputMode="stateHidden"
@@ -63,6 +74,17 @@
         <activity
             android:windowSoftInputMode="stateHidden"
             android:name=".motivation_messages.MotivationMessagesActivity"></activity>
+        <activity
+            android:windowSoftInputMode="stateHidden"
+            android:name=".premotivationmessage.PreMotivationMessageActivity"></activity>
+        <activity
+            android:windowSoftInputMode="stateHidden"
+            android:name=".addmotivationmessage.AddMotivationMessageActivity"></activity>
+
+        <activity
+            android:windowSoftInputMode="stateHidden"
+            android:name=".socialsupport.SocialSupportActivity"></activity>
+
 
 
         <meta-data android:name="com.facebook.sdk.ApplicationId"

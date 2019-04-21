@@ -38,11 +38,14 @@ public class AddMotivationMessagesPresenter implements AddMotivationMessagesCont
         mDataHandler.addMotivtationMessages(messageModel, new DataCallBack<String, String>() {
             @Override
             public void onReponse(String result) {
+
+                mDataHandler.deleteString("MOTIVATOR_IMAGE");
                 mView.addMessageSuccess(message);
             }
 
             @Override
             public void onError(String result) {
+                mDataHandler.deleteString("MOTIVATOR_IMAGE");
                 mView.addMessageFailed(result);
             }
         });
@@ -50,6 +53,14 @@ public class AddMotivationMessagesPresenter implements AddMotivationMessagesCont
 
     @Override
     public void start(@Nullable Bundle extras){
+        this.name=extras.getString("MOTIVATOR_NAME");
+        this.imageUrl=mDataHandler.getString("MOTIVATOR_IMAGE");
+        mView.showMotivator(this.name,this.imageUrl);
+    }
+
+    @Override
+    public void deleteImageUrl() {
+        mDataHandler.deleteString("MOTIVATOR_IMAGE");
     }
 
     @Override

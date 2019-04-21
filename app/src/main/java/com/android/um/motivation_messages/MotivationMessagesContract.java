@@ -10,7 +10,7 @@ public interface MotivationMessagesContract {
 
     interface View extends BaseView<MotivationMessagesContract.Presenter> {
         void showMessages(ArrayList<MotivationMessageModel> messages);
-
+        void getMotivator(String name);
     }
 
     interface Presenter extends BasePresenter {

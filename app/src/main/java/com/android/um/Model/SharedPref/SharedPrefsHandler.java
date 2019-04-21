@@ -20,4 +20,7 @@ public interface SharedPrefsHandler {
     boolean getTermsAcceptence();
     void saveTargetToSave(Double total);
     String getTargetToSaveLocaly();
+    void saveString(String key,String value);
+    String getString(String key);
+    void deleteString(String key);
 }

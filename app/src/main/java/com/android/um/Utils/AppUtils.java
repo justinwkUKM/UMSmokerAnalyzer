@@ -103,12 +103,30 @@ public class AppUtils {
 
     static ProgressDialog mProgressDialog;
 
-    /**
-     * Shows a long time duration toast message.
-     *
-     * @param  Message to be show in the toast.
-     * @return Toast object just shown
-     **/
+    public static Bitmap getImageBitmapByPath(String path) {
+        try {
+            FileInputStream fileInputStream = new FileInputStream(new File(path)); // 2nd line
+            Bitmap bitmap = BitmapFactory.decodeStream(fileInputStream);
+            fileInputStream.close();
+            return bitmap;
+        } catch (IOException e) {
+            return null;
+        }
+
+
+    }
+
+    public static Bitmap getImageBitmapByUri(Uri path,Context mContext) {
+        try {
+            Bitmap bitmap = MediaStore.Images.Media.getBitmap(mContext.getContentResolver(), path);
+
+            return bitmap;
+        } catch (IOException e) {
+            return null;
+        }
+
+
+    }
 
     public static boolean isNull(@Nullable  Object o)
     {
