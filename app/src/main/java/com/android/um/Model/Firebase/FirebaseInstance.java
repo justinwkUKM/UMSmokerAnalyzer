@@ -45,6 +45,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -89,6 +90,7 @@ public class FirebaseInstance implements FirebaseHandler {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful())
                 {
+
                     user.setFirebaseUser(mAuth.getCurrentUser());
                     signInUser(user,callback);
 
@@ -112,6 +114,7 @@ public class FirebaseInstance implements FirebaseHandler {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful())
                 {
+                    FirebaseMessaging.getInstance().subscribeToTopic("SmokeFree");
                    checkifUserExist(user, new DataCallBack<User, String>() {
                        @Override
                        public void onReponse(User result) {
@@ -152,10 +155,12 @@ public class FirebaseInstance implements FirebaseHandler {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 final User user=new User();
+                FirebaseMessaging.getInstance().subscribeToTopic("SmokeFree");
                 user.setFirebaseUser(mAuth.getCurrentUser());
                 checkifUserExist( user, new DataCallBack<User, String>() {
                     @Override
                     public void onReponse(User result) {
+
                         if (result!=null)
                             googleResponse.onReponse(result);
                         else
@@ -321,6 +326,7 @@ public class FirebaseInstance implements FirebaseHandler {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
+                            FirebaseMessaging.getInstance().subscribeToTopic("SmokeFree");
                             callBack.onReponse(user);
                         }
                         else

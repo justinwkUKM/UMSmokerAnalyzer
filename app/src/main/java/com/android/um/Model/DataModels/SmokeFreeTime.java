@@ -8,7 +8,7 @@ public class SmokeFreeTime {
     long minutes=0;
     long seconds=0;
     Date startDate;
-
+    boolean smokeFreeCompleted=false;
 
     public long getHour() {
         return hour;
@@ -40,5 +40,13 @@ public class SmokeFreeTime {
 
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
+    }
+
+    public boolean isSmokeFreeCompleted() {
+        return smokeFreeCompleted;
+    }
+
+    public void setSmokeFreeCompleted(boolean smokeFreeCompleted) {
+        this.smokeFreeCompleted = smokeFreeCompleted;
     }
 }
