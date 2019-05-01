@@ -24,6 +24,12 @@ public class MainActivityPresenter implements MainActivityContract.Presenter{
     }
 
     @Override
+    public void logout() {
+        mDataHandler.LogOut();
+        mView.handleLogOut();
+    }
+
+    @Override
     public void start(@Nullable Bundle extras){
     }
 

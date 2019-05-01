@@ -18,6 +18,7 @@ import com.android.um.BaseActivity;
 import com.android.um.PresenterInjector;
 import com.android.um.R;
 import com.android.um.dashboard.DashBoardFragment;
+import com.android.um.signin.SigninActivity;
 import com.android.um.socialsupport.SocialSupportActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -106,6 +107,7 @@ public class MainActivity extends BaseActivity implements MainActivityContract.V
             case R.id.info_btn:
                 break;
             case R.id.logout_btn:
+                mPresenter.logout();
                 break;
         }
     }
@@ -113,6 +115,13 @@ public class MainActivity extends BaseActivity implements MainActivityContract.V
     @Override
     public void setPresenter(MainActivityContract.Presenter presenter) {
         this.mPresenter=presenter;
+    }
+
+    @Override
+    public void handleLogOut() {
+        Intent intent = new Intent(this, SigninActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
