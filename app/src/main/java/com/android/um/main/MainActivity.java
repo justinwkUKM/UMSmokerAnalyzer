@@ -18,6 +18,7 @@ import com.android.um.BaseActivity;
 import com.android.um.PresenterInjector;
 import com.android.um.R;
 import com.android.um.dashboard.DashBoardFragment;
+import com.android.um.mindfulness.MindfulnessActivity;
 import com.android.um.signin.SigninActivity;
 import com.android.um.socialsupport.SocialSupportActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -98,6 +99,7 @@ public class MainActivity extends BaseActivity implements MainActivityContract.V
             case R.id.awards_btn:
                 break;
             case R.id.hyponsis_btn:
+                goToMindfulnessVideo();
                 break;
             case R.id.support_btn:
                 goToSocialSupport();
@@ -112,6 +114,11 @@ public class MainActivity extends BaseActivity implements MainActivityContract.V
         }
     }
 
+    public void goToMindfulnessVideo()
+    {
+        Intent intent=new Intent(this, MindfulnessActivity.class);
+        startActivity(intent);
+    }
     @Override
     public void setPresenter(MainActivityContract.Presenter presenter) {
         this.mPresenter=presenter;

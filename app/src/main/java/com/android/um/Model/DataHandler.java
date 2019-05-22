@@ -55,5 +55,6 @@ public interface DataHandler {
     void deleteString(String key);
     void getToken();
     void sendToken(String token);
+    void getMindfulnessVideos(DataCallBack<ArrayList<String>,String> callBack);
 
 }

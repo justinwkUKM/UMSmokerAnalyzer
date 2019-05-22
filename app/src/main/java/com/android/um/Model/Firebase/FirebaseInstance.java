@@ -2,8 +2,6 @@ package com.android.um.Model.Firebase;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataModels.AnsweredQuestion;
@@ -14,21 +12,15 @@ import com.android.um.Model.DataModels.SmokeFreeTime;
 import com.android.um.Model.DataModels.TargetToSaveModel;
 import com.android.um.Model.DataModels.User;
 import com.android.um.Model.DataModels.options;
-import com.android.um.Utils.AppUtils;
-import com.android.um.main.MainActivity;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
-import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -50,15 +42,12 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
-import java.util.Random;
 
 public class FirebaseInstance implements FirebaseHandler {
 
@@ -752,6 +741,28 @@ public class FirebaseInstance implements FirebaseHandler {
     }
 
 
+    @Override
+    public void getMindfulnessVideos(String userId,DataCallBack<ArrayList<String>,String> callBack) {
+        rootRef.child("videos").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+               ArrayList<String> videos=new ArrayList<>();
+                for(DataSnapshot dsp : dataSnapshot.getChildren()){
+                      //  String x=dataSnapshot1.getValue(String.class);
+                        videos.add(dsp.getValue(String.class));
+                }
+                if (videos.size()>0)
+                    callBack.onReponse(videos);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                callBack.onError(databaseError.getMessage());
+            }
+        });
+
+    }
 
     @Override
     public void LogOut()

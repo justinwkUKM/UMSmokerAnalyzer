@@ -59,7 +59,8 @@ public class PreLoginActivity extends BaseActivity implements PreLoginContract.V
 
     @Override
     public void showTermsError() {
-        showMessage(this, getResources().getString(R.string.terms_error));
+        Intent intent=new Intent(this,TermsActivity.class);
+        startActivity(intent);
     }
 
     @Override

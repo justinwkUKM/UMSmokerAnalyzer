@@ -267,7 +267,6 @@ public class SigninActivity extends BaseActivity implements SigninContract.View 
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 mPresenter.signInWithGoogle(account);
-                Log.e(account.getDisplayName(), account.getEmail());
             } catch (ApiException e) {
                 Log.e("Error", "Google sign in failed", e);
             }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/container">
+
+    <VideoView
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:id="@+id/video_bg"
+        android:padding="@dimen/_8sdp"
+        android:background="@drawable/video_bg"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Watch Now"
+        android:id="@+id/video_title"
+        android:padding="@dimen/_8sdp"
+        android:layout_toRightOf="@+id/video_bg"
+        android:layout_centerVertical="true"/>
+
+    <View
+        android:layout_below="@+id/video_bg"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray"></View>
+</RelativeLayout>

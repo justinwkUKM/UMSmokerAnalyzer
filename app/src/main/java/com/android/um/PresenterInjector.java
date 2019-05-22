@@ -11,6 +11,8 @@ import com.android.um.language.LanguageContract;
 import com.android.um.language.LanguagePresenter;
 import com.android.um.main.MainActivityContract;
 import com.android.um.main.MainActivityPresenter;
+import com.android.um.mindfulness.MindfulnessContract;
+import com.android.um.mindfulness.MindfulnessPresenter;
 import com.android.um.motivation_messages.MotivationMessagesContract;
 import com.android.um.motivation_messages.MotivationMessagesPresenter;
 import com.android.um.postLogin.PostLoginContract;
@@ -129,6 +131,10 @@ public class PresenterInjector {
 
     public static void injectFirebaseServicePresenter(FirebaseServiceContract.Service firebaseService) {
         new FirebaseServicePresenter(firebaseService);
+    }
+
+    public static void injectMindfulnessPresenter(MindfulnessContract.View mindefulness) {
+        new MindfulnessPresenter(mindefulness);
     }
 
 

@@ -85,6 +85,10 @@
             android:windowSoftInputMode="stateHidden"
             android:name=".socialsupport.SocialSupportActivity"></activity>
 
+        <activity
+            android:windowSoftInputMode="stateHidden"
+            android:name=".mindfulness.MindfulnessActivity"></activity>
+
 
 
         <meta-data android:name="com.facebook.sdk.ApplicationId"

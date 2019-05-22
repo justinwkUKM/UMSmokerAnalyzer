@@ -47,8 +47,6 @@ public class SplashScreenPresenter implements SplashScreenContract.Presenter{
 
     @Override
     public void showDemographicQuestions() {
-
-
         mDataHandler.isQuestionsDone("demographicQuestions",new DataCallBack<Boolean, Boolean>() {
             @Override
             public void onReponse(Boolean result) {
@@ -99,7 +97,6 @@ public class SplashScreenPresenter implements SplashScreenContract.Presenter{
 
     @Override
     public boolean checkifLogged() {
-
         return mDataHandler.checkLogged();
     }
 }

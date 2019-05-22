@@ -320,4 +320,9 @@ public class DataHandlerInstance implements DataHandler {
     public void sendToken(String token) {
         mFirebaseHandler.sendToken(mPrefsHandler.getLoggedUser().getId(),token);
     }
+
+    @Override
+    public void getMindfulnessVideos(DataCallBack<ArrayList<String>,String> callBack) {
+        mFirebaseHandler.getMindfulnessVideos(mPrefsHandler.getLoggedUser().getId(),callBack);
+    }
 }
