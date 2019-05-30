@@ -117,7 +117,6 @@ public class DashBoardFragment extends Fragment implements DashboardContract.Vie
             case R.id.tv_unlock_achievement_feature:
                 goToUnlockFeature();
                 break;
-
         }
 
     }

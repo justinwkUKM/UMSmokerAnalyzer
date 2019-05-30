@@ -21,6 +21,8 @@ import com.android.um.prelogin.PreLoginContract;
 import com.android.um.prelogin.PreLoginPresenter;
 import com.android.um.premotivationmessage.PreMotivationMessageContract;
 import com.android.um.premotivationmessage.PreMotivationMessagePresenter;
+import com.android.um.profile.ProfileContract;
+import com.android.um.profile.ProfilePresenter;
 import com.android.um.questions.QuestionsContract;
 import com.android.um.questions.QuestionsPresenter;
 import com.android.um.services.FirebaseServiceContract;
@@ -135,6 +137,10 @@ public class PresenterInjector {
 
     public static void injectMindfulnessPresenter(MindfulnessContract.View mindefulness) {
         new MindfulnessPresenter(mindefulness);
+    }
+
+    public static void injectProfilePresenter(ProfileContract.View profileView) {
+        new ProfilePresenter(profileView);
     }
 
 

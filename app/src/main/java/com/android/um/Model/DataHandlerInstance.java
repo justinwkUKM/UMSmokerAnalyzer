@@ -325,4 +325,9 @@ public class DataHandlerInstance implements DataHandler {
     public void getMindfulnessVideos(DataCallBack<ArrayList<String>,String> callBack) {
         mFirebaseHandler.getMindfulnessVideos(mPrefsHandler.getLoggedUser().getId(),callBack);
     }
+
+    @Override
+    public void checkVideoQuestions(int index, DataCallBack<Boolean,String> callBack) {
+            mFirebaseHandler.checkVideoQuestions(index,mPrefsHandler.getLoggedUser().getId(),callBack);
+    }
 }

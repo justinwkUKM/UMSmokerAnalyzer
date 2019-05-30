@@ -20,6 +20,7 @@ import com.android.um.Model.DataModels.Question;
 import com.android.um.Model.DataModels.options;
 import com.android.um.PresenterInjector;
 import com.android.um.R;
+import com.android.um.mindfulness.MindfulnessFragment;
 import com.android.um.postLogin.PostLoginActivity;
 import com.android.um.signup.SignupActivity;
 import com.rd.PageIndicatorView;
@@ -135,6 +136,8 @@ public class QuestionsActivity extends BaseActivity implements OnNextQuestion, Q
         mPresenter.setQuestionsAnswered(category);
         if (category.equals("demographicQuestions"))
             goToPostScreen();
+        else if (category.startsWith("videoQuestions"))
+            goToMindfulnessVideos(category);
         else
             goToMainScreen();
     }
@@ -155,6 +158,14 @@ public class QuestionsActivity extends BaseActivity implements OnNextQuestion, Q
 
     public void goToMainScreen() {
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void goToMindfulnessVideos(String category) {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("FRAGMENT","MINFFULNESS_FRAGMENT");
+        intent.putExtra("INDEX",category.substring(category.length()-1));
         startActivity(intent);
         finish();
     }

@@ -56,5 +56,6 @@ public interface DataHandler {
     void getToken();
     void sendToken(String token);
     void getMindfulnessVideos(DataCallBack<ArrayList<String>,String> callBack);
+    void checkVideoQuestions(int index,DataCallBack<Boolean,String> callBack);
 
 }

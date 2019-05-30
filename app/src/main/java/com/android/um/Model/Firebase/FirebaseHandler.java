@@ -46,4 +46,6 @@ public interface FirebaseHandler {
     void getToken(String userId);
     void sendToken(String userId,String token);
     void getMindfulnessVideos(String userId,DataCallBack<ArrayList<String>,String> callBack);
+    void checkVideoQuestions(int index,String userId,DataCallBack<Boolean,String> callBack);
+
 }

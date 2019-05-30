@@ -764,6 +764,39 @@ public class FirebaseInstance implements FirebaseHandler {
 
     }
 
+
+    @Override
+    public void checkVideoQuestions(int index, String userId, DataCallBack<Boolean,String> callBack) {
+
+        rootRef.child("users").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                boolean flag=false;
+                for (DataSnapshot data: dataSnapshot.getChildren())
+                {
+                    if (data.getKey()!=null && data.getKey().equals("videoQuestions"+index))
+                    {
+                        flag=true;
+                        break;
+                    }
+                }
+                if (!flag)
+                {
+                    String category="videoQuestions"+index;
+                    callBack.onError(category);
+                }
+                else
+                    callBack.onReponse(true);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                callBack.onError("");
+            }
+        });
+
+    }
+
     @Override
     public void LogOut()
     {

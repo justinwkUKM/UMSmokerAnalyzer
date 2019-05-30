@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradient">
+
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:layout_marginTop="20dp"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_margin="@dimen/_4sdp"
+        android:id="@+id/image_view"
+        android:layout_height="@dimen/_100sdp"
+        android:maxHeight="@dimen/_80sdp"
+        app:civ_border_color="#EEEEEE"
+        android:layout_gravity="center"
+        app:civ_border_width="1dp"
+        android:background="@drawable/profile_icon"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+
+        android:textSize="20sp"
+        android:padding="10dp"
+        android:textStyle="bold"
+        android:id="@+id/tv_user_name"/>
+
+    <View
+        android:layout_margin="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/age_text"
+        android:textSize="16sp"
+        android:padding="10dp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="16sp"
+        android:padding="10dp"
+        android:id="@+id/tv_age"
+        />
+
+    <View
+        android:layout_margin="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/gender_text"
+        android:textSize="16sp"
+        android:padding="10dp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+
+        android:textSize="16sp"
+        android:padding="10dp"
+        android:id="@+id/tv_gender"
+        />
+
+</LinearLayout>

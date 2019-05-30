@@ -1,5 +1,5 @@
 package com.android.um.Interface;
 
 public interface VideoListener {
-    void playVideo(String url);
+    void startVideo(int index,String url);
 }

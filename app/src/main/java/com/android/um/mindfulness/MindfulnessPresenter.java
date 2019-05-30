@@ -2,10 +2,12 @@ package com.android.um.mindfulness;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataHandler;
 import com.android.um.Model.DataHandlerInstance;
+import com.android.um.Model.DataModels.Question;
 import com.android.um.Model.SharedPrefsManager;
 
 import java.util.ArrayList;
@@ -21,6 +23,23 @@ public class MindfulnessPresenter implements MindfulnessContract.Presenter{
         view.setPresenter(this);
     }
 
+    @Override
+    public void checkVideoQuestions(int index,String url) {
+        mDataHandler.checkVideoQuestions(index, new DataCallBack<Boolean, String>() {
+            @Override
+            public void onReponse(Boolean result) {
+                if (result)
+                    mView.playVideo(index,url);
+
+            }
+
+            @Override
+            public void onError(String result) {
+                if (result!=null && result.length()>0)
+                 mView.showQuestions(result);
+            }
+        });
+    }
 
     @Override
     public void getMindfulnessVideos() {
@@ -53,6 +72,6 @@ public class MindfulnessPresenter implements MindfulnessContract.Presenter{
 
     @Override
     public boolean checkifLogged() {
-        return false;
+        return mDataHandler.checkLogged();
     }
 }

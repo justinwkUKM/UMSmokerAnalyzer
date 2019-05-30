@@ -46,7 +46,7 @@ public class MindfulnessAdapter extends RecyclerView.Adapter<MindfulnessAdapter.
         viewHolder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.playVideo(videos.get(position));
+                listener.startVideo(position,videos.get(position));
             }
         });
     }

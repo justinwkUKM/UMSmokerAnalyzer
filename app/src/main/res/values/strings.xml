@@ -101,5 +101,6 @@
     <string name="image_type_all" translatable="false">image/*</string>
     <string name="image_type_png" translatable="false">image/png</string>
     <string name="text_upload_btn">Upload</string>
+    <string name="text_race">Race</string>
 
 </resources>
