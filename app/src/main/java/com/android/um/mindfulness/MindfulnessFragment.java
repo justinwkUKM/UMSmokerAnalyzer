@@ -96,7 +96,7 @@ public class MindfulnessFragment extends Fragment implements MindfulnessContract
     @Override
     public void showMindfulnessVideos(ArrayList<String> videos) {
         myVideo.setVisibility(View.VISIBLE);
-        Uri vidUri = Uri.parse(videos.get(index));
+        Uri vidUri = Uri.parse(videos.get(index-1));
         MediaController mediaController = new MediaController(getContext());
         mediaController.setAnchorView(myVideo);
         myVideo.setMediaController(mediaController);
@@ -110,10 +110,7 @@ public class MindfulnessFragment extends Fragment implements MindfulnessContract
 
     @Override
     public void startVideo(int index, String url) {
-//        if (index==0)
-//            playVideo(index,url);
-//        else
-            mPresenter.checkVideoQuestions(index, url);
+            mPresenter.checkVideoQuestions(index+1, url);
     }
 
     @Override

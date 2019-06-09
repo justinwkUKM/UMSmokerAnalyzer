@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -16,14 +17,13 @@ import com.android.um.Model.DataModels.PersonalityModel;
 import com.android.um.PresenterInjector;
 import com.android.um.R;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class AchievementFragment extends Fragment implements AchievementContract.View {
 
@@ -46,8 +46,7 @@ public class AchievementFragment extends Fragment implements AchievementContract
     ProgressBar progressCigarettes;
     @BindView(R.id.progress_time)
     ProgressBar progressTime;
-    @BindView(R.id.progress_point)
-    ProgressBar progressPoint;
+
     @BindView(R.id.tv_health)
     TextView tvHealth;
     @BindView(R.id.tv_wllbeing)
@@ -58,12 +57,25 @@ public class AchievementFragment extends Fragment implements AchievementContract
     TextView tvCigarattes;
     @BindView(R.id.tv_time)
     TextView tvTime;
-    @BindView(R.id.tv_point)
-    TextView tvPoint;
 
-    ArrayList<TextView> titles=new ArrayList<>();
-    ArrayList<ProgressBar> scores=new ArrayList<>();
 
+    ArrayList<TextView> titles = new ArrayList<>();
+    ArrayList<ProgressBar> scores = new ArrayList<>();
+    @BindView(R.id.ll_progress1)
+    LinearLayout llProgress1;
+    @BindView(R.id.ll_progress2)
+    LinearLayout llProgress2;
+    @BindView(R.id.ll_progress3)
+    LinearLayout llProgress3;
+    @BindView(R.id.ll_progress4)
+    LinearLayout llProgress4;
+    @BindView(R.id.ll_progress5)
+    LinearLayout llProgress5;
+    @BindView(R.id.personality_title)
+    TextView personalityTitle;
+    @BindView(R.id.personality_desc)
+    TextView personalityDesc;
+    ArrayList<PersonalityModel> personalityModels;
     public static AchievementFragment newInstance() {
         AchievementFragment f = new AchievementFragment();
         return f;
@@ -83,29 +95,28 @@ public class AchievementFragment extends Fragment implements AchievementContract
         titles.add(tvMoney);
         titles.add(tvCigarattes);
         titles.add(tvTime);
-        titles.add(tvPoint);
+
 
         scores.add(progressHealth);
         scores.add(progressWllbeing);
         scores.add(progressMoney);
         scores.add(progressCigarettes);
         scores.add(progressTime);
-        scores.add(progressPoint);
 
         return rootView;
     }
 
     @Override
     public void showPersonalityInfo(ArrayList<PersonalityModel> personalityModels) {
+        this.personalityModels=personalityModels;
         Collections.sort(personalityModels, new Comparator<PersonalityModel>() {
             @Override
             public int compare(PersonalityModel o1, PersonalityModel o2) {
-                return o1.getScore() - o2.getScore();
+                return o2.getScore() - o1.getScore();
             }
         });
 
-        for (int i=0;i<personalityModels.size();i++)
-        {
+        for (int i = 0; i < personalityModels.size(); i++) {
             titles.get(i).setText(personalityModels.get(i).getTitle());
             scores.get(i).setProgress(personalityModels.get(i).getScore());
         }
@@ -114,7 +125,7 @@ public class AchievementFragment extends Fragment implements AchievementContract
     @Override
     public void showErrorMessage(String error) {
         unlockFeature.setVisibility(View.VISIBLE);
-        tvFeatureTitle.setText(error);
+        tvFeatureDesc.setText(error);
 
     }
 
@@ -137,8 +148,36 @@ public class AchievementFragment extends Fragment implements AchievementContract
 
     }
 
+    public void showPersonality(int index)
+    {
+        personalityTitle.setText(personalityModels.get(index).getTitle());
+        personalityDesc.setText(personalityModels.get(index).getDescription());
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+
+    }
+
+    @OnClick({R.id.ll_progress1, R.id.ll_progress2, R.id.ll_progress3, R.id.ll_progress4, R.id.ll_progress5})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.ll_progress1:
+                showPersonality(0);
+                break;
+            case R.id.ll_progress2:
+                showPersonality(1);
+                break;
+            case R.id.ll_progress3:
+                showPersonality(2);
+                break;
+            case R.id.ll_progress4:
+                showPersonality(3);
+                break;
+            case R.id.ll_progress5:
+                showPersonality(4);
+                break;
+        }
     }
 }

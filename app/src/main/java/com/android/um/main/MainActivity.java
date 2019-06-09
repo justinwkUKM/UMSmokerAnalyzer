@@ -112,7 +112,7 @@ public class MainActivity extends BaseActivity implements MainActivityContract.V
                 loadFragment(AchievementFragment.newInstance(),ACHIEVEMENT_FRAGMENT);
                 break;
             case R.id.hyponsis_btn:
-                loadFragment(MindfulnessFragment.newInstance(0),MINFFULNESS_FRAGMENT);
+                loadFragment(MindfulnessFragment.newInstance(1),MINFFULNESS_FRAGMENT);
                 break;
             case R.id.support_btn:
                 loadFragment(SocialSupportFragment.newInstance(),SOCIAL_SUPPORT_FRAGMENT);

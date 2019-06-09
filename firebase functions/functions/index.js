@@ -56,13 +56,9 @@ exports.calculate_EACNO=functions.https.onRequest((req,res) =>
 				if(videoQuestions5)
 					questionsArray.push(videoQuestions5);
 				else
-					{
-					
 						questions_flag=true;
-					// res.send(JSON.stringify({
-					// 	"data":null,
-					// 	"error_message":"You must answer all questions go to Mindfulness videos or Info page"}));
-					}
+					
+	
 
 				let Extroversion=20;
 				let Agreeableness=14;
@@ -83,7 +79,7 @@ if (questions_flag)
 	res.send(JSON.stringify({
 				data:{
 					scores:null,
-					error_message:"You must answer all questions go to Mindfulness videos or Info page"
+					error_message:"You must answer all questions to get personality results, go to Mindfulness videos or Info page"
 				}
 				}));
 	// res.send( JSON.stringify({"data":{
@@ -134,7 +130,7 @@ else
 		res.setHeader('Content-Type', 'application/json');
 		res.send(JSON.stringify({
 			"data":null,
-			"error_message":"You must answer all questions go to Mindfulness videos or Info page"}));
+			"error_message":"You must answer all questions to get personality results, go to Mindfulness videos or Info page"}));
 		
 	}
 	res.setHeader('Content-Type', 'application/json');
@@ -144,19 +140,24 @@ else
 				"scores":[
 					{
 						"title":"Extroversion",
-						"score":Extroversion},
+						"score":Extroversion,
+						"description":"is the personality trait of seeking fulfillment from sources outside the self or in community. High scorers tend to be very social while low scorers prefer to work on their projects alone"},
 						{
 						"title":"Agreeableness",
-						"score":Agreeableness},
+						"score":Agreeableness,
+						"description":"reflects much individuals adjust their behavior to suit others. High scorers are typically polite and like people. Low scorers tend to 'tell it like it is'."},
 						{
 						"title":"Conscientiousness",
-						"score":Conscientiousness},
+						"score":Conscientiousness,
+						"description":"is the personality trait of being honest and hardworking. High scorers tend to follow rules and prefer clean homes. Low scorers may be messy and cheat others"},
 						{
 						"title":"Neuroticism",
-						"score":Neuroticism},
+						"score":Neuroticism,
+						"description":"is the personality trait of being emotional"},
 						{
 						"title":"Openness",
-						"score":Openness}
+						"score":Openness,
+						"description":"is the personality trait of seeking new experience and intellectua pursuits. High scores may day dream a lot. Low scorers may be very down to earth."}
 				],
 				error_message:null
 			}

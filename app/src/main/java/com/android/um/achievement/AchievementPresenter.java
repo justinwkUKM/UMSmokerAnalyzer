@@ -27,12 +27,12 @@ public class AchievementPresenter implements AchievementContract.Presenter{
         mDataHandler.getPersonality(new DataCallBack<ArrayList<PersonalityModel>, String>() {
             @Override
             public void onReponse(ArrayList<PersonalityModel> result) {
-
+                mView.showPersonalityInfo(result);
             }
 
             @Override
             public void onError(String result) {
-
+            mView.showErrorMessage(result);
             }
         });
     }
