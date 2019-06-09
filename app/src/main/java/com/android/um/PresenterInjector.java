@@ -1,12 +1,16 @@
 package com.android.um;
 
 
+import com.android.um.achievement.AchievementContract;
+import com.android.um.achievement.AchievementPresenter;
 import com.android.um.addmotivationmessage.AddMotivationMessagesContract;
 import com.android.um.addmotivationmessage.AddMotivationMessagesPresenter;
 import com.android.um.addsmokediary.AddSmokeDiaryContract;
 import com.android.um.addsmokediary.AddSmokeDiaryPresenter;
+import com.android.um.dashboard.DashBoardPresenter;
 import com.android.um.dashboard.DashboardContract;
-import com.android.um.dashboard.DashboardPresenter;
+import com.android.um.info.InfoContract;
+import com.android.um.info.InfoPresenter;
 import com.android.um.language.LanguageContract;
 import com.android.um.language.LanguagePresenter;
 import com.android.um.main.MainActivityContract;
@@ -104,7 +108,7 @@ public class PresenterInjector {
     }
 
     public static void injectDashboardPresenter(DashboardContract.View dashboardView) {
-        new DashboardPresenter(dashboardView);
+        new DashBoardPresenter(dashboardView);
     }
 
     public static void injectUnlockFeaturePresenter(UnlockFeatureContract.View unlockFeatureView) {
@@ -143,5 +147,13 @@ public class PresenterInjector {
         new ProfilePresenter(profileView);
     }
 
+
+    public static void injectAchievementPresenter(AchievementContract.View achievementView) {
+        new AchievementPresenter(achievementView);
+    }
+
+    public static void injectInfoPresenter(InfoContract.View infoView) {
+        new InfoPresenter(infoView);
+    }
 
 }

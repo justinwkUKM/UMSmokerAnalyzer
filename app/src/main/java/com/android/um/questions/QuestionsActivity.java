@@ -14,13 +14,12 @@ import android.widget.Button;
 
 import com.android.um.BaseActivity;
 import com.android.um.Interface.OnNextQuestion;
-import com.android.um.main.MainActivity;
 import com.android.um.Model.DataModels.AnsweredQuestion;
+import com.android.um.main.MainActivity;
 import com.android.um.Model.DataModels.Question;
 import com.android.um.Model.DataModels.options;
 import com.android.um.PresenterInjector;
 import com.android.um.R;
-import com.android.um.mindfulness.MindfulnessFragment;
 import com.android.um.postLogin.PostLoginActivity;
 import com.android.um.signup.SignupActivity;
 import com.rd.PageIndicatorView;
@@ -123,7 +122,13 @@ public class QuestionsActivity extends BaseActivity implements OnNextQuestion, Q
         }
         answers = new ArrayList<>();
         for (Map.Entry<String, AnsweredQuestion> map : answeredQuestions.entrySet()) {
-            answers.add(map.getValue());
+            AnsweredQuestion question=new AnsweredQuestion();
+            question.setDescription(map.getKey());
+            question.setCategory(map.getValue().getCategory());
+            question.setId(map.getValue().getId());
+            question.setIndex(map.getValue().getIndex());
+            question.setSelectedOptions(map.getValue().getSelectedOptions());
+            answers.add(question);
         }
         if (mPresenter.checkifLogged()) {
             mPresenter.saveAnsweredQuestions(category, answers);
@@ -137,7 +142,13 @@ public class QuestionsActivity extends BaseActivity implements OnNextQuestion, Q
         if (category.equals("demographicQuestions"))
             goToPostScreen();
         else if (category.startsWith("videoQuestions"))
-            goToMindfulnessVideos(category);
+        {
+            if (category.endsWith("5"))
+                goToInfo();
+            else
+                goToMindfulnessVideos(category);
+        }
+
         else
             goToMainScreen();
     }
@@ -170,6 +181,14 @@ public class QuestionsActivity extends BaseActivity implements OnNextQuestion, Q
         finish();
     }
 
+    public void goToInfo() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("FRAGMENT","Info_FRAGMENT");
+        startActivity(intent);
+        finish();
+    }
+
+
     private void goBackToSignUp() {
         Intent intent = new Intent(this, SignupActivity.class);
         intent.putParcelableArrayListExtra("QUESTIONS", answers);
@@ -192,13 +211,13 @@ public class QuestionsActivity extends BaseActivity implements OnNextQuestion, Q
 
             switch (questions.get(pos).getType()) {
                 case "RadioButton":
-                    return RadioButtonFragment.newInstance(questions.get(pos).getDescription(), 0, questions.get(pos).getQustionOptions());
+                    return RadioButtonFragment.newInstance(questions.get(pos).getDescription(), questions.get(pos).getId()-1, questions.get(pos).getQustionOptions());
 //                case "EditText":
 //                    return AgeFragment.newInstance(questions.get(pos).getDescription(), 1, questions.get(pos).getQustionOptions());
                 case "Race":
                     return RaceFragment.newInstance(questions.get(pos).getDescription(), 2, questions.get(pos).getQustionOptions());
                 default:
-                    return RadioButtonFragment.newInstance(questions.get(pos).getDescription(), 0, questions.get(pos).getQustionOptions());
+                    return RadioButtonFragment.newInstance(questions.get(pos).getDescription(), questions.get(pos).getId()-1, questions.get(pos).getQustionOptions());
             }
         }
 
@@ -213,7 +232,7 @@ public class QuestionsActivity extends BaseActivity implements OnNextQuestion, Q
 
         this.mPosition = position;
         hmapSelectedOptions.put(key, option);
-        hmapSelectedOptionsPostion.put(key, position);
+        //hmapSelectedOptionsPostion.put(key, position);
 
         AnsweredQuestion answeredQuestion = new AnsweredQuestion();
         answeredQuestion.AddAnsweredQuestion(questions.get(position), option);

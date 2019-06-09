@@ -8,13 +8,9 @@ import com.android.um.Model.DataModels.SmokeDiaryModel;
 import com.android.um.Model.DataModels.SmokeFreeTime;
 import com.android.um.Model.DataModels.TargetToSaveModel;
 import com.android.um.Model.DataModels.User;
-import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookException;
-import com.facebook.login.LoginResult;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,7 +27,7 @@ public interface FirebaseHandler {
     void LogOut();
 //    User getLoggedUser();
     void saveUserInFirebase(User user,DataCallBack<User,String> callBack);
-    void saveUserAnsweredQuestions(String category,String userId,ArrayList<AnsweredQuestion> questions, DataCallBack<String,String> callBack);
+    void saveUserAnsweredQuestions(String category, String userId, ArrayList<AnsweredQuestion> questions, DataCallBack<String,String> callBack);
      void isQuestionsDone(String category,String userId,DataCallBack<Boolean,Boolean> callBack);
 
     void saveTargetToSave(TargetToSaveModel target,String userId,final DataCallBack<Double,String> callBack);
@@ -45,7 +41,6 @@ public interface FirebaseHandler {
     void addMotivtationMessages(MotivationMessageModel messageModel,String userId, DataCallBack<String,String> callBack);
     void getToken(String userId);
     void sendToken(String userId,String token);
-    void getMindfulnessVideos(String userId,DataCallBack<ArrayList<String>,String> callBack);
+    void getMindfulnessVideos(String lang,String userId,DataCallBack<ArrayList<String>,String> callBack);
     void checkVideoQuestions(int index,String userId,DataCallBack<Boolean,String> callBack);
-
 }

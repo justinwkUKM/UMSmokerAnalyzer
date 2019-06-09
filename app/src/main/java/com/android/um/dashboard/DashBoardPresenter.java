@@ -12,12 +12,12 @@ import com.android.um.Model.SharedPrefsManager;
 
 import java.util.Date;
 
-public class DashboardPresenter implements DashboardContract.Presenter{
+public class DashBoardPresenter implements DashboardContract.Presenter{
 
     private DashboardContract.View mView;
     private DataHandler mDataHandler;
 
-    public DashboardPresenter(DashboardContract.View view) {
+    public DashBoardPresenter(DashboardContract.View view) {
         this.mView = view;
         this.mDataHandler = DataHandlerInstance.getInstance(SharedPrefsManager.getInstance(mView.getContext()));
         view.setPresenter(this);
@@ -69,39 +69,39 @@ public class DashboardPresenter implements DashboardContract.Presenter{
 
                         Date firebaseDate = new Date(result);
 
-                       final SmokeFreeTime smokeFreeDiffernce= getDifferentSmokeFreeTime(smokeFreeTime.getStartDate(),firebaseDate);
-                            smokeFreeDiffernce.setStartDate(smokeFreeTime.getStartDate());
-                            mDataHandler.startTimer(new DataCallBack<Long, String>() {
-                                @Override
-                                public void onReponse(Long result) {
-                                    smokeFreeDiffernce.setSeconds(smokeFreeDiffernce.getSeconds()+1);
-                                    if (smokeFreeDiffernce.getSeconds()==60)
-                                    {
-                                        smokeFreeDiffernce.setSeconds(0);
-                                        smokeFreeDiffernce.setMinutes(smokeFreeDiffernce.getMinutes()+1);
-                                    }
-                                    if (smokeFreeDiffernce.getMinutes()==60)
-                                    {
-                                        smokeFreeDiffernce.setMinutes(0);
-                                        smokeFreeDiffernce.setHour(smokeFreeDiffernce.getHour()+1);
-                                    }
-                                    if (smokeFreeDiffernce.getMinutes()!=0 &&((int)smokeFreeDiffernce.getMinutes()%10)==0)
-                                    {
+                        final SmokeFreeTime smokeFreeDiffernce= getDifferentSmokeFreeTime(smokeFreeTime.getStartDate(),firebaseDate);
+                        smokeFreeDiffernce.setStartDate(smokeFreeTime.getStartDate());
+                        mDataHandler.startTimer(new DataCallBack<Long, String>() {
+                            @Override
+                            public void onReponse(Long result) {
+                                smokeFreeDiffernce.setSeconds(smokeFreeDiffernce.getSeconds()+1);
+                                if (smokeFreeDiffernce.getSeconds()==60)
+                                {
+                                    smokeFreeDiffernce.setSeconds(0);
+                                    smokeFreeDiffernce.setMinutes(smokeFreeDiffernce.getMinutes()+1);
+                                }
+                                if (smokeFreeDiffernce.getMinutes()==60)
+                                {
+                                    smokeFreeDiffernce.setMinutes(0);
+                                    smokeFreeDiffernce.setHour(smokeFreeDiffernce.getHour()+1);
+                                }
+                                if (smokeFreeDiffernce.getMinutes()!=0 &&((int)smokeFreeDiffernce.getMinutes()%10)==0)
+                                {
 
-                                        mDataHandler.updateSmokeFreeTime(smokeFreeDiffernce);
-                                    }
-
-                                    if (smokeFreeDiffernce.getHour()>=24)
-                                        mView.unlockFeature();
-
-                                    mView.updateSmokeFreeTimer(smokeFreeDiffernce.getSeconds(),smokeFreeDiffernce.getMinutes(),smokeFreeDiffernce.getHour());
+                                    mDataHandler.updateSmokeFreeTime(smokeFreeDiffernce);
                                 }
 
-                                @Override
-                                public void onError(String result) {
+                                if (smokeFreeDiffernce.getHour()>=24)
+                                    mView.unlockFeature();
 
-                                }
-                            });
+                                mView.updateSmokeFreeTimer(smokeFreeDiffernce.getSeconds(),smokeFreeDiffernce.getMinutes(),smokeFreeDiffernce.getHour());
+                            }
+
+                            @Override
+                            public void onError(String result) {
+
+                            }
+                        });
 
                     }
 

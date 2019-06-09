@@ -15,11 +15,13 @@ import android.widget.ImageButton;
 import com.android.um.BaseActivity;
 import com.android.um.PresenterInjector;
 import com.android.um.R;
+import com.android.um.achievement.AchievementFragment;
 import com.android.um.dashboard.DashBoardFragment;
+import com.android.um.info.InfoFragment;
 import com.android.um.mindfulness.MindfulnessFragment;
 import com.android.um.profile.ProfileFragment;
 import com.android.um.signin.SigninActivity;
-import com.android.um.socialsupport.SocialSupportActivity;
+import com.android.um.socialsupport.SocialSupportFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,6 +53,9 @@ public class MainActivity extends BaseActivity implements MainActivityContract.V
     String  DASHBOARD_FRAGMENT="DASHBOARD_FRAGMENT";
     String  MINFFULNESS_FRAGMENT="MINFFULNESS_FRAGMENT";
     String  PROFILE_FRAGMENT="PROFILE_FRAGMENT";
+    String  SOCIAL_SUPPORT_FRAGMENT="SOCIAL_SUPPORT_FRAGMENT";
+    String  ACHIEVEMENT_FRAGMENT="ACHIEVEMENT_FRAGMENT";
+    String  INFO_FRAGMENT="INFO_FRAGMENT";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         PresenterInjector.injectMainPresenter(this);
@@ -94,11 +99,6 @@ public class MainActivity extends BaseActivity implements MainActivityContract.V
         super.showMessage(context, message);
     }
 
-    void goToSocialSupport()
-    {
-        Intent intent=new Intent(this, SocialSupportActivity.class);
-        startActivity(intent);
-    }
     @OnClick({R.id.profile_btn, R.id.dashboard_btn, R.id.awards_btn, R.id.hyponsis_btn, R.id.support_btn, R.id.compass_btn, R.id.info_btn, R.id.logout_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -109,16 +109,18 @@ public class MainActivity extends BaseActivity implements MainActivityContract.V
                 loadFragment(DashBoardFragment.newInstance(),DASHBOARD_FRAGMENT);
                 break;
             case R.id.awards_btn:
+                loadFragment(AchievementFragment.newInstance(),ACHIEVEMENT_FRAGMENT);
                 break;
             case R.id.hyponsis_btn:
                 loadFragment(MindfulnessFragment.newInstance(0),MINFFULNESS_FRAGMENT);
                 break;
             case R.id.support_btn:
-                goToSocialSupport();
+                loadFragment(SocialSupportFragment.newInstance(),SOCIAL_SUPPORT_FRAGMENT);
                 break;
             case R.id.compass_btn:
                 break;
             case R.id.info_btn:
+                loadFragment(InfoFragment.newInstance(),INFO_FRAGMENT);
                 break;
             case R.id.logout_btn:
                 mPresenter.logout();

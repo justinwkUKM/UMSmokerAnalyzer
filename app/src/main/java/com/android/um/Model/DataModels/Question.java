@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Question {
 
     private int id;
+    private int index;
     private String description;
     private ArrayList<com.android.um.Model.DataModels.options> options;
     private com.android.um.Model.DataModels.options selectedOptions;
@@ -42,6 +43,14 @@ public class Question {
 
     public void setSelectedOptions(com.android.um.Model.DataModels.options selectedOptions) {
         this.selectedOptions = selectedOptions;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     public String getCategory() {

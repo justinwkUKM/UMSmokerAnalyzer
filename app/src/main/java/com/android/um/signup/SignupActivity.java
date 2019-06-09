@@ -19,7 +19,6 @@ import android.widget.TextView;
 
 import com.android.um.BaseActivity;
 import com.android.um.Model.DataModels.AnsweredQuestion;
-import com.android.um.Model.DataModels.Question;
 import com.android.um.Model.DataModels.User;
 import com.android.um.PresenterInjector;
 import com.android.um.R;

@@ -11,7 +11,7 @@ public class AnsweredQuestion implements Parcelable {
     private String description;
     private com.android.um.Model.DataModels.options selectedOption;
     private String category;
-
+    private int index=0;
     public AnsweredQuestion()
     {
 
@@ -19,6 +19,7 @@ public class AnsweredQuestion implements Parcelable {
 
     protected AnsweredQuestion(Parcel in) {
         id = in.readInt();
+        index = in.readInt();
         description = in.readString();
         selectedOption = in.readParcelable(options.class.getClassLoader());
         category = in.readString();
@@ -39,6 +40,7 @@ public class AnsweredQuestion implements Parcelable {
     public void AddAnsweredQuestion(Question question, options option)
     {
         this.id=question.getId();
+        this.index=question.getIndex();
         this.category=question.getCategory();
         this.description=question.getDescription();
         this.selectedOption=option;
@@ -75,6 +77,15 @@ public class AnsweredQuestion implements Parcelable {
         this.category = category;
     }
 
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+
     @Override
     public int describeContents() {
         return 0;
@@ -83,6 +94,7 @@ public class AnsweredQuestion implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
+        dest.writeInt(index);
         dest.writeString(description);
         dest.writeParcelable(selectedOption, flags);
         dest.writeString(category);

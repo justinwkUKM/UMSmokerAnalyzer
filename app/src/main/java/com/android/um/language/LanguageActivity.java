@@ -61,10 +61,10 @@ public class LanguageActivity extends BaseActivity implements LanguageContract.V
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.english_btn:
-                mPresenter.saveLanguage("en");
+                mPresenter.saveLanguage("EN");
                 break;
             case R.id.bahasa_btn:
-               mPresenter.saveLanguage("my");
+               mPresenter.saveLanguage("MY");
                 break;
         }
     }

@@ -110,9 +110,9 @@ public class MindfulnessFragment extends Fragment implements MindfulnessContract
 
     @Override
     public void startVideo(int index, String url) {
-        if (index==0)
-            playVideo(index,url);
-        else
+//        if (index==0)
+//            playVideo(index,url);
+//        else
             mPresenter.checkVideoQuestions(index, url);
     }
 
@@ -150,6 +150,6 @@ public class MindfulnessFragment extends Fragment implements MindfulnessContract
         Intent intent = new Intent(getContext(), QuestionsActivity.class);
         intent.putExtra("category", category);
         startActivity(intent);
-        //getActivity().finish();
+        getActivity().getFragmentManager().popBackStack();
     }
 }

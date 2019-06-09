@@ -40,10 +40,11 @@ public class MindfulnessPresenter implements MindfulnessContract.Presenter{
             }
         });
     }
+    
 
     @Override
     public void getMindfulnessVideos() {
-        mDataHandler.getMindfulnessVideos(new DataCallBack<ArrayList<String>, String>() {
+        mDataHandler.getMindfulnessVideos(mDataHandler.getLanguage(),new DataCallBack<ArrayList<String>, String>() {
             @Override
             public void onReponse(ArrayList<String> result) {
                 mView.showMindfulnessVideos(result);

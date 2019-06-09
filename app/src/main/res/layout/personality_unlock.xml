@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/unlock_feature"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:id="@+id/tv_feature_title"
+        android:layout_margin="30dp"
+        android:textSize="24sp"
+        android:textColor="@color/navy"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_feature_title"
+        android:id="@+id/tv_feature_desc"
+        android:layout_margin="30dp"
+        android:textSize="20sp"
+        android:textColor="@color/navy"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_feature_desc"
+        android:id="@+id/tv_unlock_feature"
+        android:layout_margin="30dp"
+        android:textSize="16sp"
+        android:visibility="gone"
+        android:text="@string/unlock_feature_capital"
+        android:drawableRight="@drawable/arrow_right_icon"
+        android:textColor="@color/navy"
+        />
+
+</RelativeLayout>

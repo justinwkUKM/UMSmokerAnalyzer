@@ -3,6 +3,7 @@ package com.android.um.Model;
 import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataModels.AnsweredQuestion;
 import com.android.um.Model.DataModels.MotivationMessageModel;
+import com.android.um.Model.DataModels.PersonalityModel;
 import com.android.um.Model.DataModels.Question;
 import com.android.um.Model.DataModels.SmokeDiaryModel;
 import com.android.um.Model.DataModels.SmokeFreeTime;
@@ -31,7 +32,7 @@ public interface DataHandler {
     void saveUserSharedPref(User user);
     void isQuestionsDone(String category,DataCallBack<Boolean,Boolean> callBack);
     void setQuestionsAnswered(String part);
-    void saveUserAnsweredQuestions(String category,ArrayList<AnsweredQuestion> questions, DataCallBack<String,String> callBack);
+    void saveUserAnsweredQuestions(String category, ArrayList<AnsweredQuestion> questions, DataCallBack<String,String> callBack);
     void saveLanguage(String language);
     String getLanguage();
     void saveTermsAcceptence(boolean agree);
@@ -55,7 +56,7 @@ public interface DataHandler {
     void deleteString(String key);
     void getToken();
     void sendToken(String token);
-    void getMindfulnessVideos(DataCallBack<ArrayList<String>,String> callBack);
+    void getMindfulnessVideos(String lang,DataCallBack<ArrayList<String>,String> callBack);
     void checkVideoQuestions(int index,DataCallBack<Boolean,String> callBack);
-
+    void getPersonality(DataCallBack<ArrayList<PersonalityModel>,String> callBack);
 }

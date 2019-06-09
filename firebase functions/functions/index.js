@@ -1,5 +1,5 @@
 // firebase deploy --only functions 
-
+//firebase deploy --only functions:calculate_EACNO
 const functions = require('firebase-functions');
 
 let admin = require('firebase-admin');
@@ -14,6 +14,162 @@ exports.getTime= functions.https.onRequest((req,res) =>
 	  res.setHeader('Content-Type', 'application/json');
   res.send( JSON.stringify({ data: Date.now()}));
   
+})
+
+exports.calculate_EACNO=functions.https.onRequest((req,res) =>
+{
+	let ref=database.ref("/users/"+req.body.data.user_id);
+
+	ref.once('value', (snapshot) => {
+			
+		
+		let questionsArray=[];
+				
+				let videoQuestions1=snapshot.child('videoQuestions1').val();
+				let videoQuestions2=snapshot.child('videoQuestions2').val();
+				let videoQuestions3=snapshot.child('videoQuestions3').val();
+				let videoQuestions4=snapshot.child('videoQuestions4').val();
+				let videoQuestions5=snapshot.child('videoQuestions5').val();
+
+				let questions_flag=false;
+
+				if(videoQuestions1)
+					questionsArray.push(videoQuestions1);
+				else
+					questions_flag=true;
+				
+				if(videoQuestions2)
+					questionsArray.push(videoQuestions2);
+				else
+					questions_flag=true;
+					
+				if(videoQuestions3)
+					questionsArray.push(videoQuestions3);
+				else
+					questions_flag=true;
+				
+				if(videoQuestions4)
+					questionsArray.push(videoQuestions4);
+				else
+					questions_flag=true;
+					
+				if(videoQuestions5)
+					questionsArray.push(videoQuestions5);
+				else
+					{
+					
+						questions_flag=true;
+					// res.send(JSON.stringify({
+					// 	"data":null,
+					// 	"error_message":"You must answer all questions go to Mindfulness videos or Info page"}));
+					}
+
+				let Extroversion=20;
+				let Agreeableness=14;
+				let Conscientiousness=14;
+				let Neuroticism=38;
+				let Openness=8;
+				
+				const Extroversion_indexies=[1,6,11,16,21,26,31,41,46];
+				const Agreeableness_indexies=[2,7,12,17,22,27,32,37,42,47];
+				const Conscientiousness_indexies=[3,8,13,18,23,28,33,38,43,48];
+				const Neuroticism_indexies=[4,9,14,19,24,29,34,44,49];
+				const Openness_indexies=[5,10,15,20,25,30,35,40,45,50];
+				
+if (questions_flag)
+{
+
+	res.setHeader('Content-Type', 'application/json');
+	res.send(JSON.stringify({
+				data:{
+					scores:null,
+					error_message:"You must answer all questions go to Mindfulness videos or Info page"
+				}
+				}));
+	// res.send( JSON.stringify({"data":{
+	// 	"name":"basel"
+	// }}));
+}
+else
+{
+	questionsArray.forEach((videoQuestion)=>
+{
+	try {
+		const questions = JSON.parse(JSON.stringify(videoQuestion));
+		// questions.forEach(function(value){
+		// 	console.log(value);
+		// });
+		
+		//console.log(JSON.stringify(videoQuestion));
+		questions.forEach((question)=>
+		{
+				if(Extroversion_indexies.includes(question.index))
+				{
+					Extroversion=Extroversion+question.selectedOptions.score;
+					
+				}
+
+				if(Agreeableness_indexies.includes(question.index))
+				{
+					Agreeableness=Agreeableness+question.selectedOptions.score;
+				}
+
+				if(Conscientiousness_indexies.includes(question.index))
+				{
+					Conscientiousness=Conscientiousness+question.selectedOptions.score;
+				}
+
+				if(Neuroticism_indexies.includes(question.index))
+				{
+					Neuroticism=Neuroticism+question.selectedOptions.score;
+				}
+
+				if(Openness_indexies.includes(question.index))
+				{
+					Openness=Openness+question.selectedOptions.score;
+				}
+		});
+
+	} catch(err) {
+		res.setHeader('Content-Type', 'application/json');
+		res.send(JSON.stringify({
+			"data":null,
+			"error_message":"You must answer all questions go to Mindfulness videos or Info page"}));
+		
+	}
+	res.setHeader('Content-Type', 'application/json');
+	res.send( JSON.stringify(
+		{
+			"data":{
+				"scores":[
+					{
+						"title":"Extroversion",
+						"score":Extroversion},
+						{
+						"title":"Agreeableness",
+						"score":Agreeableness},
+						{
+						"title":"Conscientiousness",
+						"score":Conscientiousness},
+						{
+						"title":"Neuroticism",
+						"score":Neuroticism},
+						{
+						"title":"Openness",
+						"score":Openness}
+				],
+				error_message:null
+			}
+		
+		
+		}
+	));
+
+});
+}
+});
+
+	
 })
 
 exports.sendNotification = functions.database.ref('/users/{pushId}/SmokeDiarys/{diaryId}').onCreate
@@ -44,6 +200,7 @@ return admin.database().ref("/users/" + context.params.pushId).once('value').the
 });
 	
 })
+
 //0 */1 * * * to be called every 1 hour
 exports.scheduledFunction = functions.pubsub.topic('SmokeFree').onPublish(() => {
 
@@ -97,3 +254,4 @@ exports.scheduledFunction = functions.pubsub.topic('SmokeFree').onPublish(() => 
 	
 	});
 })
+

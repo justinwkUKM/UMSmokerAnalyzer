@@ -1,10 +1,13 @@
 package com.android.um.Model;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataModels.AnsweredQuestion;
 import com.android.um.Model.DataModels.MotivationMessageModel;
+import com.android.um.Model.DataModels.PersonalityData;
+import com.android.um.Model.DataModels.PersonalityModel;
 import com.android.um.Model.DataModels.Question;
 import com.android.um.Model.DataModels.SmokeDiaryModel;
 import com.android.um.Model.DataModels.SmokeFreeTime;
@@ -21,19 +24,21 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.functions.FirebaseFunctions;
 import com.google.firebase.functions.HttpsCallableResult;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 public class DataHandlerInstance implements DataHandler {
@@ -162,7 +167,7 @@ public class DataHandlerInstance implements DataHandler {
     }
 
     @Override
-    public void saveUserAnsweredQuestions(String category,ArrayList<AnsweredQuestion> questions, DataCallBack<String,String> callBack) {
+    public void saveUserAnsweredQuestions(String category, ArrayList<AnsweredQuestion> questions, DataCallBack<String,String> callBack) {
         mFirebaseHandler.saveUserAnsweredQuestions(category,mPrefsHandler.getLoggedUser().getId(),questions,callBack);
     }
 
@@ -322,12 +327,62 @@ public class DataHandlerInstance implements DataHandler {
     }
 
     @Override
-    public void getMindfulnessVideos(DataCallBack<ArrayList<String>,String> callBack) {
-        mFirebaseHandler.getMindfulnessVideos(mPrefsHandler.getLoggedUser().getId(),callBack);
+    public void getMindfulnessVideos(String lang,DataCallBack<ArrayList<String>,String> callBack) {
+        mFirebaseHandler.getMindfulnessVideos(lang,mPrefsHandler.getLoggedUser().getId(),callBack);
     }
 
     @Override
     public void checkVideoQuestions(int index, DataCallBack<Boolean,String> callBack) {
             mFirebaseHandler.checkVideoQuestions(index,mPrefsHandler.getLoggedUser().getId(),callBack);
+    }
+
+    @Override
+    public void getPersonality(DataCallBack<ArrayList<PersonalityModel>, String> callBack) {
+        Map<String, Object> data = new HashMap<>();
+        data.put("user_id",mPrefsHandler.getLoggedUser().getId());
+        FirebaseFunctions.getInstance().getHttpsCallable("calculate_EACNO")
+                .call(data).addOnSuccessListener(new OnSuccessListener<HttpsCallableResult>() {
+            @Override
+            public void onSuccess(HttpsCallableResult httpsCallableResult) {
+
+
+                HashMap<String,Object> json=(HashMap)httpsCallableResult.getData();
+                if (json.get("error_message")!=null)
+                    callBack.onError((String)json.get("error_message"));
+                else
+                {
+
+                    ArrayList<HashMap<String,String>> maps=(ArrayList<HashMap<String,String>>)json.get("scores");
+                    ArrayList<PersonalityModel> personalityModels=new ArrayList<>();
+                    for (HashMap<String,String> map: maps)
+                    {
+                        PersonalityModel personalityModel=new PersonalityModel();
+                        for (Map.Entry model:map.entrySet())
+                        {
+
+                            if (model.getKey().equals("title"))
+                                personalityModel.setTitle((String)model.getValue());
+                            if (model.getKey().equals("score"))
+                                personalityModel.setScore((int)model.getValue());
+                            if (model.getKey().equals("description"))
+                                personalityModel.setDescription((String)model.getValue());
+
+
+                        }
+                        personalityModels.add(personalityModel);
+                    }
+
+                    if (personalityModels.size()>0)
+                        callBack.onReponse(personalityModels);
+                    else
+                        callBack.onError("Error");
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        callBack.onError("Failed to check please try again");
+                    }
+                });
     }
 }

@@ -43,12 +43,13 @@ public class QuestionsPresenter implements QuestionsContract.Presenter {
         });
     }
 
+
     @Override
-    public void saveAnsweredQuestions(String category,ArrayList<AnsweredQuestion> questions) {
+    public void saveAnsweredQuestions(String category, ArrayList<AnsweredQuestion> questions) {
         mDataHandler.saveUserAnsweredQuestions(category,questions, new DataCallBack<String, String>() {
             @Override
             public void onReponse(String result) {
-             mView.SuccessSaveQuestions();
+                mView.SuccessSaveQuestions();
             }
 
             @Override

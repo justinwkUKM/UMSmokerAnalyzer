@@ -81,11 +81,6 @@
             android:windowSoftInputMode="stateHidden"
             android:name=".addmotivationmessage.AddMotivationMessageActivity"></activity>
 
-        <activity
-            android:windowSoftInputMode="stateHidden"
-            android:name=".socialsupport.SocialSupportActivity"></activity>
-
-
 
         <meta-data android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"/>

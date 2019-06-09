@@ -450,7 +450,7 @@ public class FirebaseInstance implements FirebaseHandler {
 
     }
     @Override
-    public void saveUserAnsweredQuestions(String category,String userId,ArrayList<AnsweredQuestion> questions, final DataCallBack<String,String> callBack) {
+    public void saveUserAnsweredQuestions(String category, String userId, ArrayList<AnsweredQuestion> questions, final DataCallBack<String,String> callBack) {
 
         DatabaseReference ref=rootRef.child("users").child(userId);
         HashMap<String,Object> answersMap=new HashMap<>();
@@ -742,8 +742,9 @@ public class FirebaseInstance implements FirebaseHandler {
 
 
     @Override
-    public void getMindfulnessVideos(String userId,DataCallBack<ArrayList<String>,String> callBack) {
-        rootRef.child("videos").addValueEventListener(new ValueEventListener() {
+    public void getMindfulnessVideos(String lang,String userId,DataCallBack<ArrayList<String>,String> callBack) {
+        //TODO toUpperCase to be removed
+        rootRef.child("videos_"+lang.toUpperCase()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                ArrayList<String> videos=new ArrayList<>();
@@ -796,6 +797,7 @@ public class FirebaseInstance implements FirebaseHandler {
         });
 
     }
+
 
     @Override
     public void LogOut()

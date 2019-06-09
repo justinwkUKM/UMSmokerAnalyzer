@@ -2,7 +2,6 @@ package com.android.um.questions;
 
 import com.android.um.BasePresenter;
 import com.android.um.BaseView;
-import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataModels.AnsweredQuestion;
 import com.android.um.Model.DataModels.Question;
 
