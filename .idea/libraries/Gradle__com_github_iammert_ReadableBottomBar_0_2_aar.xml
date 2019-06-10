@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.iammert:ReadableBottomBar:0.2@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5c41739cb84098166a981384b9ee96bf/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5c41739cb84098166a981384b9ee96bf/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.iammert/ReadableBottomBar/0.2/83762b43da1f00261c64a7933951d7a88cd264f2/ReadableBottomBar-0.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

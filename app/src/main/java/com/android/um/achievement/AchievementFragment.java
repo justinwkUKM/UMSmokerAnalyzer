@@ -120,6 +120,9 @@ public class AchievementFragment extends Fragment implements AchievementContract
             titles.get(i).setText(personalityModels.get(i).getTitle());
             scores.get(i).setProgress(personalityModels.get(i).getScore());
         }
+
+        personalityTitle.setText(personalityModels.get(0).getTitle());
+        personalityDesc.setText(personalityModels.get(0).getDescription());
     }
 
     @Override

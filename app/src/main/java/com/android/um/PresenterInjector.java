@@ -7,8 +7,12 @@ import com.android.um.addmotivationmessage.AddMotivationMessagesContract;
 import com.android.um.addmotivationmessage.AddMotivationMessagesPresenter;
 import com.android.um.addsmokediary.AddSmokeDiaryContract;
 import com.android.um.addsmokediary.AddSmokeDiaryPresenter;
+import com.android.um.clinicsmap.ClinicsMapContract;
+import com.android.um.clinicsmap.ClinicsMapPresenter;
 import com.android.um.dashboard.DashBoardPresenter;
 import com.android.um.dashboard.DashboardContract;
+import com.android.um.findclinics.FindClinicsContract;
+import com.android.um.findclinics.FindClinicsPresenter;
 import com.android.um.info.InfoContract;
 import com.android.um.info.InfoPresenter;
 import com.android.um.language.LanguageContract;
@@ -154,6 +158,14 @@ public class PresenterInjector {
 
     public static void injectInfoPresenter(InfoContract.View infoView) {
         new InfoPresenter(infoView);
+    }
+
+    public static void injectFindClinicsPresenter(FindClinicsContract.View findclinicsView) {
+        new FindClinicsPresenter(findclinicsView);
+    }
+
+    public static void injectClinicsMapPresenter(ClinicsMapContract.View clinicsmapView) {
+        new ClinicsMapPresenter(clinicsmapView);
     }
 
 }

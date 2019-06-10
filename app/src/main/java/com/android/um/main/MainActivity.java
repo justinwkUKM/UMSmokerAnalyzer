@@ -17,6 +17,7 @@ import com.android.um.PresenterInjector;
 import com.android.um.R;
 import com.android.um.achievement.AchievementFragment;
 import com.android.um.dashboard.DashBoardFragment;
+import com.android.um.findclinics.FindClinicsFragment;
 import com.android.um.info.InfoFragment;
 import com.android.um.mindfulness.MindfulnessFragment;
 import com.android.um.profile.ProfileFragment;
@@ -55,7 +56,9 @@ public class MainActivity extends BaseActivity implements MainActivityContract.V
     String  PROFILE_FRAGMENT="PROFILE_FRAGMENT";
     String  SOCIAL_SUPPORT_FRAGMENT="SOCIAL_SUPPORT_FRAGMENT";
     String  ACHIEVEMENT_FRAGMENT="ACHIEVEMENT_FRAGMENT";
+    String  FIND_CLINICS_FRAGMENT="FIND_CLINICS_FRAGMENT";
     String  INFO_FRAGMENT="INFO_FRAGMENT";
+    String  CURRENT_TAG="";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         PresenterInjector.injectMainPresenter(this);
@@ -76,20 +79,25 @@ public class MainActivity extends BaseActivity implements MainActivityContract.V
     }
 
     private void loadFragment(final Fragment fragment,String fragment_tag) {
-         fm = getFragmentManager();
-        final FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
+        if (!CURRENT_TAG.equals(fragment_tag))
+        {
+            CURRENT_TAG=fragment_tag;
+            fm = getFragmentManager();
+            final FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
 
-                fragmentTransaction.setCustomAnimations(R.animator.fade_in,
-                        R.animator.fade_out);
-                fragmentTransaction.addToBackStack(fragment_tag);
-                fragmentTransaction.replace(R.id.main_activity_pager, fragment);
-                fragmentTransaction.commit();
+                    fragmentTransaction.setCustomAnimations(R.animator.fade_in,
+                            R.animator.fade_out);
+                    fragmentTransaction.addToBackStack(fragment_tag);
+                    fragmentTransaction.replace(R.id.main_activity_pager, fragment);
+                    fragmentTransaction.commit();
 
-            }
-        },100);
+                }
+            },100);
+        }
+
     }
 
 
@@ -103,6 +111,7 @@ public class MainActivity extends BaseActivity implements MainActivityContract.V
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.profile_btn:
+
                 loadFragment(ProfileFragment.newInstance(),PROFILE_FRAGMENT);
                 break;
             case R.id.dashboard_btn:
@@ -118,6 +127,7 @@ public class MainActivity extends BaseActivity implements MainActivityContract.V
                 loadFragment(SocialSupportFragment.newInstance(),SOCIAL_SUPPORT_FRAGMENT);
                 break;
             case R.id.compass_btn:
+                loadFragment(FindClinicsFragment.newInstance(),FIND_CLINICS_FRAGMENT);
                 break;
             case R.id.info_btn:
                 loadFragment(InfoFragment.newInstance(),INFO_FRAGMENT);
