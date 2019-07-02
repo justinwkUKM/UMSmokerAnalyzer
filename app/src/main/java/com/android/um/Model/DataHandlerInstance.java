@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataModels.AnsweredQuestion;
+import com.android.um.Model.DataModels.KliniksModel;
 import com.android.um.Model.DataModels.MotivationMessageModel;
 import com.android.um.Model.DataModels.PersonalityData;
 import com.android.um.Model.DataModels.PersonalityModel;
@@ -384,5 +385,10 @@ public class DataHandlerInstance implements DataHandler {
                         callBack.onError("Failed to check please try again");
                     }
                 });
+    }
+
+    @Override
+    public void getKliniks(DataCallBack<ArrayList<KliniksModel>, String> callBack) {
+        mFirebaseHandler.getKliniks(mPrefsHandler.getLoggedUser().getId(),callBack);
     }
 }

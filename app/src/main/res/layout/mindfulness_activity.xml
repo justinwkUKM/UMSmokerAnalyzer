@@ -18,11 +18,11 @@
             android:id="@+id/unlock_feature"
             layout="@layout/featue_info_activity"
             android:visibility="gone"/>
-        <VideoView
-            android:id="@+id/myVideo"
-            android:layout_width="fill_parent"
-            android:layout_height="@dimen/_200sdp"
-            />
+        <!--<VideoView-->
+            <!--android:id="@+id/myVideo"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="@dimen/_200sdp"-->
+            <!--/>-->
 
 
         <RelativeLayout

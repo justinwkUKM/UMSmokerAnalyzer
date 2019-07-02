@@ -3,9 +3,13 @@ package com.android.um.clinicsmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataHandler;
 import com.android.um.Model.DataHandlerInstance;
+import com.android.um.Model.DataModels.KliniksModel;
 import com.android.um.Model.SharedPrefsManager;
+
+import java.util.ArrayList;
 
 public class ClinicsMapPresenter implements ClinicsMapContract.Presenter{
 
@@ -18,6 +22,20 @@ public class ClinicsMapPresenter implements ClinicsMapContract.Presenter{
         view.setPresenter(this);
     }
 
+    @Override
+    public void getKliniks() {
+        mDataHandler.getKliniks(new DataCallBack<ArrayList<KliniksModel>, String>() {
+            @Override
+            public void onReponse(ArrayList<KliniksModel> result) {
+                mView.setKliniksLocations(result);
+            }
+
+            @Override
+            public void onError(String result) {
+
+            }
+        });
+    }
 
     @Override
     public void start(@Nullable Bundle extras){

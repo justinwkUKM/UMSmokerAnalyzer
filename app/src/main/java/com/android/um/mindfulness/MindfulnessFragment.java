@@ -33,8 +33,8 @@ import butterknife.OnClick;
 public class MindfulnessFragment extends Fragment implements MindfulnessContract.View, VideoListener {
 
     MindfulnessContract.Presenter mPresenter;
-    @BindView(R.id.myVideo)
-    VideoView myVideo;
+//    @BindView(R.id.myVideo)
+//    VideoView myVideo;
     @BindView(R.id.videos_list)
     RecyclerView videosList;
     MindfulnessAdapter mAdapter;
@@ -50,7 +50,8 @@ public class MindfulnessFragment extends Fragment implements MindfulnessContract
     @BindView(R.id.tv_unlock_feature)
     TextView tvUnlockFeature;
 
-    String category="";
+    String category = "";
+
     public static MindfulnessFragment newInstance(int index) {
         MindfulnessFragment f = new MindfulnessFragment();
         Bundle b = new Bundle();
@@ -78,36 +79,36 @@ public class MindfulnessFragment extends Fragment implements MindfulnessContract
     @Override
     public void showQuestions(String category) {
         unlock_feature.setVisibility(View.VISIBLE);
-        myVideo.setVisibility(View.GONE);
+     //   myVideo.setVisibility(View.GONE);
         tvFeatureTitle.setText("Unlock Video");
         tvFeatureDesc.setText("To unlock the video we want you to answer some questions");
-        this.category=category;
+        this.category = category;
     }
 
     @Override
     public void playVideo(int index, String url) {
-        myVideo.setVisibility(View.VISIBLE);
+      //  myVideo.setVisibility(View.VISIBLE);
         unlock_feature.setVisibility(View.GONE);
-        Uri vidUri = Uri.parse(url);
-        myVideo.setVideoURI(vidUri);
-        myVideo.start();
+        openVideoActivity(url);
     }
 
     @Override
     public void showMindfulnessVideos(ArrayList<String> videos) {
-        myVideo.setVisibility(View.VISIBLE);
-        Uri vidUri = Uri.parse(videos.get(index-1));
-        MediaController mediaController = new MediaController(getContext());
-        mediaController.setAnchorView(myVideo);
-        myVideo.setMediaController(mediaController);
-        myVideo.setVideoURI(vidUri);
-        myVideo.start();
+//        myVideo.setVisibility(View.VISIBLE);
+       Uri vidUri = Uri.parse(videos.get(index - 1));
+//        openVideoActivity(videos.get(index - 1));
 
         mAdapter = new MindfulnessAdapter(videos, getContext(), this);
         videosList.setLayoutManager(new LinearLayoutManager(getContext()));
         videosList.setAdapter(mAdapter);
     }
 
+    void openVideoActivity(String url)
+    {
+        Intent intent=new Intent(getContext(),VideoPlayActivity.class);
+        intent.putExtra("URL",url);
+        startActivity(intent);
+    }
     @Override
     public void startVideo(int index, String url) {
             mPresenter.checkVideoQuestions(index+1, url);

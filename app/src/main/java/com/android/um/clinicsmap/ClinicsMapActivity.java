@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.android.um.BaseActivity;
+import com.android.um.Model.DataModels.KliniksModel;
 import com.android.um.PresenterInjector;
 import com.android.um.R;
 import com.google.android.gms.common.api.ResolvableApiException;
@@ -49,6 +50,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -106,21 +108,38 @@ public class ClinicsMapActivity extends BaseActivity implements ClinicsMapContra
 
     }
 
-    public String getJSONFromAssets() {
-        String json = null;
-        try {
-            InputStream inputData = getAssets().open("kliniks.json");
-            int size = inputData.available();
-            byte[] buffer = new byte[size];
-            inputData.read(buffer);
-            inputData.close();
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
+
+    @Override
+    public void setKliniksLocations(ArrayList<KliniksModel> kliniksLocations) {
+
+        for (KliniksModel klinik:kliniksLocations)
+        {
+            drawMarker(new LatLng(klinik.getLat(),
+                    klinik.getLang()), klinik.getName());
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(10.0f));
         }
-        return json;
     }
+
+    @Override
+    public void failedGetLocations(String error) {
+        showMessage(this,error);
+    }
+
+//    public String getJSONFromAssets() {
+//        String json = null;
+//        try {
+//            InputStream inputData = getAssets().open("kliniks.json");
+//            int size = inputData.available();
+//            byte[] buffer = new byte[size];
+//            inputData.read(buffer);
+//            inputData.close();
+//            json = new String(buffer, "UTF-8");
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//            return null;
+//        }
+//        return json;
+//    }
 
     @OnClick(R.id.btn_find)
     public void onViewClicked() {
@@ -132,52 +151,43 @@ public class ClinicsMapActivity extends BaseActivity implements ClinicsMapContra
                 rippleBg.stopRippleAnimation();
                 //startActivity(new Intent(CustomMapActivity.this, PermissionsActivity.class));
                 //finish();
-                new AsyncTaskGetMareker().execute();
-
+                //new AsyncTaskGetMareker().execute();
+                mPresenter.getKliniks();
             }
         }, 3000);
     }
 
-    public class AsyncTaskGetMareker extends AsyncTask<String, String, JSONArray> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected JSONArray doInBackground(String... strings) {
-            String stationsJsonString = getJSONFromAssets();
-            try {
-                JSONArray stationsJsonArray = new JSONArray(stationsJsonString);
-                return stationsJsonArray;
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            //This will only happen if an exception is thrown above:
-            return null;
-        }
-
-        protected void onPostExecute(JSONArray result) {
-            if (result != null) {
-                for (int i = 0; i < result.length(); i++) {
-                    JSONObject jsonObject = null;
-                    try {
-                        jsonObject = result.getJSONObject(i);
-                        String name = jsonObject.getString("name");
-                        String lat = jsonObject.getString("lat");
-                        String lang = jsonObject.getString("lang");
-
-                        drawMarker(new LatLng(Double.parseDouble(lat),
-                                Double.parseDouble(lang)), name);
-                        mMap.animateCamera(CameraUpdateFactory.zoomTo(10.0f));
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-        }
+//    public class AsyncTaskGetMareker extends AsyncTask<ArrayList<KliniksModel>, String, ArrayList<KliniksModel>> {
+//        @Override
+//        protected void onPreExecute() {
+//            super.onPreExecute();
+//        }
+//
+//        @Override
+//        protected ArrayList<KliniksModel> doInBackground(ArrayList<KliniksModel>... strings) {
+//
+//            return null;
+//        }
+//
+//        protected void onPostExecute(JSONArray result) {
+//            if (result != null) {
+//                for (int i = 0; i < result.length(); i++) {
+//                    JSONObject jsonObject = null;
+//                    try {
+//                        jsonObject = result.getJSONObject(i);
+//                        String name = jsonObject.getString("name");
+//                        String lat = jsonObject.getString("lat");
+//                        String lang = jsonObject.getString("lang");
+//
+//
+//
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//
+//        }
 
         private void drawMarker(LatLng point, String name) {
             MarkerOptions markerOptions = new MarkerOptions();
@@ -186,7 +196,7 @@ public class ClinicsMapActivity extends BaseActivity implements ClinicsMapContra
             markerOptions.title(name);
             mMap.addMarker(markerOptions);
         }
-    }
+    //}
 
     @SuppressLint("MissingPermission")
     @Override

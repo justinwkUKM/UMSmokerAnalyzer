@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 
 import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataModels.AnsweredQuestion;
+import com.android.um.Model.DataModels.KliniksModel;
 import com.android.um.Model.DataModels.MotivationMessageModel;
 import com.android.um.Model.DataModels.Question;
 import com.android.um.Model.DataModels.SmokeDiaryModel;
@@ -798,6 +799,30 @@ public class FirebaseInstance implements FirebaseHandler {
 
     }
 
+    @Override
+    public void getKliniks(String userId, DataCallBack<ArrayList<KliniksModel>, String> callBack) {
+
+
+        rootRef.child("kliniks").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<KliniksModel> kliniksModels=new ArrayList<>();
+                for(DataSnapshot dsp : dataSnapshot.getChildren()){
+                    //  String x=dataSnapshot1.getValue(String.class);
+                    kliniksModels.add(dsp.getValue(KliniksModel.class));
+                }
+                if (kliniksModels.size()>0)
+                    callBack.onReponse(kliniksModels);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                callBack.onError(databaseError.getMessage());
+            }
+        });
+
+    }
 
     @Override
     public void LogOut()

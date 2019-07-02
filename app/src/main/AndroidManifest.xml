@@ -84,6 +84,10 @@
             android:windowSoftInputMode="stateHidden"
             android:name=".clinicsmap.ClinicsMapActivity"></activity>
 
+        <activity
+            android:windowSoftInputMode="stateHidden"
+            android:name=".mindfulness.VideoPlayActivity"></activity>
+
 
         <meta-data android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"/>

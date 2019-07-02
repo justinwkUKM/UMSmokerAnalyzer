@@ -7,9 +7,11 @@ import android.util.Log;
 import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataHandler;
 import com.android.um.Model.DataHandlerInstance;
+import com.android.um.Model.DataModels.KliniksModel;
 import com.android.um.Model.DataModels.SmokeFreeTime;
 import com.android.um.Model.SharedPrefsManager;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class DashBoardPresenter implements DashboardContract.Presenter{

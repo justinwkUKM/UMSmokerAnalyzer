@@ -2,6 +2,7 @@ package com.android.um.Model.Firebase;
 
 import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataModels.AnsweredQuestion;
+import com.android.um.Model.DataModels.KliniksModel;
 import com.android.um.Model.DataModels.MotivationMessageModel;
 import com.android.um.Model.DataModels.Question;
 import com.android.um.Model.DataModels.SmokeDiaryModel;
@@ -43,4 +44,5 @@ public interface FirebaseHandler {
     void sendToken(String userId,String token);
     void getMindfulnessVideos(String lang,String userId,DataCallBack<ArrayList<String>,String> callBack);
     void checkVideoQuestions(int index,String userId,DataCallBack<Boolean,String> callBack);
+    void getKliniks(String userId, DataCallBack<ArrayList<KliniksModel>,String> callBack);
 }
