@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_gradient"
     android:theme="@style/AppThemeEditText">
 
     <RelativeLayout
@@ -18,7 +19,7 @@
             android:layout_below="@+id/tv_welcome"
             android:layout_centerHorizontal="true"
             android:hint="@string/text_travel"
-            android:textColorHint="@color/gray">
+            android:textColorHint="@color/white">
 
             <EditText
                 android:id="@+id/et_travel"
@@ -30,7 +31,7 @@
                 android:layout_marginBottom="@dimen/_8sdp"
                 android:ems="12"
                 android:inputType="numberDecimal"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -41,7 +42,7 @@
             android:layout_below="@+id/il_et_travel"
             android:layout_centerHorizontal="true"
             android:hint="@string/text_luxurious"
-            android:textColorHint="@color/gray">
+            android:textColorHint="@color/white">
 
             <EditText
                 android:id="@+id/et_luxrious"
@@ -53,7 +54,7 @@
                 android:layout_marginBottom="@dimen/_8sdp"
                 android:ems="12"
                 android:inputType="numberDecimal"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -64,7 +65,7 @@
             android:layout_below="@+id/il_et_luxrious"
             android:layout_centerHorizontal="true"
             android:hint="@string/text_medical"
-            android:textColorHint="@color/gray">
+            android:textColorHint="@color/white">
 
             <EditText
                 android:id="@+id/et_medical"
@@ -76,7 +77,7 @@
                 android:layout_marginBottom="@dimen/_8sdp"
                 android:ems="12"
                 android:inputType="numberDecimal"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -87,7 +88,7 @@
             android:layout_below="@+id/il_et_medical"
             android:layout_centerHorizontal="true"
             android:hint="@string/text_Saving"
-            android:textColorHint="@color/gray">
+            android:textColorHint="@color/white">
 
             <EditText
                 android:id="@+id/et_saving"
@@ -99,7 +100,7 @@
                 android:layout_marginBottom="@dimen/_8sdp"
                 android:ems="12"
                 android:inputType="numberDecimal"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
         </android.support.design.widget.TextInputLayout>
 
         <View
@@ -123,6 +124,7 @@
                 android:padding="@dimen/_10sdp"
                 android:layout_width="0dp"
                 android:layout_weight="0.5"
+                android:textColor="@color/white"
                 android:layout_height="wrap_content"
                 android:text="@string/text_target_save"/>
             <LinearLayout
@@ -136,6 +138,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="RM"
+                    android:textColor="@color/white"
                     android:gravity="right"/>
                 <TextView
                     android:padding="@dimen/_10sdp"
@@ -143,6 +146,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/tv_save_amount"
                     android:text="0"
+                    android:textColor="@color/white"
                     android:gravity="center"/>
             </LinearLayout>
 
@@ -159,10 +163,12 @@
 
             <TextView
                 android:layout_width="match_parent"
+                android:textColor="@color/white"
                 android:layout_height="wrap_content"
                 android:text="@string/information_note1"/>
             <TextView
                 android:layout_width="match_parent"
+                android:textColor="@color/white"
                 android:layout_height="wrap_content"
                 android:text="@string/information_note2"
                 android:gravity="center"/>
@@ -175,8 +181,8 @@
             android:layout_width="@dimen/_150sdp"
             android:layout_height="wrap_content"
             android:text="@string/text_save"
-            android:background="@color/lightgreen"
             android:textColor="@color/white"
+            android:background="@drawable/background_gradient"
             android:layout_centerHorizontal="true"/>
     </RelativeLayout>
 

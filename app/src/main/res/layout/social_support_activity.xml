@@ -3,10 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/background_gradient"
+
     android:layout_weight="1">
 
     <RelativeLayout
-        android:background="@drawable/background_gradient"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.3"
@@ -62,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:text="@string/text_social_support"
-            android:textColor="@color/blue"
+            android:textColor="@color/white"
             android:textSize="30sp"
             android:layout_marginTop="@dimen/_30sdp"/>
 
@@ -74,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:text="@string/text_name_socail_support"
-            android:textColor="@color/blue"
+            android:textColor="@color/white"
             android:textSize="15sp"
             android:layout_marginTop="@dimen/_8sdp"/>
 
@@ -88,7 +89,8 @@
             android:paddingTop="@dimen/_10sdp"
             android:layout_marginLeft="@dimen/_20sdp"
             android:layout_marginRight="@dimen/_20sdp"
-            android:textColorHint="@color/blue">
+            android:textColor="@color/white"
+            >
 
             <EditText
                 android:id="@+id/et_name"
@@ -96,14 +98,17 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:ems="10"
+                android:textColorHint="@color/white"
                 android:inputType="textPersonName"
                 android:paddingLeft="@dimen/_10sdp"
-                android:textColor="@color/blue" />
+                android:textColor="@color/white"
+                />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/blue" />
+                android:textColor="@color/white"
+                />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -117,7 +122,8 @@
             android:text="@string/next_btn"
             android:id="@+id/next_btn"
             android:textColor="@color/white"
-            android:background="@color/lightgreen"/>
+            android:background="@drawable/background_gradient"
+            />
 
 
     </RelativeLayout>

@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -25,7 +26,7 @@ public class MindfulnessAdapter extends RecyclerView.Adapter<MindfulnessAdapter.
 
     Context mContext;
     VideoListener listener;
-
+    private String[] titles = new String[]{"Kesimpulan", "Kesedaran Tabiat Merokok", "Latihan Kesedaran 5 Min", "Introduction"};
     public MindfulnessAdapter(ArrayList<String> videos, Context mContext,VideoListener listener) {
         this.videos = videos;
         this.listener=listener;
@@ -42,6 +43,9 @@ public class MindfulnessAdapter extends RecyclerView.Adapter<MindfulnessAdapter.
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
+
+        viewHolder.title.setText(titles[position]);
+        viewHolder.desc.setText("This is the description of the "+ titles[position] + " video");
 
         viewHolder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +64,12 @@ public class MindfulnessAdapter extends RecyclerView.Adapter<MindfulnessAdapter.
 
         @BindView(R.id.container)
         RelativeLayout layout;
+        @BindView(R.id.video_bg)
+        ImageView img;
+        @BindView(R.id.video_title)
+        TextView title;
+        @BindView(R.id.video_description)
+        TextView desc;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/background_gradient"
     >
 
 
@@ -16,7 +16,7 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="76dp"
         android:text="@string/text_select_language"
-        android:textColor="@color/blue"
+        android:textColor="@color/white"
         android:textSize="@dimen/_12ssp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,6 +29,7 @@
         android:background="@drawable/button_gradient"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
+        android:textColor="@color/white"
 
         android:text="@string/text_english"
         android:gravity="center_vertical"
@@ -47,6 +48,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="@string/text_bahasa"
+        android:textColor="@color/white"
         android:gravity="center_vertical"
         android:padding="@dimen/_12ssp"
         app:layout_constraintEnd_toEndOf="parent"

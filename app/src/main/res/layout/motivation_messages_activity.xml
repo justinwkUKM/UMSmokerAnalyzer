@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@drawable/background_gradient"
     android:weightSum="1">
 
     <RelativeLayout
@@ -48,7 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.50"
-        android:background="@drawable/background_gradient">
+        >
 
 
         <android.support.v7.widget.RecyclerView
