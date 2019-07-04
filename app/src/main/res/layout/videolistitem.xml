@@ -4,25 +4,36 @@
     android:layout_height="wrap_content"
     android:id="@+id/container">
 
-    <VideoView
-        android:layout_width="100dp"
-        android:layout_height="80dp"
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/video_bg"
-        android:padding="@dimen/_8sdp"
-        android:background="@drawable/video_bg"/>
+        android:layout_marginLeft="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_18sdp"
+        android:background="@drawable/ic_music_video_black_24dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Watch Now"
         android:id="@+id/video_title"
-        android:padding="@dimen/_8sdp"
+        android:paddingLeft="@dimen/_8sdp"
+        android:paddingTop="@dimen/_8sdp"
+        android:textSize="@dimen/_18sdp"
+        android:textColor="@color/white"
         android:layout_toRightOf="@+id/video_bg"
-        android:layout_centerVertical="true"/>
+        android:layout_centerVertical="false"/>
 
-    <View
-        android:layout_below="@+id/video_bg"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray"></View>
+        android:layout_height="wrap_content"
+        android:text="Watch Now"
+        android:layout_below="@id/video_title"
+        android:id="@+id/video_description"
+        android:paddingLeft="@dimen/_8sdp"
+        android:paddingRight="@dimen/_8sdp"
+        android:textColor="@color/white"
+        android:layout_toRightOf="@+id/video_bg"
+        android:layout_centerVertical="false"/>
+
 </RelativeLayout>

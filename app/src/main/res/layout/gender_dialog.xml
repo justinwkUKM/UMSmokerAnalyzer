@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@drawable/background_gradient"
     android:layout_margin="@dimen/_10sdp">
 
     <TextView
@@ -10,6 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/text_male"
+        android:textColor="@color/white"
+
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"/>
 
@@ -23,6 +26,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/text_female"
+        android:textColor="@color/white"
+
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"/>
 </LinearLayout>

@@ -16,14 +16,14 @@
         app:civ_border_color="#EEEEEE"
         android:layout_gravity="center"
         app:civ_border_width="1dp"
-        android:background="@drawable/profile_icon"
+        android:background="@drawable/ic_user_icon"
         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:padding="10dp"
         android:textStyle="bold"
@@ -43,6 +43,7 @@
         android:text="@string/age_text"
         android:textSize="16sp"
         android:padding="10dp"
+        android:textColor="@color/white"
         android:textStyle="bold"
         />
 
@@ -51,6 +52,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textSize="16sp"
+        android:textColor="@color/white"
+
         android:padding="10dp"
         android:id="@+id/tv_age"
         />
@@ -67,6 +70,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/gender_text"
+        android:textColor="@color/white"
+
         android:textSize="16sp"
         android:padding="10dp"
         android:textStyle="bold"
@@ -76,6 +81,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textColor="@color/white"
 
         android:textSize="16sp"
         android:padding="10dp"

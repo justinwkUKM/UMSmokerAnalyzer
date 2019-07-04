@@ -22,8 +22,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginBottom="@dimen/_20sdp"
+
                 android:background="@drawable/achievments_bg">
 
                 <TextView
@@ -81,7 +80,6 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/_20sdp"
                 android:background="@drawable/save_money_bg">
 
                 <TextView
@@ -129,7 +127,6 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="40dp"
                 android:background="@drawable/quit_function_bg">
 
                 <TextView

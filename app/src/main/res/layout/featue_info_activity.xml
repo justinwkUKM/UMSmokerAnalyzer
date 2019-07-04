@@ -2,6 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/background_gradient"
     android:id="@+id/unlock_feature"
 >
 
@@ -12,7 +13,7 @@
         android:id="@+id/tv_feature_title"
         android:layout_margin="30dp"
         android:textSize="24sp"
-        android:textColor="@color/navy"
+        android:textColor="@color/white"
         />
 
     <TextView
@@ -22,7 +23,7 @@
         android:id="@+id/tv_feature_desc"
         android:layout_margin="30dp"
         android:textSize="20sp"
-        android:textColor="@color/navy"
+        android:textColor="@color/white"
         />
 
     <TextView

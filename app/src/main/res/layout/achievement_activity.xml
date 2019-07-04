@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:theme="@style/AchivmentsStyle"
+    android:background="@drawable/background_gradient"
+
     android:weightSum="1"
     >
 
@@ -31,7 +33,7 @@
           android:layout_height="0dp"
           android:layout_weight="0.5"
           android:gravity="center"
-          android:textColor="@color/navy"
+          android:textColor="@color/white"
           android:textSize="20sp"
           android:textAlignment="center"
           android:text="1"/>
@@ -47,7 +49,7 @@
           android:layout_weight="0.6"
           android:gravity="center"
           android:textAlignment="center"
-          android:textColor="@color/gray"
+          android:textColor="@color/white"
           android:text="Level"/>
 
     </LinearLayout>
@@ -59,7 +61,7 @@
         android:layout_height="match_parent"
         android:gravity=""
         android:text="@string/text_achievemnts"
-        android:textColor="@color/navy"
+        android:textColor="@color/white"
         android:textSize="20sp"
         />
 
@@ -83,6 +85,7 @@
           android:layout_width="0dp"
           android:layout_weight="0.5"
           android:layout_height="wrap_content"
+          android:textColor="@color/white"
 
           android:id="@+id/tv_health"
           android:padding="@dimen/_6sdp"/>
@@ -115,6 +118,7 @@
           android:layout_width="0dp"
           android:layout_weight="0.5"
           android:layout_height="wrap_content"
+          android:textColor="@color/white"
 
           android:padding="@dimen/_6sdp"/>
 
@@ -146,7 +150,7 @@
           android:layout_weight="0.5"
           android:layout_height="wrap_content"
           android:id="@+id/tv_money"
-
+          android:textColor="@color/white"
           android:padding="@dimen/_6sdp"/>
 
       <ProgressBar
@@ -177,6 +181,8 @@
           android:layout_weight="0.5"
           android:layout_height="wrap_content"
           android:id="@+id/tv_cigarattes"
+          android:textColor="@color/white"
+
           android:padding="@dimen/_6sdp"/>
 
       <ProgressBar
@@ -207,6 +213,7 @@
           android:layout_weight="0.5"
           android:layout_height="wrap_content"
           android:id="@+id/tv_time"
+          android:textColor="@color/white"
 
           android:padding="@dimen/_6sdp"/>
 
@@ -231,7 +238,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/_22ssp"
-        android:textColor="@color/gray"
+        android:textColor="@color/white"
         android:id="@+id/personality_title"/>
 
     <TextView
@@ -240,7 +247,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/_16ssp"
-        android:textColor="@color/purple"
+        android:textColor="@color/white"
         android:id="@+id/personality_desc"/>
   </LinearLayout>
 </LinearLayout>
