@@ -109,7 +109,6 @@ public class FirebaseService extends FirebaseMessagingService  implements Fireba
   public void onNewToken(String s) {
     super.onNewToken(s);
 
-    Log.d("Firebase12",s);
     // If you want to send messages to this application instance or
     // manage this apps subscriptions on the server side, send the
     // Instance ID token to your app server.

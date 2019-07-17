@@ -2,24 +2,29 @@ package com.android.um.splashscreen;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Debug;
 import android.support.constraint.ConstraintLayout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.um.BaseActivity;
+import com.android.um.BuildConfig;
 import com.android.um.main.MainActivity;
 import com.android.um.PresenterInjector;
 import com.android.um.R;
 import com.android.um.language.LanguageActivity;
 import com.android.um.prelogin.PreLoginActivity;
 import com.android.um.questions.QuestionsActivity;
+import com.crashlytics.android.Crashlytics;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.fabric.sdk.android.Fabric;
 
 public class SplashScreenActivity extends BaseActivity implements SplashScreenContract.View {
 
@@ -53,6 +58,9 @@ public class SplashScreenActivity extends BaseActivity implements SplashScreenCo
 
 
         super.onCreate(savedInstanceState);
+
+        if (!BuildConfig.DEBUG)
+            Fabric.with(this, new Crashlytics());
     }
 
 

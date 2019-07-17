@@ -177,29 +177,47 @@ exports.sendNotification = functions.database.ref('/users/{pushId}/SmokeDiarys/{
 ((snapshot,context)  => {
 	const smokeFlag=snapshot.child('SmokeDiary').child('smoked').val();
 //query the users node and get the name of the user who sent the message
+console.log("smokeflag"+smokeFlag);
+if(String(smokeFlag) ==="I Smoked")
+{
+	console.log('1');
+	const motivationMessages=snapshot.child('MotivationMessages');
 
-return admin.database().ref("/users/" + context.params.pushId).once('value').then(snap => {
+	return motivationMessages.ref.remove()                      // changes here
+    .then(() => {
+		console.log('MotivationMessages removed');
+       // res.send('MotivationMessages removed');
+    })
+    .catch(error => {
+		console.log('MotivationMessages failed to be removed');
+       // res.send(error);
+    });
+}
+else
+{
+	console.log("2");
+	return admin.database().ref("/users/" + context.params.pushId).once('value').then(snap => {
 		
 
-	const token = snap.child("FcmToken").val();
-	const payload = {
-		"notification" : {
-			"body" : "great start!",
-			"title" : "Smoke Diary"
-		  }
-	};
-		console.log("token: ", token);
-		console.log("payload: ", payload);
+		const token = snap.child("FcmToken").val();
+		const payload = {
+			"notification" : {
+				"body" : "great start!",
+				"title" : "Smoke Diary"
+			  }
+		};
+		
+		return admin.messaging().sendToDevice(token, payload)
+					.then(function(response) {
+						console.log("Successfully sent message:", response);
+					  })
+					  .catch(function(error) {
+						console.log("Error sending message:", error);
+					  });
+	});
+		
 	
-	return admin.messaging().sendToDevice(token, payload)
-				.then(function(response) {
-					console.log("Successfully sent message:", response);
-				  })
-				  .catch(function(error) {
-					console.log("Error sending message:", error);
-				  });
-});
-	
+}
 })
 
 //0 */1 * * * to be called every 1 hour

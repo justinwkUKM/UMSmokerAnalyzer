@@ -87,7 +87,7 @@ public class DashBoardPresenter implements DashboardContract.Presenter{
                                     smokeFreeDiffernce.setMinutes(0);
                                     smokeFreeDiffernce.setHour(smokeFreeDiffernce.getHour()+1);
                                 }
-                                if (smokeFreeDiffernce.getMinutes()!=0 &&((int)smokeFreeDiffernce.getMinutes()%10)==0)
+                                if (smokeFreeDiffernce.getMinutes()!=0 &&((int)smokeFreeDiffernce.getMinutes()%10)==0 &&((int)smokeFreeDiffernce.getSeconds())==0)
                                 {
 
                                     mDataHandler.updateSmokeFreeTime(smokeFreeDiffernce);

@@ -10,6 +10,22 @@ public class SmokeFreeTime {
     Date startDate;
     boolean smokeFreeCompleted=false;
 
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public boolean isSmokeFreeCompleted() {
+        return smokeFreeCompleted;
+    }
+
+    public void setSmokeFreeCompleted(boolean smokeFreeCompleted) {
+        this.smokeFreeCompleted = smokeFreeCompleted;
+    }
+
     public long getHour() {
         return hour;
     }
@@ -32,21 +48,5 @@ public class SmokeFreeTime {
 
     public void setSeconds(long seconds) {
         this.seconds = seconds;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public boolean isSmokeFreeCompleted() {
-        return smokeFreeCompleted;
-    }
-
-    public void setSmokeFreeCompleted(boolean smokeFreeCompleted) {
-        this.smokeFreeCompleted = smokeFreeCompleted;
     }
 }
