@@ -6,6 +6,7 @@ import android.util.Log;
 import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataModels.AnsweredQuestion;
 import com.android.um.Model.DataModels.KliniksModel;
+import com.android.um.Model.DataModels.LeaderBoardModel;
 import com.android.um.Model.DataModels.MotivationMessageModel;
 import com.android.um.Model.DataModels.PersonalityData;
 import com.android.um.Model.DataModels.PersonalityModel;
@@ -390,5 +391,47 @@ public class DataHandlerInstance implements DataHandler {
     @Override
     public void getKliniks(DataCallBack<ArrayList<KliniksModel>, String> callBack) {
         mFirebaseHandler.getKliniks(mPrefsHandler.getLoggedUser().getId(),callBack);
+    }
+
+
+    @Override
+    public void getLeaderBoard(DataCallBack<ArrayList<LeaderBoardModel>, String> callBack) {
+        FirebaseFunctions.getInstance().getHttpsCallable("getLeaderBoard")
+                .call().addOnSuccessListener(new OnSuccessListener<HttpsCallableResult>() {
+            @Override
+            public void onSuccess(HttpsCallableResult httpsCallableResult) {
+
+
+                HashMap<String,Object> json=(HashMap)httpsCallableResult.getData();
+
+                    ArrayList<HashMap<String,String>> maps=(ArrayList<HashMap<String,String>>)json.get("LeaderBoard");
+                    ArrayList<LeaderBoardModel> leaderBoardModelArrayList=new ArrayList<>();
+                    for (HashMap<String,String> map: maps)
+                    {
+                        LeaderBoardModel leaderBoardModel=new LeaderBoardModel();
+                        for (Map.Entry model:map.entrySet())
+                        {
+
+                            if (model.getKey().equals("name"))
+                                leaderBoardModel.setName((String)model.getValue());
+                            if (model.getKey().equals("SmokeFreeTime"))
+                                leaderBoardModel.setHours((int)model.getValue());
+
+                        }
+                        leaderBoardModelArrayList.add(leaderBoardModel);
+                    }
+
+                    if (leaderBoardModelArrayList.size()>0)
+                        callBack.onReponse(leaderBoardModelArrayList);
+                    else
+                        callBack.onError("SmokeFree warriors not found yet.");
+                }
+        })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        callBack.onError("Failed to get LeaderBoard");
+                    }
+                });
     }
 }

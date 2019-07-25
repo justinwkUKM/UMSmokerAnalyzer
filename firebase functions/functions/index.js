@@ -177,26 +177,20 @@ exports.sendNotification = functions.database.ref('/users/{pushId}/SmokeDiarys/{
 ((snapshot,context)  => {
 	const smokeFlag=snapshot.child('SmokeDiary').child('smoked').val();
 //query the users node and get the name of the user who sent the message
-console.log("smokeflag"+smokeFlag);
+
 if(String(smokeFlag) ==="I Smoked")
 {
-	console.log('1');
-	const motivationMessages=snapshot.child('MotivationMessages');
-
-	return motivationMessages.ref.remove()                      // changes here
-    .then(() => {
-		console.log('MotivationMessages removed');
-       // res.send('MotivationMessages removed');
-    })
-    .catch(error => {
-		console.log('MotivationMessages failed to be removed');
-       // res.send(error);
-    });
+	rootRef.ref("/users/" + context.params.pushId+"/MotivationMessages").remove()
+	.then(function() {
+		console.log("Remove succeeded.")
+	})
+	.catch(function(error) {
+		console.log("Remove failed: " + error.message)
+	});
 }
 else
 {
-	console.log("2");
-	return admin.database().ref("/users/" + context.params.pushId).once('value').then(snap => {
+	return rootRef.ref("/users/" + context.params.pushId).once('value').then(snap => {
 		
 
 		const token = snap.child("FcmToken").val();
@@ -261,7 +255,7 @@ exports.scheduledFunction = functions.pubsub.topic('SmokeFree').onPublish(() => 
 					}).catch(function(error) {
 						console.error("Write failed: "+error);
 					});
-					
+					counter=counter+1;
 			}
 
 		});
@@ -272,5 +266,58 @@ exports.scheduledFunction = functions.pubsub.topic('SmokeFree').onPublish(() => 
 		  });
 	
 	});
+})
+
+
+
+exports.getLeaderBoard= functions.https.onRequest((req,res) =>
+{
+// 	  res.setHeader('Content-Type', 'application/json');
+//   res.send( JSON.stringify({ data: Date.now()}));
+
+
+var result = [];
+rootRef.once('value', (snapshot) => {
+	let arrayTopSnapshot=[];
+	let arrayTopSmokeFree=[];
+	let counter=0;
+	snapshot.forEach((childSnapshot) => {
+			// let fcmToken=childSnapshot.child('FcmToken').val();
+			let SmokeFreeTime=childSnapshot.child('SmokeFreeTime').child('startDate').child("time").val();
+
+			if(SmokeFreeTime!= null && typeof SmokeFreeTime != "object" && SmokeFreeTime!=0)
+			{
+				let currentDate=new Date();
+				let hours = Math.abs((currentDate.getTime() - SmokeFreeTime) / 3600000);
+				console.log('name'+childSnapshot.child('username').val());
+				console.log('time'+SmokeFreeTime);
+				arrayTopSmokeFree[counter]=hours;
+				arrayTopSnapshot[hours]=childSnapshot;	
+				counter=counter+1;
+	
+			}
+	});
+
+	let arrayTop10=arrayTopSmokeFree.sort((a, b) => b - a).slice(0,10);
+
+	let index=0;
+	arrayTop10.forEach(function(entry) {
+	
+		let snapshot=arrayTopSnapshot[entry];
+		result.push({name: snapshot.child('username').val(), SmokeFreeTime: parseInt(entry, 10)});
+		index=index+1;
+	});
+	var responsearray = {
+		data: {
+		  LeaderBoard: result}
+	  };
+	res.setHeader('Content-Type', 'application/json');
+
+	res.send( JSON.stringify(responsearray));
+
+});
+
+
+
 })
 

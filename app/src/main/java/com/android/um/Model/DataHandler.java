@@ -3,6 +3,7 @@ package com.android.um.Model;
 import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataModels.AnsweredQuestion;
 import com.android.um.Model.DataModels.KliniksModel;
+import com.android.um.Model.DataModels.LeaderBoardModel;
 import com.android.um.Model.DataModels.MotivationMessageModel;
 import com.android.um.Model.DataModels.PersonalityModel;
 import com.android.um.Model.DataModels.Question;
@@ -61,4 +62,5 @@ public interface DataHandler {
     void checkVideoQuestions(int index,DataCallBack<Boolean,String> callBack);
     void getPersonality(DataCallBack<ArrayList<PersonalityModel>,String> callBack);
     void getKliniks(DataCallBack<ArrayList<KliniksModel>,String> callBack);
+    void getLeaderBoard(DataCallBack<ArrayList<LeaderBoardModel>,String> callBack);
 }

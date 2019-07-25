@@ -2,11 +2,15 @@ package com.android.um.splashscreen;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.android.um.Interface.DataCallBack;
 import com.android.um.Model.DataHandler;
 import com.android.um.Model.DataHandlerInstance;
+import com.android.um.Model.DataModels.LeaderBoardModel;
 import com.android.um.Model.SharedPrefsManager;
+
+import java.util.ArrayList;
 
 public class SplashScreenPresenter implements SplashScreenContract.Presenter{
 

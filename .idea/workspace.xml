@@ -157,51 +157,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a128093-7317-45b2-af64-98ccf4e08a1e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_customtabs_27_1_1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_crashlytics_sdk_android_answers_1_4_7_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_crashlytics_sdk_android_beta_1_2_10_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_crashlytics_sdk_android_crashlytics_2_10_1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_crashlytics_sdk_android_crashlytics_core_2_7_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_firebaseui_firebase_ui_auth_4_2_1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_auth_16_0_1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_auth_api_phone_16_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_auth_base_16_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_flags_16_0_1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_strict_version_matcher_plugin_1_1_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_3_0_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_auth_16_0_5_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_auth_interop_16_0_1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_common_16_0_3_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_gms_google_services_4_2_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_gms_google_services_4_3_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_fabric_sdk_android_fabric_1_4_8_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_annotations_13_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_3_21_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_3_21_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_3_21_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk8_1_2_61_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/um/Model/DataModels/LeaderBoardModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/um/adapter/LeaderBoardAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/um/leaderboard/LeaderBoardContract.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/um/leaderboard/LeaderBoardFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/um/leaderboard/LeaderBoardPresenter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/gold_medal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/leaderboard.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/normal_medal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/silver_medal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/gold_medal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/normal_medal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/silver_medal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/gold_medal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/normal_medal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/silver_medal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/gold_medal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/normal_medal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/silver_medal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_leader_board.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/leaderboard_item.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_base_15_0_1_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_basement_15_0_1_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_tasks_15_0_1_aar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/um/Model/DataModels/SmokeFreeTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/um/Model/DataModels/SmokeFreeTime.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/um/dashboard/DashBoardPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/um/dashboard/DashBoardPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/um/services/FirebaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/um/services/FirebaseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/um/splashscreen/SplashScreenActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/um/splashscreen/SplashScreenActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/um/Model/DataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/um/Model/DataHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/um/Model/DataHandlerInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/um/Model/DataHandlerInstance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/um/PresenterInjector.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/um/PresenterInjector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/um/main/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/um/main/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/um/splashscreen/SplashScreenPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/um/splashscreen/SplashScreenPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main_activity.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main_activity.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/firebase functions/functions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/firebase functions/functions/index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -225,34 +214,69 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/services/FirebaseService.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/adapter/LeaderBoardAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="81">
-              <caret line="107" selection-start-line="107" selection-start-column="2" selection-end-line="116" selection-end-column="5" />
+            <state relative-caret-position="70">
+              <caret line="25" selection-start-line="25" selection-end-line="25" />
               <folding>
-                <marker date="1563407040542" expanded="true" signature="3122:3438" ph="..." />
+                <element signature="imports" expanded="true" />
+                <element signature="e#1996#1997#0" expanded="true" />
+                <element signature="e#2050#2051#0" expanded="true" />
+                <element signature="e#2107#2108#0" expanded="true" />
+                <element signature="e#2155#2156#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/leaderboard/LeaderBoardFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="52" column="60" selection-start-line="52" selection-start-column="60" selection-end-line="52" selection-end-column="60" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/build.gradle">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/adapter/MotivationMessagesAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="82" column="57" selection-start-line="82" selection-start-column="57" selection-end-line="82" selection-end-column="57" />
+            <state relative-caret-position="-496">
+              <caret line="21" column="30" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-          <provider editor-type-id="android-manifest" />
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/motivation_messages/MotivationMessagesActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="93" column="12" selection-start-line="93" selection-start-column="12" selection-end-line="93" selection-end-column="12" />
+            <state relative-caret-position="182">
+              <caret line="63" column="21" selection-start-line="63" selection-start-column="21" selection-end-line="63" selection-end-column="21" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_leader_board.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="527">
+              <caret line="31" column="41" selection-start-line="31" selection-start-column="41" selection-end-line="31" selection-end-column="41" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/leaderboard_item.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="36" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2" />
         </entry>
       </file>
     </leaf>
@@ -261,6 +285,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="valueResourceFile" />
+        <option value="layoutResourceFile" />
         <option value="Class" />
       </list>
     </option>
@@ -281,6 +306,9 @@
       <find>startTimer</find>
       <find>refreshtoken</find>
       <find>services</find>
+      <find>FirebaseFunctions</find>
+      <find>setAdapter</find>
+      <find>avi</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -302,16 +330,12 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/um/findclinics/FindClinicsPresenter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/um/clinicsmap/ProfileFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/um/clinicsmap/TermsPresenter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/android/um/PresenterInjector.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_custom_map.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/android/um/main/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/um/achievement/AchievementFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_permission.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_custom_map.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/um/findclinics/FindClinicsFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/android/um/Model/DataHandler.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/um/Model/Firebase/FirebaseHandler.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/android/um/Model/DataHandlerInstance.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/um/signin/SigninPresenter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/um/Model/Firebase/FirebaseInstance.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/um/Model/DataModels/KliniksModel.java" />
@@ -324,9 +348,23 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/um/Model/DataModels/SmokeFreeTime.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/um/dashboard/DashBoardPresenter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/android/um/splashscreen/SplashScreenActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/android/um/services/FirebaseService.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/android/um/services/FirebaseService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/android/um/Model/DataModels/LeaderBoardModel.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/android/um/Model/DataHandler.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/android/um/Model/DataHandlerInstance.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/android/um/splashscreen/SplashScreenPresenter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/android/um/leaderboard/InfoPresenter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/android/um/PresenterInjector.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/android/um/leaderboard/LeaderBoardContract.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/android/um/leaderboard/LeaderBoardPresenter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/android/um/main/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main_activity.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_leader_board.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/android/um/adapter/LeaderBoardAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/android/um/leaderboard/LeaderBoardFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/leaderboard_item.xml" />
       </list>
     </option>
   </component>
@@ -372,6 +410,13 @@
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="um" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="adapter" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="UMSmokerAnalyzer" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="um" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="dashboard" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -379,7 +424,29 @@
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="um" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="info" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="UMSmokerAnalyzer" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="um" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="leaderboard" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="UMSmokerAnalyzer" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="um" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="Model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="UMSmokerAnalyzer" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="um" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="Model" type="462c0819:PsiDirectoryNode" />
+              <item name="DataModels" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="UMSmokerAnalyzer" type="1abcf292:AndroidViewProjectNode" />
@@ -398,21 +465,39 @@
             </path>
             <path>
               <item name="UMSmokerAnalyzer" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="um" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="splashscreen" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="UMSmokerAnalyzer" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+            </path>
+            <path>
+              <item name="UMSmokerAnalyzer" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="drawable" type="ddeffd01:AndroidResFolderTypeNode" />
+            </path>
+            <path>
+              <item name="UMSmokerAnalyzer" type="1abcf292:AndroidViewProjectNode" />
               <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$PROJECT_DIR$/../Android" />
     <property name="device.picker.selection" value="B5002CA1ZJ8C2518C2" />
-    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable-hdpi" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../flutter_application/flutter_application" />
     <property name="project.structure.last.edited" value="Dependencies" />
     <property name="project.structure.proportion" value="0.17" />
@@ -421,15 +506,15 @@
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\UMSmokerAnalyzer\app\src\main\res\drawable-hdpi" />
+      <recent name="D:\UMSmokerAnalyzer\app\src\main\java\com\android\um\leaderboard" />
+      <recent name="D:\UMSmokerAnalyzer\app\src\main\res\drawable-mdpi" />
+      <recent name="D:\UMSmokerAnalyzer\app\src\main\res\drawable-xhdpi" />
+      <recent name="D:\UMSmokerAnalyzer\app\src\main\res\drawable-xxhdpi" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\UMSmokerAnalyzer\app\src\main\res\drawable-v24" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\UMSmokerAnalyzer\app\src\main\assets" />
-      <recent name="D:\UMSmokerAnalyzer\app\src\main\java\com\android\um\clinicsmap" />
-      <recent name="D:\UMSmokerAnalyzer\app\src\main\res\drawable-xxhdpi" />
-      <recent name="D:\UMSmokerAnalyzer\app\src\main\res\drawable-xhdpi" />
-      <recent name="D:\UMSmokerAnalyzer\app\src\main\res\drawable-mdpi" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -545,15 +630,21 @@
       <option name="project" value="LOCAL" />
       <updated>1562250431941</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Merge branch 'master' of https://github.com/justinwkUKM/UMSmokerAnalyzer&#10;&#10;# Conflicts:&#10;#&#9;.gradle/5.1.1/executionHistory/executionHistory.bin&#10;#&#9;.gradle/5.1.1/executionHistory/executionHistory.lock&#10;#&#9;.gradle/5.1.1/fileContent/fileContent.lock&#10;#&#9;.gradle/5.1.1/fileHashes/fileHashes.bin&#10;#&#9;.gradle/5.1.1/fileHashes/fileHashes.lock&#10;#&#9;.gradle/5.1.1/javaCompile/classAnalysis.bin&#10;#&#9;.gradle/5.1.1/javaCompile/javaCompile.lock&#10;#&#9;.gradle/5.1.1/javaCompile/taskHistory.bin">
+      <created>1563407798627</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1563407798628</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.1452345" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.1452345" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -568,7 +659,7 @@
       <window_info anchor="bottom" id="Terminal" order="4" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5015129" side_tool="true" weight="0.32820514" />
       <window_info anchor="bottom" id="Version Control" order="6" weight="0.32820514" />
-      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49848714" visible="true" weight="0.32820514" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49848714" weight="0.32820514" />
       <window_info anchor="bottom" id="Android Profiler" order="8" />
       <window_info anchor="bottom" id="Messages" order="9" weight="0.3289689" />
       <window_info anchor="bottom" id="Find" order="10" />
@@ -669,17 +760,53 @@
           <properties />
           <option name="timeStamp" value="47" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/um/Model/DataHandlerInstance.java</url>
+          <line>432</line>
+          <properties />
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/um/adapter/LeaderBoardAdapter.java</url>
+          <line>43</line>
+          <properties />
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/um/adapter/LeaderBoardAdapter.java</url>
+          <line>25</line>
+          <properties />
+          <option name="timeStamp" value="62" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/um/leaderboard/LeaderBoardFragment.java</url>
+          <line>51</line>
+          <properties />
+          <option name="timeStamp" value="63" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/um/leaderboard/LeaderBoardFragment.java</url>
+          <line>61</line>
+          <properties />
+          <option name="timeStamp" value="64" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="app">
         <watch expression="questions.get(pos).getId()-1" language="JAVA" />
         <watch expression="kliniksModels.add(dsp.getValue(KliniksModel.class))" language="JAVA" />
+        <watch expression="leaderBoardModels.get(position).getName()" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>leaderBoardModels.get(position).getName()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>kliniksModels.add(dsp.getValue(KliniksModel.class))</expression-string>
         <language-id>JAVA</language-id>
@@ -693,82 +820,8 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/questions/RaceFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1732">
-          <caret line="34" column="35" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/questions/RadioButtonFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="94" selection-start-line="94" selection-end-line="94" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/questions/QuestionsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="236" selection-start-line="236" selection-end-line="236" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/achievement_activity.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1513">
-          <caret line="89" column="6" selection-start-line="89" selection-start-column="6" selection-end-line="89" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/google_maps_api.xml" />
-    <entry file="file://$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2023">
-          <caret line="119" selection-start-line="119" selection-end-line="119" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-my/google_maps_api.xml" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/google_maps_key.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/findclinics/FindClinicsContract.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/findclinics/FindClinicsPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/clinicsmap/ProfileContract.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/clinicsmap/ProfilePresenter.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/clinicsmap/ProfileFragment.java" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/PresenterInjector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="166" column="48" selection-start-line="166" selection-start-column="23" selection-end-line="166" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bae3a16646effdecd70cdc6172452484/res/values/values.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
@@ -777,15 +830,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_custom_map.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_custom_map.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="112">
           <caret line="33" column="25" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
@@ -794,6 +846,7 @@
           </folding>
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/achievement/AchievementPresenter.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -814,24 +867,17 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_permission.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="40" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/assets/kliniks.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="59" lean-forward="true" selection-start-line="12" selection-start-column="59" selection-end-line="12" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/Model/DataHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="62" column="73" selection-start-line="62" selection-start-column="73" selection-end-line="62" selection-end-column="73" />
         </state>
       </provider>
     </entry>
@@ -850,13 +896,6 @@
             <element signature="e#3625#3626#0" expanded="true" />
             <element signature="e#3713#3714#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/main/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="94" selection-start-line="94" selection-end-line="94" />
         </state>
       </provider>
     </entry>
@@ -947,12 +986,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/mindfulness_activity.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="36" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="36" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/mindfulness/VideoPlayActivity.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -965,8 +1004,8 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/videoplayer_activity.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/Model/Firebase/FirebaseInstance.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1008,20 +1047,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/dashboard/DashBoardFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
-          <caret line="89" column="36" selection-start-line="89" selection-start-column="16" selection-end-line="89" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/Model/DataHandlerInstance.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2788">
-          <caret line="224" column="26" selection-start-line="224" selection-start-column="16" selection-end-line="224" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/splashscreen/SplashScreenActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-348">
@@ -1036,19 +1061,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/services/FirebaseService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="107" selection-start-line="107" selection-start-column="2" selection-end-line="116" selection-end-column="5" />
-          <folding>
-            <marker date="1563407040542" expanded="true" signature="3122:3438" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
+        <state relative-caret-position="1394">
           <caret line="82" column="57" selection-start-line="82" selection-start-column="57" selection-end-line="82" selection-end-column="57" />
         </state>
       </provider>
@@ -1056,8 +1071,196 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="93" column="12" selection-start-line="93" selection-start-column="12" selection-end-line="93" selection-end-column="12" />
+        <state relative-caret-position="1581">
+          <caret line="93" column="41" selection-start-line="93" selection-start-column="12" selection-end-line="93" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/Model/DataModels/LeaderBoardModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="29" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
+          <folding>
+            <element signature="e#167#168#0" expanded="true" />
+            <element signature="e#207#208#0" expanded="true" />
+            <element signature="e#239#240#0" expanded="true" />
+            <element signature="e#268#269#0" expanded="true" />
+            <element signature="e#296#297#0" expanded="true" />
+            <element signature="e#335#336#0" expanded="true" />
+            <element signature="e#369#370#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/services/FirebaseService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="92" column="33" lean-forward="true" selection-start-line="92" selection-start-column="33" selection-end-line="92" selection-end-column="33" />
+          <folding>
+            <element signature="e#2899#2900#0" expanded="true" />
+            <element signature="e#2934#2935#0" expanded="true" />
+            <marker date="1563407678194" expanded="true" signature="3120:3418" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/Model/DataHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="64" column="83" selection-start-line="64" selection-start-column="83" selection-end-line="64" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/splashscreen/SplashScreenPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="54" column="21" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/adapter/AddMotivationMessagesAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="60" column="1" selection-start-line="20" selection-start-column="43" selection-end-line="60" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/info/InfoFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="95" lean-forward="true" selection-start-line="22" selection-start-column="26" selection-end-line="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/PresenterInjector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="172" column="49" selection-start-line="172" selection-start-column="23" selection-end-line="172" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/leaderboard/LeaderBoardContract.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="13" column="43" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/leaderboard/LeaderBoardPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="34" column="42" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
+          <folding>
+            <element signature="e#1152#1153#0" expanded="true" />
+            <element signature="e#1205#1206#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main_activity.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="113" column="45" selection-start-line="113" selection-start-column="45" selection-end-line="113" selection-end-column="46" />
+          <folding>
+            <element signature="e#4523#4538#0" expanded="true" />
+            <element signature="e#4808#4822#0" expanded="true" />
+            <element signature="e#4864#4878#0" expanded="true" />
+            <element signature="e#4913#4928#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/dashboard/DashBoardFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="38" column="38" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_signup.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="255" selection-start-line="244" selection-start-column="2" selection-end-line="255" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/main/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="134" column="38" selection-start-line="134" selection-start-column="38" selection-end-line="134" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/signup/SignupActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="82" column="37" lean-forward="true" selection-start-line="82" selection-start-column="37" selection-end-line="82" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/Model/DataHandlerInstance.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-207">
+          <caret line="404" selection-start-line="404" selection-end-line="404" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/adapter/MotivationMessagesAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-496">
+          <caret line="21" column="30" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/adapter/LeaderBoardAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="70">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1996#1997#0" expanded="true" />
+            <element signature="e#2050#2051#0" expanded="true" />
+            <element signature="e#2107#2108#0" expanded="true" />
+            <element signature="e#2155#2156#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_leader_board.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="41" selection-start-line="31" selection-start-column="41" selection-end-line="31" selection-end-column="41" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/motivation_messages/MotivationMessagesActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="63" column="21" selection-start-line="63" selection-start-column="21" selection-end-line="63" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/leaderboard_item.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="36" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/android/um/leaderboard/LeaderBoardFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="52" column="60" selection-start-line="52" selection-start-column="60" selection-end-line="52" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

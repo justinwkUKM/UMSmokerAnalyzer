@@ -17,6 +17,8 @@ import com.android.um.info.InfoContract;
 import com.android.um.info.InfoPresenter;
 import com.android.um.language.LanguageContract;
 import com.android.um.language.LanguagePresenter;
+import com.android.um.leaderboard.LeaderBoardContract;
+import com.android.um.leaderboard.LeaderBoardPresenter;
 import com.android.um.main.MainActivityContract;
 import com.android.um.main.MainActivityPresenter;
 import com.android.um.mindfulness.MindfulnessContract;
@@ -166,6 +168,10 @@ public class PresenterInjector {
 
     public static void injectClinicsMapPresenter(ClinicsMapContract.View clinicsmapView) {
         new ClinicsMapPresenter(clinicsmapView);
+    }
+
+    public static void injectLeaderBoardPresenter(LeaderBoardContract.View leaderboardView) {
+        new LeaderBoardPresenter(leaderboardView);
     }
 
 }

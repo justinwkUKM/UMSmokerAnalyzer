@@ -105,7 +105,7 @@
                 android:src="@drawable/ic_social_support_icon" />
 
             <ImageButton
-                android:id="@+id/compass_btn"
+                android:id="@+id/leaderboard_btn"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
                 android:layout_below="@+id/support_btn"
@@ -116,6 +116,20 @@
                 android:paddingRight="@dimen/_8sdp"
                 android:paddingBottom="@dimen/_12sdp"
 
+                android:scaleType="fitXY"
+                android:src="@drawable/leaderboard" />
+
+            <ImageButton
+                android:id="@+id/compass_btn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_below="@+id/leaderboard_btn"
+                android:layout_centerHorizontal="true"
+                android:background="?android:selectableItemBackground"
+                android:paddingLeft="@dimen/_8sdp"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingRight="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_12sdp"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_navigation_icon" />
 

@@ -19,6 +19,7 @@ import com.android.um.achievement.AchievementFragment;
 import com.android.um.dashboard.DashBoardFragment;
 import com.android.um.findclinics.FindClinicsFragment;
 import com.android.um.info.InfoFragment;
+import com.android.um.leaderboard.LeaderBoardFragment;
 import com.android.um.mindfulness.MindfulnessFragment;
 import com.android.um.profile.ProfileFragment;
 import com.android.um.signin.SigninActivity;
@@ -57,6 +58,7 @@ public class MainActivity extends BaseActivity implements MainActivityContract.V
     String  SOCIAL_SUPPORT_FRAGMENT="SOCIAL_SUPPORT_FRAGMENT";
     String  ACHIEVEMENT_FRAGMENT="ACHIEVEMENT_FRAGMENT";
     String  FIND_CLINICS_FRAGMENT="FIND_CLINICS_FRAGMENT";
+    String  LEADER_BOARD="LEADER_BOARD";
     String  INFO_FRAGMENT="INFO_FRAGMENT";
     String  CURRENT_TAG="";
     @Override
@@ -107,7 +109,7 @@ public class MainActivity extends BaseActivity implements MainActivityContract.V
         super.showMessage(context, message);
     }
 
-    @OnClick({R.id.profile_btn, R.id.dashboard_btn, R.id.awards_btn, R.id.hyponsis_btn, R.id.support_btn, R.id.compass_btn, R.id.info_btn, R.id.logout_btn})
+    @OnClick({R.id.profile_btn, R.id.dashboard_btn, R.id.awards_btn, R.id.hyponsis_btn, R.id.support_btn, R.id.compass_btn, R.id.leaderboard_btn, R.id.info_btn, R.id.logout_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.profile_btn:
@@ -129,6 +131,10 @@ public class MainActivity extends BaseActivity implements MainActivityContract.V
             case R.id.compass_btn:
                 loadFragment(FindClinicsFragment.newInstance(),FIND_CLINICS_FRAGMENT);
                 break;
+            case R.id.leaderboard_btn:
+                loadFragment(LeaderBoardFragment.newInstance(),LEADER_BOARD);
+                break;
+
             case R.id.info_btn:
                 loadFragment(InfoFragment.newInstance(),INFO_FRAGMENT);
                 break;
